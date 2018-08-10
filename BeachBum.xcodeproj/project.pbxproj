@@ -18,6 +18,7 @@
 		1731E702211D712100D7E432 /* BeachForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6FB211D712100D7E432 /* BeachForecast.swift */; };
 		1731E703211D712100D7E432 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6FC211D712100D7E432 /* Forecast.swift */; };
 		1731E706211D717500D7E432 /* BeachForecastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E705211D717500D7E432 /* BeachForecastsViewController.swift */; };
+		1731E708211D754600D7E432 /* BeachForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E707211D754600D7E432 /* BeachForecastTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		1731E6FB211D712100D7E432 /* BeachForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeachForecast.swift; sourceTree = "<group>"; };
 		1731E6FC211D712100D7E432 /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		1731E705211D717500D7E432 /* BeachForecastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastsViewController.swift; sourceTree = "<group>"; };
+		1731E707211D754600D7E432 /* BeachForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 				1731E705211D717500D7E432 /* BeachForecastsViewController.swift */,
 				1731E6FB211D712100D7E432 /* BeachForecast.swift */,
 				1731E6F7211D712100D7E432 /* BeachForecastController.swift */,
+				1731E707211D754600D7E432 /* BeachForecastTableViewCell.swift */,
 				1731E6F8211D712100D7E432 /* BeachForecastsDataSource.swift */,
 				1731E6FA211D712100D7E432 /* NetworkController.swift */,
 				1731E6FC211D712100D7E432 /* Forecast.swift */,
@@ -167,6 +170,7 @@
 				1731E706211D717500D7E432 /* BeachForecastsViewController.swift in Sources */,
 				1731E700211D712100D7E432 /* Beach.swift in Sources */,
 				1731E6FF211D712100D7E432 /* BeachForecastsDataSource.swift in Sources */,
+				1731E708211D754600D7E432 /* BeachForecastTableViewCell.swift in Sources */,
 				1731E702211D712100D7E432 /* BeachForecast.swift in Sources */,
 				1731E6E5211D6FA000D7E432 /* AppDelegate.swift in Sources */,
 			);

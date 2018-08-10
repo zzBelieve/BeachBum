@@ -18,17 +18,12 @@ class BeachForecastsViewController: UIViewController {
     didSet {
       dataSource = BeachForecastsDataSource(beachForecasts: beachForecastController.beaches)
       beachForecastsTableView.dataSource = dataSource
-      
     }
   }
   
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    beachForecastController.udpateForecasts(completion: {
-      print("update forecast completed")
-      
-      self.beachForecastsTableView.reloadData()
-    })
+
   }
 }

@@ -14,29 +14,25 @@ struct Beach {
   var latitude: Double
   var longitude: Double
   var coordinates: String { return "\(latitude),\(longitude)" }
-  
-}
 
-enum BeachName: String {
-  
-  case keiki
-  case lanikai
-  
-  static var all = [BeachName.keiki, .lanikai]
 }
 
 extension Beach {
-  
-  static var listOfCoordinates: [Beach] = [Beach(name: .keiki, latitude: 21.6550, longitude: 158.0600)]
+  static var beachList: [Beach] = [Beach(name: .keiki, latitude: 21.6550, longitude: 158.0600),
+                                   Beach(name: .lanikai, latitude: 21.3931, longitude: 157.7154)
+]
   static let baseURL: URL? = {
     var components = URLComponents()
     components.scheme = "https"
     components.host = "api.darksky.net"
     components.path = "/forecast/33833ceebca4249519c0b3845541972a"
     return components.url
-  }()
-  
+  }() 
 }
 
-
+enum BeachName: String {
+  case keiki
+  case lanikai
+  static var all = [BeachName.keiki, .lanikai]
+}
 //Beach(name: .lanikai, latitude: 21.3931, longitude: 157.7154)
