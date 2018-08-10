@@ -16,9 +16,33 @@ class BeachForecastsViewController: UIViewController {
   
   @IBOutlet weak var beachForecastsTableView: UITableView! {
     didSet {
+      beachForecastsTableView.backgroundColor = UIColor.sand
+      beachForecastsTableView.delegate = self
       dataSource = BeachForecastsDataSource(beachForecasts: beachForecastController.beaches)
       beachForecastsTableView.dataSource = dataSource
     }
   }
   
+}
+
+//MARK: Table View Delegate
+extension BeachForecastsViewController: UITableViewDelegate {
+  
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    cell.backgroundColor = UIColor.clear
+    if let beachCell = cell as? BeachForecastTableViewCell {
+      beachCell.cellView.layer.cornerRadius = 8.0
+      beachCell.cellView.backgroundColor = UIColor.lightBlue
+    }
+    
+  }
+  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return 100 }
+}
+
+//MARK: View Lifecycle
+extension BeachForecastsViewController {
+  override func viewDidLoad() {
+    super.viewDidLoad()
+    view.backgroundColor = UIColor.sand
+  }
 }

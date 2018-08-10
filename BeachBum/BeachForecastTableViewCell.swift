@@ -10,12 +10,29 @@ import UIKit
 
 class BeachForecastTableViewCell: UITableViewCell {
   
-  @IBOutlet weak var beachNameLabel: UILabel!
-  @IBOutlet weak var temperatureLabel: UILabel!
+
+  
+  @IBOutlet weak var cellView: UIView! {
+    didSet {
+      
+    }
+  }
+  @IBOutlet weak var beachNameLabel: UILabel! {
+    didSet {
+      beachNameLabel.textColor = UIColor.white
+    }
+  }
+  @IBOutlet weak var temperatureLabel: UILabel! {
+    didSet {
+      temperatureLabel.textColor = UIColor.white
+    }
+  }
   
   var model: Model? {
     didSet {
       guard let model = model else { return }
+      cellView.backgroundColor = UIColor.lightBlue
+  
       beachNameLabel.text = model.beachName
       temperatureLabel.text = "\(model.temperature)"
       
