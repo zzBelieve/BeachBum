@@ -9,35 +9,45 @@
 import UIKit
 
 class BeachForecastsViewController: UIViewController {
-
+  
   var beachForecastController = BeachForecastController()
   
   private var dataSource: BeachForecastsDataSource?
   
-  @IBOutlet weak var beachForecastsTableView: UITableView! {
+  @IBOutlet weak var beachForecastsCollectionView: UICollectionView! {
     didSet {
-      beachForecastsTableView.backgroundColor = UIColor.sand
-      beachForecastsTableView.delegate = self
+      beachForecastsCollectionView.backgroundColor = UIColor.sand
+      beachForecastsCollectionView.delegate = self
       dataSource = BeachForecastsDataSource(beachForecasts: beachForecastController.beaches)
-      beachForecastsTableView.dataSource = dataSource
+      beachForecastsCollectionView.dataSource = dataSource
     }
   }
-  
 }
 
-//MARK: Table View Delegate
-extension BeachForecastsViewController: UITableViewDelegate {
+//MARK: CollectionView Delegate
+extension BeachForecastsViewController: UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
   
-  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-    cell.backgroundColor = UIColor.clear
-    if let beachCell = cell as? BeachForecastTableViewCell {
-      beachCell.cellView.layer.cornerRadius = 8.0
-      beachCell.cellView.backgroundColor = UIColor.lightBlue
-    }
+  func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+    cell.backgroundColor = .clear
+    cell.layer.cornerRadius = 8.0
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    let sizeWidth = (collectionView.frame.size.width / 3)
+    
+    return CGSize(width: sizeWidth, height: sizeWidth * 1.25)
     
   }
-  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat { return 100 }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    return UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+  }
+  
+  func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    return 0
+  }
 }
+
 
 //MARK: View Lifecycle
 extension BeachForecastsViewController {
@@ -46,3 +56,4 @@ extension BeachForecastsViewController {
     view.backgroundColor = UIColor.sand
   }
 }
+
