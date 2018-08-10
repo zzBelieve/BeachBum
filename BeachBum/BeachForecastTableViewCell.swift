@@ -15,10 +15,10 @@ class BeachForecastTableViewCell: UITableViewCell {
   
   var model: Model? {
     didSet {
-      if let model = model {
-        beachNameLabel.text = model.beachName
-        temperatureLabel.text = "\(model.temperature)"
-      }
+      guard let model = model else { return }
+      beachNameLabel.text = model.beachName
+      temperatureLabel.text = "\(model.temperature)"
+      
     }
   }
 }

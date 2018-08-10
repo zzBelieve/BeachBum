@@ -21,9 +21,4 @@ class BeachForecastsViewController: UIViewController {
     }
   }
   
-  
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
-  }
 }

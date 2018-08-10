@@ -39,9 +39,9 @@ extension BeachForecastsDataSource: UITableViewDataSource {
       NetworkController.fetchForecastData(url, completion: { weather in
         DispatchQueue.main.async {
           let newBeachForecast = BeachForecast(name: Beach.beachList[indexPath.row].name, forecast: weather)
+          self.beachForecasts.append(newBeachForecast)
           beachCell.model = BeachForecastTableViewCell.Model(beach: newBeachForecast)
         }
-        
       })
     }
     
