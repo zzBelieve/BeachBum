@@ -12,7 +12,7 @@ import Foundation
 class NetworkController {
   
   //fetch weather forecast given a url, and hands it over to completion
-  static func fetchForecastData(_ url: URL, completion: @escaping ((Forecast) -> Void)) {
+  func fetchForecastData(_ url: URL, completion: @escaping ((Forecast) -> Void)) {
     let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
       guard let data = data else { print("Data failed: \(error!)"); return}
         do {

@@ -10,8 +10,24 @@ import UIKit
 
 class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFlowLayout {
   
+  //MARK: Injected Objects
   var beachForecastController = BeachForecastController()
+  
   private var dataSource: BeachForecastsDataSource?
+  
+  @IBOutlet weak var beachForecastsCollectionView: UICollectionView! {
+    didSet {
+      beachForecastsCollectionView.backgroundColor = UIColor.sand
+      beachForecastsCollectionView.delegate = self
+      
+      configureFlowLayout()
+    }
+  }
+}
+
+//MARK: CollectionView Delegate and Flow Layout
+extension BeachForecastsViewController: UICollectionViewDelegate {
+  
   private var flowLayout: UICollectionViewFlowLayout? {
     return beachForecastsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
   }
@@ -32,21 +48,6 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
     })
   }
   
-  
-  @IBOutlet weak var beachForecastsCollectionView: UICollectionView! {
-    didSet {
-      beachForecastsCollectionView.backgroundColor = UIColor.sand
-      beachForecastsCollectionView.delegate = self
-      dataSource = BeachForecastsDataSource(beachForecasts: beachForecastController.beaches)
-      beachForecastsCollectionView.dataSource = dataSource
-      configureFlowLayout()
-    }
-  }
-}
-
-//MARK: CollectionView Delegate
-extension BeachForecastsViewController: UICollectionViewDelegate {
-  
   func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
     cell.backgroundColor = .clear
   }
@@ -55,7 +56,6 @@ extension BeachForecastsViewController: UICollectionViewDelegate {
 //
 //    //changeFlowLayout() for later implementation
 //  }
-  
 }
 
 
@@ -64,6 +64,24 @@ extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = UIColor.sand
+    print("attemptint to fetch all data")
+    beachForecastController.udpateForecasts(completion: {
+      print("all fetches have completed")
+      self.dataSource = BeachForecastsDataSource(self.beachForecastController)
+      self.beachForecastsCollectionView.dataSource = self.dataSource
+    })
+    
   }
 }
 
+//MARK: Navigation
+extension BeachForecastsViewController {
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "Show Beach" {
+      if let detailedVC = segue.destination as? DetailedForecastViewController, let indexPath = beachForecastsCollectionView.indexPathsForSelectedItems?.first  {
+        print("passing \(beachForecastController.beaches[indexPath.item].name) ")
+        detailedVC.beachForecast = beachForecastController.beaches[indexPath.item]
+      }
+    }
+  }
+}

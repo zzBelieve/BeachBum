@@ -11,42 +11,23 @@ import UIKit
 
 class BeachForecastsDataSource: NSObject {
   
-  var beachForecasts: [BeachForecast]
+  var beachForecastController: BeachForecastController
   
-  init(beachForecasts: [BeachForecast]) {
-    self.beachForecasts = beachForecasts
+  init(_ beachForecastController: BeachForecastController) {
+    self.beachForecastController = beachForecastController
   }
   
 }
 
 extension BeachForecastsDataSource: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    //return 3
-    return Beach.beachList.count
+    return 3
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BeachCell", for: indexPath)
     guard let beachCell = cell as? BeachForecastCollectionViewCell else { return cell }
-    
-    beachCell.beachNameLabel?.text = Beach.beachList[indexPath.item].name.rawValue
-    //check if a forecast exists in the array if so, set the cell's model to be that object
-    
-    if let beachForecast = beachForecasts.first(where: {$0.name == Beach.beachList[indexPath.row].name}) {
-      beachCell.model = BeachForecastCollectionViewCell.Model(beach: beachForecast)
-    } else {
-      //else make a network call to fetch a forecast and then set the cell's model to be that object
-      
-      guard let url = Beach.baseURL?.appendingPathComponent(Beach.beachList[indexPath.row].coordinates) else { print("Invalid URL"); return cell }
-      NetworkController.fetchForecastData(url, completion: { weather in
-        DispatchQueue.main.async {
-          let newBeachForecast = BeachForecast(name: Beach.beachList[indexPath.row].name, forecast: weather)
-          self.beachForecasts.append(newBeachForecast)
-          beachCell.model = BeachForecastCollectionViewCell.Model(beach: newBeachForecast)
-        }
-      })
-    }
-    
+    beachCell.model = BeachForecastCollectionViewCell.Model(beach: beachForecastController.beaches[indexPath.item])
     return cell
   }
 }

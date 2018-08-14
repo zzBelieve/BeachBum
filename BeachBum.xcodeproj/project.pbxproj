@@ -18,6 +18,7 @@
 		1731E702211D712100D7E432 /* BeachForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6FB211D712100D7E432 /* BeachForecast.swift */; };
 		1731E703211D712100D7E432 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6FC211D712100D7E432 /* Forecast.swift */; };
 		1731E706211D717500D7E432 /* BeachForecastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E705211D717500D7E432 /* BeachForecastsViewController.swift */; };
+		17C2E5882122B66500FAB47E /* DetailedForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */; };
 		17E74555211E1AB50024B005 /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E74554211E1AB50024B005 /* ThemeColors.swift */; };
 		17E74557211E3F350024B005 /* BeachForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E74556211E3F350024B005 /* BeachForecastCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -36,6 +37,7 @@
 		1731E6FB211D712100D7E432 /* BeachForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeachForecast.swift; sourceTree = "<group>"; };
 		1731E6FC211D712100D7E432 /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		1731E705211D717500D7E432 /* BeachForecastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastsViewController.swift; sourceTree = "<group>"; };
+		17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedForecastViewController.swift; sourceTree = "<group>"; };
 		17E74554211E1AB50024B005 /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		17E74556211E3F350024B005 /* BeachForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,6 +75,7 @@
 				1731E6F6211D6FEF00D7E432 /* Supporting Files */,
 				1731E6E8211D6FA000D7E432 /* Main.storyboard */,
 				1731E705211D717500D7E432 /* BeachForecastsViewController.swift */,
+				17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */,
 				1731E6FB211D712100D7E432 /* BeachForecast.swift */,
 				1731E6F7211D712100D7E432 /* BeachForecastController.swift */,
 				17E74556211E3F350024B005 /* BeachForecastCollectionViewCell.swift */,
@@ -172,6 +175,7 @@
 				1731E703211D712100D7E432 /* Forecast.swift in Sources */,
 				17E74557211E3F350024B005 /* BeachForecastCollectionViewCell.swift in Sources */,
 				1731E706211D717500D7E432 /* BeachForecastsViewController.swift in Sources */,
+				17C2E5882122B66500FAB47E /* DetailedForecastViewController.swift in Sources */,
 				1731E700211D712100D7E432 /* Beach.swift in Sources */,
 				17E74555211E1AB50024B005 /* ThemeColors.swift in Sources */,
 				1731E6FF211D712100D7E432 /* BeachForecastsDataSource.swift in Sources */,

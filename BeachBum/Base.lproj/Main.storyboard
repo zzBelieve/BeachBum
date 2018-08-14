@@ -45,7 +45,7 @@
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="S3K-21-CQa">
                                                                     <rect key="frame" x="30" y="30" width="110" height="77.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="80.00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kER-QV-IMM">
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--.--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kER-QV-IMM">
                                                                             <rect key="frame" x="0.0" y="0.0" width="110" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
@@ -66,8 +66,8 @@
                                                                 <constraint firstItem="S3K-21-CQa" firstAttribute="leading" secondItem="8c7-z4-oFY" secondAttribute="leading" constant="30" id="uTW-Ou-WVS"/>
                                                             </constraints>
                                                         </view>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Lanikai" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X25-S9-4wd">
-                                                            <rect key="frame" x="63.5" y="137.5" width="53" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--.--" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X25-S9-4wd">
+                                                            <rect key="frame" x="72.5" y="137.5" width="35.5" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -92,6 +92,7 @@
                                             <outlet property="beachNameLabel" destination="X25-S9-4wd" id="vcr-Wv-dvA"/>
                                             <outlet property="temperatureLabel" destination="kER-QV-IMM" id="nbd-ao-l5Y"/>
                                             <outlet property="weatherIconView" destination="9SV-i2-JCm" id="fxE-e8-YD6"/>
+                                            <segue destination="cYe-xm-IVn" kind="show" identifier="Show Beach" id="RTK-Pz-jSI"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -114,6 +115,48 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUH-Du-E7u" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="964" y="29.23538230884558"/>
+        </scene>
+        <!--Detailed Forecast View Controller-->
+        <scene sceneID="XWW-xs-rTm">
+            <objects>
+                <viewController id="cYe-xm-IVn" customClass="DetailedForecastViewController" customModule="BeachBum" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="GPA-sK-M0P">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="U8D-3C-QH0">
+                                <rect key="frame" x="164" y="263" width="47.5" height="141"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="beach" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xXp-7R-OcP">
+                                        <rect key="frame" x="0.0" y="0.0" width="47.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99.9" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMg-LV-Xcp">
+                                        <rect key="frame" x="0.0" y="120.5" width="47.5" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="U8D-3C-QH0" firstAttribute="centerY" secondItem="GPA-sK-M0P" secondAttribute="centerY" id="YSB-hY-64n"/>
+                            <constraint firstItem="U8D-3C-QH0" firstAttribute="centerX" secondItem="GPA-sK-M0P" secondAttribute="centerX" id="hHf-88-xZH"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="fR5-fb-RZL"/>
+                    </view>
+                    <connections>
+                        <outlet property="beachNameLabel" destination="xXp-7R-OcP" id="6Aa-HV-nfr"/>
+                        <outlet property="currentTemperatureLabel" destination="kMg-LV-Xcp" id="WuZ-fH-UwJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e9f-Pd-Wlk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1921" y="29"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uUr-jT-AtW">

@@ -40,7 +40,8 @@ class BeachForecastCollectionViewCell: UICollectionViewCell {
   var model: Model? {
     didSet {
       guard let model = model else { return }
-      temperatureLabel.text = "\(model.temperature)"
+      beachNameLabel?.text = model.beachName
+      temperatureLabel?.text = "\(model.temperature)"
     }
   }
 }
