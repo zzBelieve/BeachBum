@@ -11,7 +11,7 @@ import UIKit
 
 extension UIColor {
   
-  class var lightBlue: UIColor {
+  class var skyBlue: UIColor {
     return UIColor(red: 80/255, green: 159/255, blue: 207/255, alpha: 1)
   }
   

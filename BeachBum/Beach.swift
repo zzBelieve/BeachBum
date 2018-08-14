@@ -18,8 +18,9 @@ struct Beach {
 }
 
 extension Beach {
-  static var beachList: [Beach] = [Beach(name: .keiki, latitude: 21.6550, longitude: 158.0600),
-                                   Beach(name: .lanikai, latitude: 21.3931, longitude: 157.7154)
+  static var beachList: [Beach] = [Beach(name: .keiki, latitude: 21.6550, longitude: -158.0600),
+                                   Beach(name: .lanikai, latitude: 21.3931, longitude: -157.7154),
+                                   Beach(name: .haleiwa, latitude: 21.5928, longitude: -158.1034)
 ]
   static let baseURL: URL? = {
     var components = URLComponents()
@@ -33,6 +34,7 @@ extension Beach {
 enum BeachName: String {
   case keiki
   case lanikai
-  static var all = [BeachName.keiki, .lanikai]
+  case haleiwa
+  static var all = [BeachName.keiki, .lanikai, .haleiwa]
 }
 //Beach(name: .lanikai, latitude: 21.3931, longitude: 157.7154)
