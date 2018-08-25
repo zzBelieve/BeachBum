@@ -1,0 +1,6 @@
+framework module Pods_BeachBum {
+  umbrella header "Pods-BeachBum-umbrella.h"
+
+  export *
+  module * { export * }
+}

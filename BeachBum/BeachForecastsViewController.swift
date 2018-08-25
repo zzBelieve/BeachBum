@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFlowLayout {
   
@@ -51,10 +52,10 @@ extension BeachForecastsViewController: UICollectionViewDelegate {
     cell.backgroundColor = .clear
   }
   
-//  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//    //changeFlowLayout() for later implementation
-//  }
+  //  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  //
+  //    //changeFlowLayout() for later implementation
+  //  }
 }
 
 
@@ -63,12 +64,15 @@ extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     view.backgroundColor = UIColor.sand
-    print("attemptint to fetch all data")
-    beachForecastController.udpateForecasts(completion: {
-      print("all fetches have completed")
-      self.dataSource = BeachForecastsDataSource(self.beachForecastController)
-      self.beachForecastsCollectionView.dataSource = self.dataSource
-    })
+    //addToDatabase()
+    print("fetching beaches database from firebase")
+    retrieveData()
+    //    print("attempting to fetch all data")
+    //    beachForecastController.udpateForecasts(completion: {
+    //      print("all fetches have completed")
+    //      self.dataSource = BeachForecastsDataSource(self.beachForecastController)
+    //      self.beachForecastsCollectionView.dataSource = self.dataSource
+    //    })
     
   }
 }
@@ -83,4 +87,55 @@ extension BeachForecastsViewController {
       }
     }
   }
+}
+
+extension BeachForecastsViewController {
+  func addToDatabase() {
+    //TODO: add all beaches to firebase
+    Database.database().reference().setValue("Data")
+    let beachNames: [DatabaseBeach] = [DatabaseBeach(name: .keiki, latitude: 21.6550, longitude: -158.0600),
+                                       DatabaseBeach(name: .lanikai, latitude: 21.3931, longitude: -157.7154),
+                                       DatabaseBeach(name: .haleiwa, latitude: 21.5928, longitude: -158.1034)]
+    let beachesDB = Database.database().reference().child("Beaches")
+    
+    for beach in beachNames {
+      let beachesDictionary = ["Name": beach.name.rawValue,
+                               "Latitude": beach.latitude,
+                               "Longitude": beach.longitude] as [String : Any]
+      beachesDB.childByAutoId().setValue(beachesDictionary) { (error, reference) in
+        guard error == nil else { return }
+        print("\(beach.name) saved")
+      }
+      
+      
+    }
+  }
+  
+  private func retrieveData() {
+    let beachesDB = Database.database().reference().child("Beaches")
+    //OBSERVE IS OFF OF THE MAIN THREAD
+    beachesDB.observeSingleEvent(of: .value) { (snapshot) in
+      guard let snapshot = snapshot.value as? Dictionary<String, Any> else { print("unable to retrive snapshot") ; return }
+      
+      for value in snapshot {
+        guard let keyValue = value.value as? Dictionary<String, Any> else  { return }
+        guard let name = keyValue["Name"] as? String else {print("can't find name"); return }
+        guard let lat = keyValue["Latitude"] as? Double, let long = keyValue["Longitude"] as? Double else { return }
+        let beach = Beach(name: name, latitude: lat, longitude: long)
+        self.beachForecastController.beachNames.append(beach)
+      }
+      print(self.beachForecastController.beachNames)
+    }
+  }
+  
+}
+
+
+
+
+struct DatabaseBeach {
+  
+  var name: BeachName
+  var latitude: Double
+  var longitude: Double
 }

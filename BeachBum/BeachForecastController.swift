@@ -12,9 +12,7 @@ class BeachForecastController {
   
   var beaches: [BeachForecast] = []
   var networkController = NetworkController()
-  let beachNames: [Beach] = [Beach(name: .keiki, latitude: 21.6550, longitude: -158.0600),
-                            Beach(name: .lanikai, latitude: 21.3931, longitude: -157.7154),
-                            Beach(name: .haleiwa, latitude: 21.5928, longitude: -158.1034)]
+  var beachNames: [Beach] = []
   
   func addForecast(for beachForecast: BeachForecast) {
     beaches.append(beachForecast)
@@ -27,7 +25,7 @@ class BeachForecastController {
       guard let url = beach.url else { print("invalid url"); return}
       dispatchGroup.enter()
       networkController.fetchForecastData(url, completion: {
-        let newBeachForecast = BeachForecast(name: beach.name, forecast: $0)
+        let newBeachForecast = BeachForecast(name: BeachName(rawValue: beach.name)!, forecast: $0)
         self.beaches.append(newBeachForecast)
         print("\(newBeachForecast.name) was fetched and appended")
         dispatchGroup.leave()

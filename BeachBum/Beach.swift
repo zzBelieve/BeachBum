@@ -10,7 +10,7 @@ import Foundation
 
 struct Beach {
   
-  var name: BeachName
+  var name: String
   var latitude: Double
   var longitude: Double
   var coordinates: String { return "\(latitude),\(longitude)" }
