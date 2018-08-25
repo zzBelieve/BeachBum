@@ -20,7 +20,6 @@ class BeachForecastController {
     beaches.append(beachForecast)
   }
   
-  //for each name in Beach.name, fetch data for those coordinates and create a new object of BeachForecast and append to beaches
   func udpateForecasts(completion: @escaping(() -> Void) ) {
     let dispatchGroup = DispatchGroup()
     

@@ -12,7 +12,6 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   
   //MARK: Injected Objects
   var beachForecastController = BeachForecastController()
-  
   private var dataSource: BeachForecastsDataSource?
   
   @IBOutlet weak var beachForecastsCollectionView: UICollectionView! {

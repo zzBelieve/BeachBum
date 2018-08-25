@@ -19,8 +19,10 @@
 		1731E703211D712100D7E432 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6FC211D712100D7E432 /* Forecast.swift */; };
 		1731E706211D717500D7E432 /* BeachForecastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E705211D717500D7E432 /* BeachForecastsViewController.swift */; };
 		17C2E5882122B66500FAB47E /* DetailedForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */; };
+		17E508A72131FD6300816317 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17E508A62131FD6300816317 /* GoogleService-Info.plist */; };
 		17E74555211E1AB50024B005 /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E74554211E1AB50024B005 /* ThemeColors.swift */; };
 		17E74557211E3F350024B005 /* BeachForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E74556211E3F350024B005 /* BeachForecastCollectionViewCell.swift */; };
+		756ACB9AD04E7E0240F6168A /* Pods_BeachBum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E17C175CC179D0BE7914DF4B /* Pods_BeachBum.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +40,12 @@
 		1731E6FC211D712100D7E432 /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		1731E705211D717500D7E432 /* BeachForecastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastsViewController.swift; sourceTree = "<group>"; };
 		17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedForecastViewController.swift; sourceTree = "<group>"; };
+		17E508A62131FD6300816317 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		17E74554211E1AB50024B005 /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		17E74556211E3F350024B005 /* BeachForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastCollectionViewCell.swift; sourceTree = "<group>"; };
+		E012DD8D880FA3F72F7D17C7 /* Pods-BeachBum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeachBum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeachBum/Pods-BeachBum.debug.xcconfig"; sourceTree = "<group>"; };
+		E17C175CC179D0BE7914DF4B /* Pods_BeachBum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeachBum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FD59EC302CFF27A3DE139286 /* Pods-BeachBum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeachBum.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeachBum/Pods-BeachBum.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				756ACB9AD04E7E0240F6168A /* Pods_BeachBum.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,6 +65,8 @@
 			children = (
 				1731E6E3211D6FA000D7E432 /* BeachBum */,
 				1731E6E2211D6FA000D7E432 /* Products */,
+				9DD9A4F6AA69857E54681462 /* Pods */,
+				8A5CC2700D9424E800E829C8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -85,6 +94,7 @@
 				1731E6F9211D712100D7E432 /* Beach.swift */,
 				17E74554211E1AB50024B005 /* ThemeColors.swift */,
 				1731E6F0211D6FA200D7E432 /* Info.plist */,
+				17E508A62131FD6300816317 /* GoogleService-Info.plist */,
 			);
 			path = BeachBum;
 			sourceTree = "<group>";
@@ -99,6 +109,23 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		8A5CC2700D9424E800E829C8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E17C175CC179D0BE7914DF4B /* Pods_BeachBum.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9DD9A4F6AA69857E54681462 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E012DD8D880FA3F72F7D17C7 /* Pods-BeachBum.debug.xcconfig */,
+				FD59EC302CFF27A3DE139286 /* Pods-BeachBum.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -106,9 +133,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 1731E6F3211D6FA200D7E432 /* Build configuration list for PBXNativeTarget "BeachBum" */;
 			buildPhases = (
+				B2F976A100C5010E4243BDE7 /* [CP] Check Pods Manifest.lock */,
 				1731E6DD211D6FA000D7E432 /* Sources */,
 				1731E6DE211D6FA000D7E432 /* Frameworks */,
 				1731E6DF211D6FA000D7E432 /* Resources */,
+				2D50235667F1CA848E32A023 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -158,12 +187,54 @@
 			buildActionMask = 2147483647;
 			files = (
 				1731E6EF211D6FA200D7E432 /* LaunchScreen.storyboard in Resources */,
+				17E508A72131FD6300816317 /* GoogleService-Info.plist in Resources */,
 				1731E6EC211D6FA200D7E432 /* Assets.xcassets in Resources */,
 				1731E6EA211D6FA000D7E432 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2D50235667F1CA848E32A023 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-BeachBum/Pods-BeachBum-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-BeachBum/Pods-BeachBum-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B2F976A100C5010E4243BDE7 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-BeachBum-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1731E6DD211D6FA000D7E432 /* Sources */ = {
@@ -322,6 +393,7 @@
 		};
 		1731E6F4211D6FA200D7E432 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E012DD8D880FA3F72F7D17C7 /* Pods-BeachBum.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -330,7 +402,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.BeachBum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jordandumlao.BeachBum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -339,6 +411,7 @@
 		};
 		1731E6F5211D6FA200D7E432 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FD59EC302CFF27A3DE139286 /* Pods-BeachBum.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -347,7 +420,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.example.BeachBum;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jordandumlao.BeachBum;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
