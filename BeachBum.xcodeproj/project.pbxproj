@@ -60,6 +60,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		171CD549213B3BBF00E264ED /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				171CD54D213B3C0F00E264ED /* Model Controller */,
+				171CD54C213B3BF900E264ED /* VIew Controller */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		171CD54A213B3BCF00E264ED /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1731E6F8211D712100D7E432 /* BeachForecastsDataSource.swift */,
+				1731E6FB211D712100D7E432 /* BeachForecast.swift */,
+				1731E6FC211D712100D7E432 /* Forecast.swift */,
+				1731E6F9211D712100D7E432 /* Beach.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		171CD54B213B3BE500E264ED /* View */ = {
+			isa = PBXGroup;
+			children = (
+				1731E6E8211D6FA000D7E432 /* Main.storyboard */,
+				17E74556211E3F350024B005 /* BeachForecastCollectionViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		171CD54C213B3BF900E264ED /* VIew Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1731E705211D717500D7E432 /* BeachForecastsViewController.swift */,
+				17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */,
+			);
+			path = "VIew Controller";
+			sourceTree = "<group>";
+		};
+		171CD54D213B3C0F00E264ED /* Model Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1731E6F7211D712100D7E432 /* BeachForecastController.swift */,
+				1731E6FA211D712100D7E432 /* NetworkController.swift */,
+			);
+			path = "Model Controller";
+			sourceTree = "<group>";
+		};
 		1731E6D8211D6FA000D7E432 = {
 			isa = PBXGroup;
 			children = (
@@ -82,17 +129,9 @@
 			isa = PBXGroup;
 			children = (
 				1731E6F6211D6FEF00D7E432 /* Supporting Files */,
-				1731E6E8211D6FA000D7E432 /* Main.storyboard */,
-				1731E705211D717500D7E432 /* BeachForecastsViewController.swift */,
-				17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */,
-				1731E6FB211D712100D7E432 /* BeachForecast.swift */,
-				1731E6F7211D712100D7E432 /* BeachForecastController.swift */,
-				17E74556211E3F350024B005 /* BeachForecastCollectionViewCell.swift */,
-				1731E6F8211D712100D7E432 /* BeachForecastsDataSource.swift */,
-				1731E6FA211D712100D7E432 /* NetworkController.swift */,
-				1731E6FC211D712100D7E432 /* Forecast.swift */,
-				1731E6F9211D712100D7E432 /* Beach.swift */,
-				17E74554211E1AB50024B005 /* ThemeColors.swift */,
+				171CD54B213B3BE500E264ED /* View */,
+				171CD549213B3BBF00E264ED /* Controller */,
+				171CD54A213B3BCF00E264ED /* Model */,
 				1731E6F0211D6FA200D7E432 /* Info.plist */,
 				17E508A62131FD6300816317 /* GoogleService-Info.plist */,
 			);
@@ -102,6 +141,7 @@
 		1731E6F6211D6FEF00D7E432 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				17E74554211E1AB50024B005 /* ThemeColors.swift */,
 				1731E6E4211D6FA000D7E432 /* AppDelegate.swift */,
 				1731E6EB211D6FA200D7E432 /* Assets.xcassets */,
 				1731E6ED211D6FA200D7E432 /* LaunchScreen.storyboard */,

@@ -15,24 +15,35 @@ class BeachForecastCollectionViewCell: UICollectionViewCell {
       temperatureLabel?.textColor = .white
     }
   }
+  
   @IBOutlet weak var weatherIconView: UIView! {
     didSet {
       weatherIconView?.backgroundColor = .sand
-      weatherIconView?.layer.cornerRadius = 10.0
+      weatherIconView?.layer.cornerRadius = 8.0
     }
   }
+  
+  @IBOutlet weak var chanceOfRainView: UIView! {
+    didSet {
+      chanceOfRainView?.backgroundColor = .sand
+      chanceOfRainView?.layer.cornerRadius = 8.0
+    }
+  }
+  
+  
   @IBOutlet weak var beachNameLabel: UILabel! {
     didSet {
-     //beachNameLabel?.textColor = .white
+     beachNameLabel?.sizeToFit()
     }
   }
   
   @IBOutlet weak var beachCellView: UIView! {
     didSet {
+      self.backgroundColor = .clear
       beachCellView?.backgroundColor = .skyBlue
       beachCellView?.layer.borderWidth = 2.0
       beachCellView?.layer.borderColor = UIColor.white.cgColor
-      beachCellView?.layer.cornerRadius = 20.0
+      beachCellView?.layer.cornerRadius = 10.0
     }
   }
   
@@ -42,8 +53,11 @@ class BeachForecastCollectionViewCell: UICollectionViewCell {
       guard let model = model else { return }
       beachNameLabel?.text = model.beachName
       temperatureLabel?.text = "\(model.temperature)"
+      beachNameLabel?.sizeToFit()
     }
   }
+  
+  
 }
 
 

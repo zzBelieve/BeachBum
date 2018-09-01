@@ -43,4 +43,6 @@ class NetworkController {
       completion(beaches)
     })
   }
+  
+  //TODO: - move firebase requests into here
 }

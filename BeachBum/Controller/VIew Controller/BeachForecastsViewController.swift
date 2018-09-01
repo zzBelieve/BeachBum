@@ -37,9 +37,9 @@ extension BeachForecastsViewController: UICollectionViewDelegate {
   
   private func configureFlowLayout() {
     flowLayout?.minimumInteritemSpacing = 0
-    let width = beachForecastsCollectionView.frame.size.width * 0.33
-    flowLayout?.itemSize = CGSize(width: width, height: width + (width * 0.20))
-    flowLayout?.sectionInset = UIEdgeInsets(top: 10, left: 0, bottom: 10, right: 0)
+    let width = beachForecastsCollectionView.bounds.size.width * 0.5
+    flowLayout?.itemSize = CGSize(width: width, height: width * 0.6)
+    flowLayout?.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
   }
   
   private func changeFlowLayout() {
@@ -51,10 +51,10 @@ extension BeachForecastsViewController: UICollectionViewDelegate {
     })
   }
   
-  func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-    cell.backgroundColor = .clear
-  }
-  
+//
+//  func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+//    //cell.backgroundColor = .black
+//  }
   //  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
   //
   //    //changeFlowLayout() for later implementation
