@@ -13,13 +13,16 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   
   //MARK: Injected Objects
   var beachForecastController = BeachForecastController()
-  private var dataSource: BeachForecastsDataSource?
+  private var dataSource: BeachForecastsDataSource? {
+    didSet {
+      beachForecastsCollectionView?.dataSource = dataSource
+    }
+  }
   
   @IBOutlet weak var beachForecastsCollectionView: UICollectionView! {
     didSet {
       beachForecastsCollectionView.backgroundColor = UIColor.sand
       beachForecastsCollectionView.delegate = self
-      
       configureFlowLayout()
     }
   }
@@ -66,14 +69,15 @@ extension BeachForecastsViewController {
     view.backgroundColor = UIColor.sand
     //addToDatabase()
     print("fetching beaches database from firebase")
-    retrieveData()
-    //    print("attempting to fetch all data")
-    //    beachForecastController.udpateForecasts(completion: {
-    //      print("all fetches have completed")
-    //      self.dataSource = BeachForecastsDataSource(self.beachForecastController)
-    //      self.beachForecastsCollectionView.dataSource = self.dataSource
-    //    })
-    
+    retrieveData { [weak self] in
+      self?.beachForecastController.udpateForecasts {
+        DispatchQueue.main.async { [weak self] in
+          print("update complete")
+          self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
+        }
+        
+      }
+    }
   }
 }
 
@@ -111,7 +115,7 @@ extension BeachForecastsViewController {
     }
   }
   
-  private func retrieveData() {
+  private func retrieveData(completion: @escaping () -> Void) {
     let beachesDB = Database.database().reference().child("Beaches")
     //OBSERVE IS OFF OF THE MAIN THREAD
     beachesDB.observeSingleEvent(of: .value) { (snapshot) in
@@ -124,7 +128,7 @@ extension BeachForecastsViewController {
         let beach = Beach(name: name, latitude: lat, longitude: long)
         self.beachForecastController.beachNames.append(beach)
       }
-      print(self.beachForecastController.beachNames)
+      completion()
     }
   }
   

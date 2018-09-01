@@ -21,7 +21,7 @@ class BeachForecastsDataSource: NSObject {
 
 extension BeachForecastsDataSource: UICollectionViewDataSource {
   func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return 3
+    return beachForecastController.beaches.count
   }
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

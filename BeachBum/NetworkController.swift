@@ -25,13 +25,3 @@ class NetworkController {
     task.resume()
   }
 }
-
-//
-//if let data = data {
-//  do {
-//    let newBeachForecast = try JSONDecoder().decode(Weather.self, from: data)
-//    completion(newBeachForecast, beach)
-//  } catch {
-//    print(error)
-//  }
-//}
