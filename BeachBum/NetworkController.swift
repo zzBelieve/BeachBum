@@ -24,4 +24,23 @@ class NetworkController {
     }
     task.resume()
   }
+  
+  
+  func fetchAllForecasts(_ beachNames: [Beach], completion: @escaping(([BeachForecast]) -> Void) ) {
+    let dispatchGroup = DispatchGroup()
+    var beaches = [BeachForecast]()
+    for beach in beachNames {
+      guard let url = beach.url else { print("invalid url"); return}
+      dispatchGroup.enter()
+      fetchForecastData(url, completion: {
+        let newBeachForecast = BeachForecast(name: BeachName(rawValue: beach.name)!, forecast: $0)
+        beaches.append(newBeachForecast)
+        print("\(newBeachForecast.name) was fetched and appended")
+        dispatchGroup.leave()
+      })
+    }
+    dispatchGroup.notify(queue: .main, execute: {
+      completion(beaches)
+    })
+  }
 }
