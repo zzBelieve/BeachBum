@@ -21,7 +21,6 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   
   @IBOutlet weak var beachForecastsCollectionView: UICollectionView! {
     didSet {
-      beachForecastsCollectionView.backgroundColor = UIColor.sand
       beachForecastsCollectionView.delegate = self
       configureFlowLayout()
     }
@@ -66,7 +65,6 @@ extension BeachForecastsViewController: UICollectionViewDelegate {
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.backgroundColor = UIColor.sand
     //addToDatabase()
     print("fetching beaches database from firebase")
     retrieveData { [weak self] in

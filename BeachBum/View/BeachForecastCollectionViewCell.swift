@@ -12,20 +12,21 @@ class BeachForecastCollectionViewCell: UICollectionViewCell {
   
   @IBOutlet weak var temperatureLabel: UILabel! {
     didSet {
-      temperatureLabel?.textColor = .white
+      //temperatureLabel?.textColor = .skyBlue
     }
   }
   
   @IBOutlet weak var weatherIconView: UIView! {
     didSet {
-      weatherIconView?.backgroundColor = .sand
+      //weatherIconView?.backgroundColor = .sand
       weatherIconView?.layer.cornerRadius = 8.0
     }
   }
   
   @IBOutlet weak var chanceOfRainView: UIView! {
     didSet {
-      chanceOfRainView?.backgroundColor = .sand
+      //chanceOfRainView?.backgroundColor = .sand
+      //chanceOfRainView?.layer.backgroundColor =
       chanceOfRainView?.layer.cornerRadius = 8.0
     }
   }
@@ -39,10 +40,9 @@ class BeachForecastCollectionViewCell: UICollectionViewCell {
   
   @IBOutlet weak var beachCellView: UIView! {
     didSet {
-      self.backgroundColor = .clear
-      beachCellView?.backgroundColor = .skyBlue
+      //beachCellView?.backgroundColor = .skyBlue
       beachCellView?.layer.borderWidth = 2.0
-      beachCellView?.layer.borderColor = UIColor.white.cgColor
+      beachCellView?.layer.borderColor = UIColor.skyBlue.cgColor
       beachCellView?.layer.cornerRadius = 10.0
     }
   }

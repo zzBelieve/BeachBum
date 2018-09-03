@@ -63,8 +63,8 @@
 		171CD549213B3BBF00E264ED /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				171CD54D213B3C0F00E264ED /* Model Controller */,
 				171CD54C213B3BF900E264ED /* VIew Controller */,
+				171CD54D213B3C0F00E264ED /* Model Controller */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
