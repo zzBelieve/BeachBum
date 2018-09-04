@@ -8,9 +8,14 @@
 
 import Foundation
 
-struct BeachForecast {
+class BeachForecast {
   
-  private(set) var name: BeachName
-  private(set) var forecast: Forecast
+  private(set) var beach: Beach
+  var forecast: Forecast?
+  
+  init(beach: Beach, forecast: Forecast? = nil) {
+    self.beach = beach
+    self.forecast = forecast
+  }
   
 }

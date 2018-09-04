@@ -7,12 +7,12 @@
 //
 
 import Foundation
-
+import Firebase
 
 class NetworkController {
   
   //fetch weather forecast given a url, and hands it over to completion
-  func fetchForecastData(_ url: URL, completion: @escaping ((Forecast) -> Void)) {
+  func fetchForecast(_ url: URL, completion: @escaping ((Forecast) -> Void)) {
     let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
       guard let data = data else { print("Data failed: \(error!)"); return}
         do {
@@ -26,23 +26,20 @@ class NetworkController {
   }
   
   
-  func fetchAllForecasts(_ beachNames: [Beach], completion: @escaping(([BeachForecast]) -> Void) ) {
-    let dispatchGroup = DispatchGroup()
-    var beaches = [BeachForecast]()
-    for beach in beachNames {
-      guard let url = beach.url else { print("invalid url"); return}
-      dispatchGroup.enter()
-      fetchForecastData(url, completion: {
-        let newBeachForecast = BeachForecast(name: BeachName(rawValue: beach.name)!, forecast: $0)
-        beaches.append(newBeachForecast)
-        print("\(newBeachForecast.name) was fetched and appended")
-        dispatchGroup.leave()
-      })
+  func fetchData(completion: @escaping ([BeachForecast]) -> Void) {
+    let beachesDB = Database.database().reference().child("Beaches")
+    //OBSERVE IS OFF OF THE MAIN THREAD
+    beachesDB.observeSingleEvent(of: .value) { (snapshot) in
+      guard let snapshot = snapshot.value as? Dictionary<String, Any> else { print("unable to retrive snapshot") ; return }
+      var beachForecasts = [BeachForecast]()
+      for value in snapshot {
+        guard let keyValue = value.value as? Dictionary<String, Any> else  { return }
+        guard let name = keyValue["Name"] as? String else {print("can't find name"); return }
+        guard let lat = keyValue["Latitude"] as? Double, let long = keyValue["Longitude"] as? Double else { return }
+        let beach = Beach(name: name, latitude: lat, longitude: long)
+        beachForecasts.append(BeachForecast(beach: beach))
+      }
+      completion(beachForecasts)
     }
-    dispatchGroup.notify(queue: .main, execute: {
-      completion(beaches)
-    })
   }
-  
-  //TODO: - move firebase requests into here
 }

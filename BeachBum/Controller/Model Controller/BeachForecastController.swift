@@ -10,34 +10,36 @@ import Foundation
 
 class BeachForecastController {
   
-  var beaches: [BeachForecast] = []
-  //any network calls should be done through this controller
-  var networkController = NetworkController()
-  var beachNames: [Beach] = []
+  var beachForecasts = [BeachForecast]()
+  var networkController = NetworkController() //any network calls should be done through this controller
+  var beachNames = [Beach]()
   
   func addForecast(for beachForecast: BeachForecast) {
-    beaches.append(beachForecast)
+    beachForecasts.append(beachForecast)
   }
   
-  func udpateForecasts(completion: @escaping(() -> Void) ) {
-    networkController.fetchAllForecasts(beachNames) {
-      self.beaches = $0
+  func updateForecasts(completion: @escaping(() -> Void) ) {
+    let dispatchGroup = DispatchGroup()
+    for bf in beachForecasts {
+      if let url = bf.beach.url {
+        dispatchGroup.enter()
+        networkController.fetchForecast(url) { forecast in
+          //TODO: finish appending data
+          bf.forecast = forecast
+          dispatchGroup.leave()
+        }
+      }
+    }
+    dispatchGroup.notify(queue: .main) {
       completion()
     }
-    //    let dispatchGroup = DispatchGroup()
-//
-//    for beach in beachNames {
-//      guard let url = beach.url else { print("invalid url"); return}
-//      dispatchGroup.enter()
-//      networkController.fetchForecastData(url, completion: {
-//        let newBeachForecast = BeachForecast(name: BeachName(rawValue: beach.name)!, forecast: $0)
-//        self.beaches.append(newBeachForecast)
-//        print("\(newBeachForecast.name) was fetched and appended")
-//        dispatchGroup.leave()
-//      })
-//    }
-//    dispatchGroup.notify(queue: .main, execute: {
-//      completion()
-//    })
+  }
+  
+  func retrieveBeacheNames(completion: @escaping () -> Void) {
+    networkController.fetchData { [weak self] in  //$0 is an array of BeachForecast
+      self?.beachForecasts = $0
+      print("Beach name retrieval finished")
+      completion()
+    }
   }
 }

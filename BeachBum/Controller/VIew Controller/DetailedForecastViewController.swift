@@ -21,8 +21,8 @@ class DetailedForecastViewController: UIViewController {
   
   private func updateUI() {
     guard let beachForecast = beachForecast else { return }
-    beachNameLabel?.text = beachForecast.name.rawValue
-    currentTemperatureLabel?.text = String(beachForecast.forecast.currently.temperature)
+    beachNameLabel?.text = beachForecast.beach.name
+    currentTemperatureLabel?.text = String(beachForecast.forecast!.currently.temperature)
   }
   
   override func viewDidLoad() {

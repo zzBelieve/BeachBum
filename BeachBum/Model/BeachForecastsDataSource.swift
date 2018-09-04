@@ -19,15 +19,15 @@ class BeachForecastsDataSource: NSObject {
   
 }
 
-extension BeachForecastsDataSource: UICollectionViewDataSource {
-  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-    return beachForecastController.beaches.count
+extension BeachForecastsDataSource: UITableViewDataSource {
+  func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    return beachForecastController.beachForecasts.count
   }
   
-  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BeachCell", for: indexPath)
-    guard let beachCell = cell as? BeachForecastCollectionViewCell else { return cell }
-    beachCell.model = BeachForecastCollectionViewCell.Model(beach: beachForecastController.beaches[indexPath.item])
+  func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "Beach Cell", for: indexPath)
+    guard let beachCell = cell as? BeachForecastTableViewCell else { return cell }
+    beachCell.beachForecast = beachForecastController.beachForecasts[indexPath.item]
     return cell
   }
 }
