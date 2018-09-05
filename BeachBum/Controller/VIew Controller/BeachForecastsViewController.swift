@@ -70,27 +70,28 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
     sortButton.isEnabled = false
     for index in 0...sortOptions.count - 1 {
       if sortButtonExpanded {
-        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 5.0, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
           self.sortOptions[index].transform = CGAffineTransform.identity
           self.sortOptions[index].alpha = 0.0
           //self.alphabeticalSortButton.isHidden = true
-        }, completion: { _ in
-          //self.sortButton.isEnabled = true
-        })
+        }) { completion in
+          self.alphabeticalSortButton.isHidden = true
+          self.sortButton.isEnabled = true
+        }
       } else {
         sortOptions[index].center.x = sortButton.center.x
         sortOptions[index].center.y = sortButton.center.y
-        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 5.0, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+        UIView.animate(withDuration: 0.60, delay: 0.0, usingSpringWithDamping: 0.60, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
           let x = (self.sortButton?.frame.size.width ?? 0) * CGFloat(index + 1)
           self.sortOptions[index].transform = CGAffineTransform(translationX: -x, y: 0.0)
           self.sortOptions[index].alpha = 1.0
           self.sortOptions[index].isHidden = false
-        }, completion: { _ in
-          //self.sortButton.isEnabled = true
-        })
+        }) { completion in
+          self.sortButton.isEnabled = true
+        }
       }
     }
-    self.sortButton.isEnabled = true
+    
     sortButtonExpanded = !sortButtonExpanded
   }
 
@@ -167,17 +168,17 @@ extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     //addToDatabase()
-    print("calling retrievBeachNames to retrieve beaches from Firebase")
-    beachForecastController.retrieveBeacheNames { [weak self] in
-      print("calling fetchForecast to obtain forecast for all beaches")
-      self?.beachForecastController.updateForecasts { [weak self] in
-        print("forecast has been finished updating")
-        print("setting the data source")
-        self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
-      }
-    }
-//    beachForecastController.beachForecasts = mockData.beachForecasts
-//    dataSource = BeachForecastsDataSource(beachForecastController)
+//    print("calling retrievBeachNames to retrieve beaches from Firebase")
+//    beachForecastController.retrieveBeacheNames { [weak self] in
+//      print("calling fetchForecast to obtain forecast for all beaches")
+//      self?.beachForecastController.updateForecasts { [weak self] in
+//        print("forecast has been finished updating")
+//        print("setting the data source")
+//        self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
+//      }
+//    }
+    beachForecastController.beachForecasts = mockData.beachForecasts
+    dataSource = BeachForecastsDataSource(beachForecastController)
   }
 }
 
