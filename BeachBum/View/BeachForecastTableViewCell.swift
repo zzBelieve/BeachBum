@@ -13,7 +13,7 @@ class BeachForecastTableViewCell: UITableViewCell {
   var beachForecast: BeachForecast? {
     didSet {
       //TODO set labels
-      temperatureLabel?.text = "\(beachForecast!.forecast!.currently.temperature)°"
+      temperatureLabel?.text = "\(beachForecast!.forecast!.currently.temperature.twoDecimalPoints)°"
       beachNameLabel?.text = beachForecast!.beach.name
       currentSummaryLabel?.text = beachForecast!.forecast!.currently.summary
       if let iconString = beachForecast?.forecast?.currently.icon {
@@ -51,8 +51,4 @@ class BeachForecastTableViewCell: UITableViewCell {
     
     // Configure the view for the selected state
   }
-}
-
-extension BeachForecastTableViewCell {
-  
 }

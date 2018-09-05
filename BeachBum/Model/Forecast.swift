@@ -11,7 +11,7 @@ import Foundation
 struct Forecast: Codable {
   
   var currently: Currently
-  var hourly: Hourly
+  var hourly: Hourly?
   
   enum SerializationError: Error {
     case missing(String)

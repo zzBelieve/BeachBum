@@ -8,7 +8,7 @@
 
 import UIKit
 
-class BeachForecastCollectionViewCell: UICollectionViewCell {
+class BeachForecastTableViewCell: UITableViewCell {
   
   @IBOutlet weak var temperatureLabel: UILabel! {
     didSet {
@@ -22,14 +22,37 @@ class BeachForecastCollectionViewCell: UICollectionViewCell {
       weatherIconView?.layer.cornerRadius = 8.0
     }
   }
+  @IBOutlet weak var weatherIconImageView: UIImageView! {
+    didSet {
+//      UIView.animate(withDuration: 2.0, delay: 0.0, options: .repeat, animations: {
+//        self.weatherIconImageView.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
+//
+//      })
+    }
+  }
   
-  @IBOutlet weak var chanceOfRainView: UIView! {
+  @IBOutlet weak var chanceOfRainView: UIView!
+  
+  @IBOutlet weak var chanceOfRainLabel: UILabel! {
+    didSet {
+      chanceOfRainLabel.sizeToFit()
+    }
+  }
+  
+  @IBOutlet weak var distanceView: UIView! {
     didSet {
       //chanceOfRainView?.backgroundColor = .sand
       //chanceOfRainView?.layer.backgroundColor =
-      chanceOfRainView?.layer.cornerRadius = 8.0
+      distanceView?.layer.cornerRadius = 8.0
     }
   }
+  
+  @IBOutlet weak var distanceLabel: UILabel! {
+    didSet {
+      distanceLabel.sizeToFit()
+    }
+  }
+  
   
   
   @IBOutlet weak var beachNameLabel: UILabel! {
@@ -61,14 +84,14 @@ class BeachForecastCollectionViewCell: UICollectionViewCell {
 }
 
 
-extension BeachForecastCollectionViewCell {
+extension BeachForecastTableViewCell {
   
   struct Model {
     let beachName: String
     let temperature: Double
-    init(beach: BeachForecast) {
-      beachName = beach.name.rawValue
-      temperature = beach.forecast.currently.temperature
+    init(beachForecast: BeachForecast) {
+      beachName = beachForecast.beach.name
+      temperature = beachForecast.forecast?.currently.temperature ?? 00
     }
   }
 }
