@@ -13,12 +13,14 @@ class BeachForecastTableViewCell: UITableViewCell {
   var beachForecast: BeachForecast? {
     didSet {
       //TODO set labels
-      temperatureLabel?.text = "\(beachForecast!.forecast!.currently.temperature)"
+      temperatureLabel?.text = "\(beachForecast!.forecast!.currently.temperature)°"
       beachNameLabel?.text = beachForecast!.beach.name
       currentSummaryLabel?.text = beachForecast!.forecast!.currently.summary
-      hourlySummary?.text = beachForecast!.forecast!.currently.icon
-      //self.hourlySummary?.text = beachForecast!.forecast!.hourly.summary
-      //hourlySummary?.isHidden = true
+      if let iconString = beachForecast?.forecast?.currently.icon {
+        if let image = UIImage(named: iconString) {
+          weatherIconImageView.image = image
+        }
+      }
     }
   }
   

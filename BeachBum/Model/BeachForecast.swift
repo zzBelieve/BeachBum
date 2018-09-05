@@ -10,12 +10,11 @@ import Foundation
 
 class BeachForecast {
   
-  private(set) var beach: Beach
+  let beach: Beach
   var forecast: Forecast?
   
   init(beach: Beach, forecast: Forecast? = nil) {
     self.beach = beach
     self.forecast = forecast
   }
-  
 }
