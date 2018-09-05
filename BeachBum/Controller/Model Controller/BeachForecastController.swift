@@ -35,6 +35,18 @@ class BeachForecastController {
     }
   }
   
+  func sortBeachForecasts(_ sortType: Sort, _ lowestToHighest: Bool) {
+    beachForecasts.sort { (b1, b2) -> Bool in
+      switch sortType {
+      case .alphabetical:
+        return lowestToHighest ? (b1.beach.name < b2.beach.name) : (b1.beach.name > b2.beach.name)
+      case .temperature:
+        return lowestToHighest ? b1.forecast!.currently.temperature < b2.forecast!.currently.temperature : b1.forecast!.currently.temperature > b2.forecast!.currently.temperature
+      default: return false
+      }
+    }
+  }
+  
   func retrieveBeacheNames(completion: @escaping () -> Void) {
     networkController.fetchData { [weak self] in  //$0 is an array of BeachForecast
       self?.beachForecasts = $0

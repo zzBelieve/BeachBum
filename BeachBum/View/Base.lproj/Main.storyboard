@@ -40,44 +40,43 @@
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="sortButtonPressed:" destination="I3L-9R-IBc" eventType="touchUpInside" id="zk8-LY-gyZ"/>
+                                                    <action selector="sortButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="Yq3-Oy-jti"/>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3x5-Ne-wXO">
-                                                <rect key="frame" x="325" y="4.5" width="40" height="40"/>
+                                                <rect key="frame" x="315" y="4.5" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="3x5-Ne-wXO" secondAttribute="height" multiplier="1:1" id="zf5-pR-CPp"/>
                                                 </constraints>
-                                                <state key="normal" image="direction-arrow"/>
                                                 <connections>
-                                                    <action selector="regionSortButtonPressed:" destination="I3L-9R-IBc" eventType="touchUpInside" id="Kds-88-YxZ"/>
+                                                    <action selector="sortOptionButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="S7A-Sy-TuU"/>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wS8-cZ-YFJ">
-                                                <rect key="frame" x="325" y="4.5" width="40" height="40"/>
+                                                <rect key="frame" x="315" y="4.5" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="wS8-cZ-YFJ" secondAttribute="height" multiplier="1:1" id="tcf-x7-OoR"/>
                                                 </constraints>
-                                                <state key="normal" image="temperature">
+                                                <state key="normal">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="tempSortButtonPressed:" destination="I3L-9R-IBc" eventType="touchUpInside" id="yZP-h2-YjU"/>
+                                                    <action selector="sortOptionButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="CCC-NX-XZd"/>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRr-sg-Gfd">
-                                                <rect key="frame" x="325" y="5.5" width="40" height="40"/>
+                                                <rect key="frame" x="315" y="4.5" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="XRr-sg-Gfd" secondAttribute="height" multiplier="1:1" id="Bcw-ac-Wds"/>
                                                 </constraints>
-                                                <state key="normal" image="alphabetical">
+                                                <state key="normal">
                                                     <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="alphaSortButtonPressed:" destination="I3L-9R-IBc" eventType="touchUpInside" id="NhJ-xt-xCz"/>
+                                                    <action selector="sortOptionButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="v7r-lV-fVA"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -89,10 +88,10 @@
                                             <constraint firstItem="3x5-Ne-wXO" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="FIV-qW-2qV"/>
                                             <constraint firstItem="XRr-sg-Gfd" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="GXd-fD-eK5"/>
                                             <constraint firstItem="e0w-hn-tVJ" firstAttribute="height" secondItem="OOW-6b-WXn" secondAttribute="height" id="OHM-Kg-VpL"/>
-                                            <constraint firstAttribute="trailing" secondItem="XRr-sg-Gfd" secondAttribute="trailing" placeholder="YES" id="T5w-qf-Rok"/>
-                                            <constraint firstItem="3x5-Ne-wXO" firstAttribute="trailing" secondItem="OOW-6b-WXn" secondAttribute="trailing" placeholder="YES" id="XrP-du-0Fr"/>
+                                            <constraint firstItem="XRr-sg-Gfd" firstAttribute="centerX" secondItem="e0w-hn-tVJ" secondAttribute="centerX" id="T5w-qf-Rok"/>
+                                            <constraint firstItem="3x5-Ne-wXO" firstAttribute="centerX" secondItem="e0w-hn-tVJ" secondAttribute="centerX" id="XrP-du-0Fr"/>
                                             <constraint firstItem="e0w-hn-tVJ" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="bVy-XB-XYS"/>
-                                            <constraint firstItem="wS8-cZ-YFJ" firstAttribute="trailing" secondItem="OOW-6b-WXn" secondAttribute="trailing" id="frH-S0-Dgv"/>
+                                            <constraint firstItem="wS8-cZ-YFJ" firstAttribute="centerX" secondItem="e0w-hn-tVJ" secondAttribute="centerX" id="frH-S0-Dgv"/>
                                             <constraint firstItem="wS8-cZ-YFJ" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="fyX-U6-rMj"/>
                                             <constraint firstItem="wS8-cZ-YFJ" firstAttribute="height" secondItem="e0w-hn-tVJ" secondAttribute="height" multiplier="0.8" id="nyw-oZ-EXN"/>
                                         </constraints>
@@ -118,17 +117,17 @@
                             <constraint firstItem="YFq-1b-f4G" firstAttribute="bottom" secondItem="YOC-zC-Iyv" secondAttribute="bottom" id="zu0-mh-bez"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YFq-1b-f4G"/>
+                        <connections>
+                            <outlet property="sortButton" destination="e0w-hn-tVJ" id="Zpe-Dj-orL"/>
+                            <outletCollection property="sortOptions" destination="3x5-Ne-wXO" collectionClass="NSMutableArray" id="5z4-aP-NtW"/>
+                            <outletCollection property="sortOptions" destination="wS8-cZ-YFJ" collectionClass="NSMutableArray" id="Txe-z2-6vg"/>
+                            <outletCollection property="sortOptions" destination="XRr-sg-Gfd" collectionClass="NSMutableArray" id="wOK-p2-0Hi"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Beaches" id="ny7-GL-E8q"/>
                     <connections>
-                        <outlet property="alphabeticalSortButton" destination="XRr-sg-Gfd" id="fH7-85-hji"/>
                         <outlet property="beachForecastTableView" destination="9uf-T8-5Al" id="Xl9-cv-bz3"/>
-                        <outlet property="sortBar" destination="OOW-6b-WXn" id="5VZ-1G-eHt"/>
-                        <outlet property="sortButton" destination="e0w-hn-tVJ" id="v7b-O3-cbl"/>
-                        <outlet property="tempSortButton" destination="wS8-cZ-YFJ" id="Qby-xg-1eW"/>
-                        <outletCollection property="sortOptions" destination="XRr-sg-Gfd" collectionClass="NSMutableArray" id="7Eh-5B-Zbs"/>
-                        <outletCollection property="sortOptions" destination="wS8-cZ-YFJ" collectionClass="NSMutableArray" id="dZ0-Cv-dDc"/>
-                        <outletCollection property="sortOptions" destination="3x5-Ne-wXO" collectionClass="NSMutableArray" id="ZTy-yL-1YM"/>
+                        <outlet property="beachForecastsView" destination="8jS-RA-xhw" id="cbL-oW-iWk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUH-Du-E7u" sceneMemberID="firstResponder"/>
@@ -220,9 +219,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="alphabetical" width="30" height="30"/>
-        <image name="direction-arrow" width="40" height="40"/>
         <image name="sort" width="30" height="30"/>
-        <image name="temperature" width="40" height="40"/>
     </resources>
 </document>
