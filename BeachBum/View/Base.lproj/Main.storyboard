@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,23 +19,107 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9uf-T8-5Al">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9uf-T8-5Al">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OOW-6b-WXn">
+                                <rect key="frame" x="0.0" y="563" width="375" height="55"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e0w-hn-tVJ">
+                                        <rect key="frame" x="315" y="-0.5" width="55" height="55"/>
+                                        <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="e0w-hn-tVJ" secondAttribute="height" multiplier="1:1" id="PuI-y5-h8z"/>
+                                        </constraints>
+                                        <state key="normal" title="Sort">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sortButtonPressed:" destination="I3L-9R-IBc" eventType="touchUpInside" id="zk8-LY-gyZ"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3x5-Ne-wXO">
+                                        <rect key="frame" x="320" y="-0.5" width="55" height="55"/>
+                                        <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="3x5-Ne-wXO" secondAttribute="height" multiplier="1:1" id="zf5-pR-CPp"/>
+                                        </constraints>
+                                        <state key="normal" title="Region">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="regionSortButtonPressed:" destination="I3L-9R-IBc" eventType="touchUpInside" id="Kds-88-YxZ"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wS8-cZ-YFJ">
+                                        <rect key="frame" x="320" y="-0.5" width="55" height="55"/>
+                                        <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="wS8-cZ-YFJ" secondAttribute="height" multiplier="1:1" id="tcf-x7-OoR"/>
+                                        </constraints>
+                                        <state key="normal" title="Temp">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="tempSortButtonPressed:" destination="I3L-9R-IBc" eventType="touchUpInside" id="yZP-h2-YjU"/>
+                                        </connections>
+                                    </button>
+                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRr-sg-Gfd">
+                                        <rect key="frame" x="320" y="0.0" width="55" height="55"/>
+                                        <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="XRr-sg-Gfd" secondAttribute="height" multiplier="1:1" id="Bcw-ac-Wds"/>
+                                        </constraints>
+                                        <state key="normal" title="A-Z">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="titleShadowColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="alphaSortButtonPressed:" destination="I3L-9R-IBc" eventType="touchUpInside" id="NhJ-xt-xCz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="e0w-hn-tVJ" secondAttribute="trailing" constant="5" id="02N-5y-tYg"/>
+                                    <constraint firstAttribute="height" constant="55" id="0j7-ro-Ulq"/>
+                                    <constraint firstItem="3x5-Ne-wXO" firstAttribute="height" secondItem="OOW-6b-WXn" secondAttribute="height" id="DTt-xP-W6a"/>
+                                    <constraint firstItem="3x5-Ne-wXO" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="FIV-qW-2qV"/>
+                                    <constraint firstItem="XRr-sg-Gfd" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="GXd-fD-eK5"/>
+                                    <constraint firstItem="e0w-hn-tVJ" firstAttribute="height" secondItem="OOW-6b-WXn" secondAttribute="height" id="OHM-Kg-VpL"/>
+                                    <constraint firstAttribute="trailing" secondItem="XRr-sg-Gfd" secondAttribute="trailing" placeholder="YES" id="T5w-qf-Rok"/>
+                                    <constraint firstItem="3x5-Ne-wXO" firstAttribute="trailing" secondItem="OOW-6b-WXn" secondAttribute="trailing" placeholder="YES" id="XrP-du-0Fr"/>
+                                    <constraint firstItem="wS8-cZ-YFJ" firstAttribute="height" secondItem="OOW-6b-WXn" secondAttribute="height" id="b3U-pf-sFd"/>
+                                    <constraint firstItem="e0w-hn-tVJ" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="bVy-XB-XYS"/>
+                                    <constraint firstItem="XRr-sg-Gfd" firstAttribute="height" secondItem="OOW-6b-WXn" secondAttribute="height" id="dHC-Mf-U2n"/>
+                                    <constraint firstItem="wS8-cZ-YFJ" firstAttribute="trailing" secondItem="OOW-6b-WXn" secondAttribute="trailing" id="frH-S0-Dgv"/>
+                                    <constraint firstItem="wS8-cZ-YFJ" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="fyX-U6-rMj"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="9uf-T8-5Al" firstAttribute="top" secondItem="YFq-1b-f4G" secondAttribute="top" id="4LD-KK-TtA"/>
                             <constraint firstItem="YFq-1b-f4G" firstAttribute="trailing" secondItem="9uf-T8-5Al" secondAttribute="trailing" id="Fht-wv-RuL"/>
+                            <constraint firstItem="OOW-6b-WXn" firstAttribute="leading" secondItem="YFq-1b-f4G" secondAttribute="leading" id="MGr-qc-F9B"/>
                             <constraint firstItem="YFq-1b-f4G" firstAttribute="bottom" secondItem="9uf-T8-5Al" secondAttribute="bottom" id="SD5-1z-Mjg"/>
+                            <constraint firstItem="OOW-6b-WXn" firstAttribute="bottom" secondItem="YFq-1b-f4G" secondAttribute="bottom" id="ZJq-8F-lY2"/>
+                            <constraint firstItem="OOW-6b-WXn" firstAttribute="trailing" secondItem="YFq-1b-f4G" secondAttribute="trailing" id="bZx-LH-SID"/>
                             <constraint firstItem="9uf-T8-5Al" firstAttribute="leading" secondItem="YFq-1b-f4G" secondAttribute="leading" id="q4j-Tg-koA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YFq-1b-f4G"/>
                     </view>
                     <navigationItem key="navigationItem" title="Beaches" id="ny7-GL-E8q"/>
                     <connections>
+                        <outlet property="alphabeticalSortButton" destination="XRr-sg-Gfd" id="fH7-85-hji"/>
                         <outlet property="beachForecastTableView" destination="9uf-T8-5Al" id="Xl9-cv-bz3"/>
+                        <outlet property="sortBar" destination="OOW-6b-WXn" id="5VZ-1G-eHt"/>
+                        <outlet property="sortButton" destination="e0w-hn-tVJ" id="v7b-O3-cbl"/>
+                        <outlet property="tempSortButton" destination="wS8-cZ-YFJ" id="Qby-xg-1eW"/>
+                        <outletCollection property="sortOptions" destination="XRr-sg-Gfd" collectionClass="NSMutableArray" id="7Eh-5B-Zbs"/>
+                        <outletCollection property="sortOptions" destination="wS8-cZ-YFJ" collectionClass="NSMutableArray" id="dZ0-Cv-dDc"/>
+                        <outletCollection property="sortOptions" destination="3x5-Ne-wXO" collectionClass="NSMutableArray" id="ZTy-yL-1YM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUH-Du-E7u" sceneMemberID="firstResponder"/>

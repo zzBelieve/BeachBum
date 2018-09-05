@@ -45,33 +45,144 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
     }
     beachForecastTableView.refreshControl?.endRefreshing()
   }
+  
+  //MARK: Sort Buttons
+  @IBOutlet weak var sortBar: UIView!
+  @IBOutlet var sortOptions: [UIButton]! {
+    didSet {
+      sortOptions.forEach {
+        let width = $0.frame.width
+        $0.layer.cornerRadius = width / 2
+        $0.clipsToBounds = true
+      }
+    }
+  }
+  
+  private var sortButtonExpanded = false
+  private var alphaSorted = false
+  private var tempSorted = false
+  private var regionSorted = false
+  @IBAction func sortButtonPressed(_ sender: UIButton) {
+   toggleSortBarExpansion()
+  }
+  
+  private func toggleSortBarExpansion() {
+    sortButton.isEnabled = false
+    for index in 0...sortOptions.count - 1 {
+      if sortButtonExpanded {
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 5.0, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+          self.sortOptions[index].transform = CGAffineTransform.identity
+          self.sortOptions[index].alpha = 0.0
+          //self.alphabeticalSortButton.isHidden = true
+        }, completion: { _ in
+          //self.sortButton.isEnabled = true
+        })
+      } else {
+        sortOptions[index].center.x = sortButton.center.x
+        sortOptions[index].center.y = sortButton.center.y
+        UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 5.0, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: {
+          let x = (self.sortButton?.frame.size.width ?? 0) * CGFloat(index + 1)
+          self.sortOptions[index].transform = CGAffineTransform(translationX: -x, y: 0.0)
+          self.sortOptions[index].alpha = 1.0
+          self.sortOptions[index].isHidden = false
+        }, completion: { _ in
+          //self.sortButton.isEnabled = true
+        })
+      }
+    }
+    self.sortButton.isEnabled = true
+    sortButtonExpanded = !sortButtonExpanded
+  }
+
+  @IBOutlet weak var sortButton: UIButton! {
+    didSet {
+      let width = sortButton.frame.width
+      sortButton.layer.cornerRadius = width / 2
+      sortButton.clipsToBounds = true
+    }
+  }
+  
+
+  @IBOutlet weak var alphabeticalSortButton: UIButton!
+  
+  @IBAction func alphaSortButtonPressed(_ sender: UIButton) {
+    sortByAlphabetical()
+  }
+  
+  private func sortByAlphabetical() {
+    if alphaSorted == false {
+      beachForecastController.beachForecasts.sort {
+        $0.beach.name < $1.beach.name
+      }
+    } else {
+      beachForecastController.beachForecasts.sort {
+        $0.beach.name > $1.beach.name
+      }
+    }
+    alphaSorted = !alphaSorted
+    dataSource = BeachForecastsDataSource(beachForecastController)
+  }
+  
+  @IBOutlet weak var tempSortButton: UIButton!
+  
+  @IBAction func tempSortButtonPressed(_ sender: UIButton) {
+    sortByTemperature()
+  }
+  
+  private func sortByTemperature() {
+    if tempSorted {
+      beachForecastController.beachForecasts.sort {
+        $0.forecast!.currently.temperature < $1.forecast!.currently.temperature
+      }
+    } else {
+      beachForecastController.beachForecasts.sort {
+        $0.forecast!.currently.temperature > $1.forecast!.currently.temperature
+      }
+    }
+    tempSorted = !tempSorted
+    dataSource = BeachForecastsDataSource(beachForecastController)
+  }
+  
+  @IBAction func regionSortButtonPressed(_ sender: UIButton) {
+    sortByRegion()
+  }
+  
+  private func sortByRegion() {
+    if regionSorted {
+      beachForecastController.beachForecasts.sort {
+        $0.beach.side > $1.beach.side
+      }
+    } else {
+      beachForecastController.beachForecasts.sort {
+        $0.beach.side < $1.beach.side
+      }
+    }
+    regionSorted = !regionSorted
+    dataSource = BeachForecastsDataSource(beachForecastController)
+  }
 }
-
-
 
 //MARK: View Lifecycle
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     //addToDatabase()
-//    print("calling retrievBeachNames to retrieve beaches from Firebase")
-//    beachForecastController.retrieveBeacheNames { [weak self] in
-//      print("calling fetchForecast to obtain forecast for all beaches")
-//      self?.beachForecastController.updateForecasts { [weak self] in
-//        print("forecast has been finished updating")
-//        print("setting the data source")
-//        self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
-//      }
-//    }
-    beachForecastController.beachForecasts = mockData.beachForecasts
-    dataSource = BeachForecastsDataSource(beachForecastController)
+    print("calling retrievBeachNames to retrieve beaches from Firebase")
+    beachForecastController.retrieveBeacheNames { [weak self] in
+      print("calling fetchForecast to obtain forecast for all beaches")
+      self?.beachForecastController.updateForecasts { [weak self] in
+        print("forecast has been finished updating")
+        print("setting the data source")
+        self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
+      }
+    }
+//    beachForecastController.beachForecasts = mockData.beachForecasts
+//    dataSource = BeachForecastsDataSource(beachForecastController)
   }
 }
 
 extension BeachForecastsViewController: UITableViewDelegate {
-//  func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//    return 100
-//  }
+  
   
 }
 
@@ -83,53 +194,3 @@ extension BeachForecastsViewController {
     }
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//
-////MARK: CollectionView Delegate and Flow Layout
-//extension BeachForecastsViewController: UICollectionViewDelegate {
-//
-//  private var flowLayout: UICollectionViewFlowLayout? {
-//    return beachForecastsCollectionView.collectionViewLayout as? UICollectionViewFlowLayout
-//  }
-//
-//  private func configureFlowLayout() {
-//    flowLayout?.minimumInteritemSpacing = 0
-//    let width = beachForecastsCollectionView.bounds.size.width * 0.5
-//    flowLayout?.itemSize = CGSize(width: width, height: width * 0.6)
-//    flowLayout?.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//  }
-//
-//  private func changeFlowLayout() {
-//    UIView.animate(withDuration: 5.0, animations: { [weak self] in
-//      self?.flowLayout?.itemSize = CGSize(width: (self?.view.bounds.size.width)!, height: (self?.view.bounds.size.height)!)
-//      self?.flowLayout?.scrollDirection = .horizontal
-//      self?.beachForecastsCollectionView?.isPagingEnabled = true
-//      self?.flowLayout?.sectionInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
-//    })
-//  }
-
-//
-//  func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-//    //cell.backgroundColor = .black
-//  }
-//  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//
-//    //changeFlowLayout() for later implementation
-//  }
-

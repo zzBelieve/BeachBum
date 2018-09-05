@@ -10,6 +10,16 @@ import UIKit
 
 class BeachForecastTableViewCell: UITableViewCell {
   
+  private var borderColor: UIColor {
+    switch beachForecast?.forecast?.currently.icon {
+    case "clear-day": return UIColor.orange
+    case "rain": return UIColor.blue
+    case "partly-cloudy-day", "cloudy": return UIColor.gray
+    case "partly-cloudy-night": return UIColor.purple
+    default: return UIColor.white
+    }
+  }
+  
   var beachForecast: BeachForecast? {
     didSet {
       //TODO set labels
@@ -21,8 +31,16 @@ class BeachForecastTableViewCell: UITableViewCell {
           weatherIconImageView.image = image
         }
       }
+      //self.backgroundColor = borderColor
+      container.layer.borderColor = borderColor.cgColor
+      container.layer.borderWidth = 3.0
+      container.layer.cornerRadius = 15.0
+      
     }
   }
+  
+  @IBOutlet weak var container: UIView!
+  
   
   @IBOutlet weak var beachNameLabel: UILabel!
   @IBOutlet weak var currentSummaryLabel: UILabel! {

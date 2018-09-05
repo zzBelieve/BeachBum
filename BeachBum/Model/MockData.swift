@@ -13,30 +13,30 @@ struct MockData {
   var beachForecasts: [BeachForecast]
   
   init() {
-    var beach = Beach(name: "Haleiwa", latitude: 21.5928, longitude: -158.1034)
+    var beach = Beach(name: "Haleiwa", side: "North", latitude: 21.5928, longitude: -158.1034)
     var currently = Forecast.Currently(summary: "Parly Cloudy",
-                                       icon: "partly-cloudy-day",
+                                       icon: "clear-day",
                                        temperature: 84.40,
                                        apparentTemperature: 90.32)
     let haleiwaBeach = BeachForecast(beach: beach, forecast: Forecast(currently: currently, hourly: nil))
     
-    beach = Beach(name: "Keiki", latitude: 21.655, longitude: -158.06)
+    beach = Beach(name: "Keiki", side: "North",latitude: 21.655, longitude: -158.06)
     currently = Forecast.Currently(summary: "Humid and Mostly Cloudy",
                                    icon: "partly-cloudy-day",
                                    temperature: 82.91,
                                    apparentTemperature: 90.32)
     let keiki = BeachForecast(beach: beach, forecast: Forecast(currently: currently, hourly: nil))
     
-    beach = Beach(name: "Yokohama", latitude: 21.5578, longitude: -158.2525)
+    beach = Beach(name: "Yokohama", side: "West" ,latitude: 21.5578, longitude: -158.2525)
     currently = Forecast.Currently(summary: "Humid and Mostly Cloudy",
-                                   icon: "partly-cloudy-day",
+                                   icon: "rain",
                                    temperature: 83.80,
                                    apparentTemperature: 90.32)
     let yokohama = BeachForecast(beach: beach, forecast: Forecast(currently: currently, hourly: nil))
     
-    beach = Beach(name: "Lanikai", latitude: 21.3931, longitude: -157.7154)
+    beach = Beach(name: "Lanikai", side: "East", latitude: 21.3931, longitude: -157.7154)
     currently = Forecast.Currently(summary: "Humid and Mostly Cloudy",
-                                   icon: "partly-cloudy-day",
+                                   icon: "cloudy",
                                    temperature: 83.35,
                                    apparentTemperature: 90.32)
     let lanikai = BeachForecast(beach: beach, forecast: Forecast(currently: currently, hourly: nil))

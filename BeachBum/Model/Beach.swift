@@ -10,6 +10,7 @@ import Foundation
 
 struct Beach {
   var name: String
+  var side: String
   var latitude: Double
   var longitude: Double
   var coordinates: String { return "\(latitude),\(longitude)" }
@@ -25,5 +26,5 @@ extension Beach {
     components.host = "api.darksky.net"
     components.path = "/forecast/33833ceebca4249519c0b3845541972a"
     return components.url
-  }() 
+  }()
 }

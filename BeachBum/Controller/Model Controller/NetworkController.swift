@@ -36,7 +36,8 @@ class NetworkController {
         guard let keyValue = value.value as? Dictionary<String, Any> else  { return }
         guard let name = keyValue["Name"] as? String else {print("can't find name"); return }
         guard let lat = keyValue["Latitude"] as? Double, let long = keyValue["Longitude"] as? Double else { return }
-        let beach = Beach(name: name, latitude: lat, longitude: long)
+        guard let side = keyValue["Side"] as? String else { return }
+        let beach = Beach(name: name, side: side, latitude: lat, longitude: long)
         beachForecasts.append(BeachForecast(beach: beach))
       }
       completion(beachForecasts)
