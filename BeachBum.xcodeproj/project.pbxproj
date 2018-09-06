@@ -21,6 +21,7 @@
 		1731E702211D712100D7E432 /* BeachForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6FB211D712100D7E432 /* BeachForecast.swift */; };
 		1731E703211D712100D7E432 /* Forecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6FC211D712100D7E432 /* Forecast.swift */; };
 		1731E706211D717500D7E432 /* BeachForecastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E705211D717500D7E432 /* BeachForecastsViewController.swift */; };
+		17439BBE2141C774001E876A /* DetailedForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17439BBD2141C774001E876A /* DetailedForecastView.swift */; };
 		17C2E5882122B66500FAB47E /* DetailedForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */; };
 		17D8FBE921407B2E009F20B1 /* BeachForecastsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8FBE821407B2E009F20B1 /* BeachForecastsView.swift */; };
 		17E508A72131FD6300816317 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17E508A62131FD6300816317 /* GoogleService-Info.plist */; };
@@ -45,6 +46,7 @@
 		1731E6FB211D712100D7E432 /* BeachForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeachForecast.swift; sourceTree = "<group>"; };
 		1731E6FC211D712100D7E432 /* Forecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Forecast.swift; sourceTree = "<group>"; };
 		1731E705211D717500D7E432 /* BeachForecastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastsViewController.swift; sourceTree = "<group>"; };
+		17439BBD2141C774001E876A /* DetailedForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedForecastView.swift; sourceTree = "<group>"; };
 		17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedForecastViewController.swift; sourceTree = "<group>"; };
 		17D8FBE821407B2E009F20B1 /* BeachForecastsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastsView.swift; sourceTree = "<group>"; };
 		17E508A62131FD6300816317 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				1731E6E8211D6FA000D7E432 /* Main.storyboard */,
 				171043CF213F13630004930A /* BeachForecastTableViewCell.swift */,
 				17D8FBE821407B2E009F20B1 /* BeachForecastsView.swift */,
+				17439BBD2141C774001E876A /* DetailedForecastView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				171043D1213F13630004930A /* BeachForecastTableViewCell.swift in Sources */,
 				1731E6FE211D712100D7E432 /* BeachForecastController.swift in Sources */,
 				171043D8213F6FE60004930A /* MockData.swift in Sources */,
+				17439BBE2141C774001E876A /* DetailedForecastView.swift in Sources */,
 				1731E703211D712100D7E432 /* Forecast.swift in Sources */,
 				17D8FBE921407B2E009F20B1 /* BeachForecastsView.swift in Sources */,
 				1731E706211D717500D7E432 /* BeachForecastsViewController.swift in Sources */,

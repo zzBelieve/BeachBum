@@ -27,6 +27,17 @@ class DetailedForecastViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    updateUI()
+    //updateUI()
+    provideMockData()
+  }
+  
+  private func provideMockData() {
+    let beach = Beach(name: "Haleiwa", side: "North", latitude: 21.5928, longitude: -158.1034)
+    let currently = Forecast.Currently(summary: "Parly Cloudy",
+                                       icon: "clear-day",
+                                       temperature: 84.40,
+                                       apparentTemperature: 90.32)
+    let haleiwaBeach = BeachForecast(beach: beach, forecast: Forecast(currently: currently, hourly: nil))
+    beachForecast = haleiwaBeach
   }
 }

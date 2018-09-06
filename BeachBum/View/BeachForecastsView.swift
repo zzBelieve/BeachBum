@@ -45,7 +45,7 @@ class BeachForecastsView: UIView {
   
   private func toggleSortBarExpansion() {
     sortButton.isEnabled = false
-    if sortButtonExpanded { sortOptions.forEach { $0.center.x = sortButton.center.x } }
+    //if sortButtonExpanded { sortOptions.forEach { $0.center.x = sortButton.center.x } }
     UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: { [weak self] in
       for index in 0..<self!.sortOptions.count {
         if self!.sortButtonExpanded {
