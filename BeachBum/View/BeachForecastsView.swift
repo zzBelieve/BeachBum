@@ -82,8 +82,9 @@ enum Sort: String, RawRepresentable {
   case alphabetical
   case side
   case temperature
+  case weatherCondition
   
   static var all: [Sort] {
-    return [Sort.alphabetical, .side, .temperature]
+    return [Sort.alphabetical, .side, .temperature, .weatherCondition]
   }
 }

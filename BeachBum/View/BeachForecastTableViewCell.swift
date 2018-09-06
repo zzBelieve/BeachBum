@@ -22,27 +22,30 @@ class BeachForecastTableViewCell: UITableViewCell {
   
   var beachForecast: BeachForecast? {
     didSet {
-      //TODO set labels
-      temperatureLabel?.text = "\(beachForecast!.forecast!.currently.temperature.twoDecimalPoints)°"
-      beachNameLabel?.text = beachForecast!.beach.name
-      currentSummaryLabel?.text = beachForecast!.forecast!.currently.summary
-      if let iconString = beachForecast?.forecast?.currently.icon {
-        if let image = UIImage(named: iconString) {
-          weatherIconImageView.image = image
-        }
-      }
-      //self.backgroundColor = borderColor
-      container.layer.borderColor = borderColor.cgColor
-      container.layer.borderWidth = 3.0
-      container.layer.cornerRadius = 15.0
-      
+     updateUI()
     }
+  }
+  
+  private func updateUI() {
+    container.layer.borderColor = borderColor.cgColor
+    container.layer.borderWidth = 3.0
+    container.layer.cornerRadius = 15.0
+    beachNameLabel?.text = beachForecast!.beach.name
+    sideOfIslandLabel?.text = "\(beachForecast!.beach.side) side"
+    currentSummaryLabel?.text = beachForecast!.forecast!.currently.summary
+    if let iconString = beachForecast?.forecast?.currently.icon {
+      if let image = UIImage(named: iconString) {
+        weatherIconImageView.image = image
+      }
+    }
+    temperatureLabel?.text = "\(beachForecast!.forecast!.currently.temperature.twoDecimalPoints)°"
   }
   
   @IBOutlet weak var container: UIView!
   
   
   @IBOutlet weak var beachNameLabel: UILabel!
+  @IBOutlet weak var sideOfIslandLabel: UILabel!
   @IBOutlet weak var currentSummaryLabel: UILabel! {
     didSet {
       currentSummaryLabel.sizeToFit()

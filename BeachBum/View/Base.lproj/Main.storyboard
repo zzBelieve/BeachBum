@@ -43,7 +43,7 @@
                                                     <action selector="sortButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="Yq3-Oy-jti"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3x5-Ne-wXO">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3x5-Ne-wXO" userLabel="Sort Option 1">
                                                 <rect key="frame" x="315" y="4.5" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -53,7 +53,7 @@
                                                     <action selector="sortOptionButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="S7A-Sy-TuU"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wS8-cZ-YFJ">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wS8-cZ-YFJ" userLabel="Sort Option 2">
                                                 <rect key="frame" x="315" y="4.5" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -66,7 +66,7 @@
                                                     <action selector="sortOptionButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="CCC-NX-XZd"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRr-sg-Gfd">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XRr-sg-Gfd" userLabel="Sort Option 3">
                                                 <rect key="frame" x="315" y="4.5" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -79,6 +79,20 @@
                                                     <action selector="sortOptionButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="v7r-lV-fVA"/>
                                                 </connections>
                                             </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-oE-o0R" userLabel="Sort Option 4">
+                                                <rect key="frame" x="315" y="5" width="40" height="40"/>
+                                                <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="CyX-oE-o0R" secondAttribute="height" multiplier="1:1" id="zG1-9R-VPd"/>
+                                                </constraints>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal">
+                                                    <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="sortOptionButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="Az6-xT-EdN"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="e0w-hn-tVJ" secondAttribute="trailing" constant="5" id="02N-5y-tYg"/>
@@ -87,13 +101,16 @@
                                             <constraint firstItem="3x5-Ne-wXO" firstAttribute="height" secondItem="e0w-hn-tVJ" secondAttribute="height" multiplier="0.8" id="DTt-xP-W6a"/>
                                             <constraint firstItem="3x5-Ne-wXO" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="FIV-qW-2qV"/>
                                             <constraint firstItem="XRr-sg-Gfd" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="GXd-fD-eK5"/>
+                                            <constraint firstItem="CyX-oE-o0R" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="IRN-iO-Zda"/>
                                             <constraint firstItem="e0w-hn-tVJ" firstAttribute="height" secondItem="OOW-6b-WXn" secondAttribute="height" id="OHM-Kg-VpL"/>
                                             <constraint firstItem="XRr-sg-Gfd" firstAttribute="centerX" secondItem="e0w-hn-tVJ" secondAttribute="centerX" id="T5w-qf-Rok"/>
                                             <constraint firstItem="3x5-Ne-wXO" firstAttribute="centerX" secondItem="e0w-hn-tVJ" secondAttribute="centerX" id="XrP-du-0Fr"/>
                                             <constraint firstItem="e0w-hn-tVJ" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="bVy-XB-XYS"/>
                                             <constraint firstItem="wS8-cZ-YFJ" firstAttribute="centerX" secondItem="e0w-hn-tVJ" secondAttribute="centerX" id="frH-S0-Dgv"/>
                                             <constraint firstItem="wS8-cZ-YFJ" firstAttribute="centerY" secondItem="OOW-6b-WXn" secondAttribute="centerY" id="fyX-U6-rMj"/>
+                                            <constraint firstItem="CyX-oE-o0R" firstAttribute="height" secondItem="e0w-hn-tVJ" secondAttribute="height" multiplier="0.8" id="iir-NB-pXs"/>
                                             <constraint firstItem="wS8-cZ-YFJ" firstAttribute="height" secondItem="e0w-hn-tVJ" secondAttribute="height" multiplier="0.8" id="nyw-oZ-EXN"/>
+                                            <constraint firstItem="CyX-oE-o0R" firstAttribute="centerX" secondItem="e0w-hn-tVJ" secondAttribute="centerX" id="qm0-Kp-ypS"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -122,6 +139,7 @@
                             <outletCollection property="sortOptions" destination="3x5-Ne-wXO" collectionClass="NSMutableArray" id="5z4-aP-NtW"/>
                             <outletCollection property="sortOptions" destination="wS8-cZ-YFJ" collectionClass="NSMutableArray" id="Txe-z2-6vg"/>
                             <outletCollection property="sortOptions" destination="XRr-sg-Gfd" collectionClass="NSMutableArray" id="wOK-p2-0Hi"/>
+                            <outletCollection property="sortOptions" destination="CyX-oE-o0R" collectionClass="NSMutableArray" id="ayn-Wn-uJz"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Beaches" id="ny7-GL-E8q"/>

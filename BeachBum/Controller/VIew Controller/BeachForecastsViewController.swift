@@ -34,11 +34,7 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
       
     }
   }
-  
-  private var alphaSortDownward = true
-  private var temperatureSortDownward = true
-  private var regionSorted = false
-  
+
   @IBOutlet var beachForecastsView: BeachForecastsView! {
     didSet {
       beachForecastsView.delegate = self

@@ -16,7 +16,8 @@ class BeachForecastController {
   
   private var alphaSortDownward = true
   private var temperatureSortDownward = true
-  private var regionSorted = false
+  private var regionSortedDownward = true
+  private var weatherSortedDownward = true
   
   func addForecast(for beachForecast: BeachForecast) {
     beachForecasts.append(beachForecast)
@@ -45,16 +46,23 @@ class BeachForecastController {
         return alphaSortDownward ? (b1.beach.name < b2.beach.name) : (b1.beach.name > b2.beach.name)
       case .temperature:
         return temperatureSortDownward ? b1.forecast!.currently.temperature < b2.forecast!.currently.temperature : b1.forecast!.currently.temperature > b2.forecast!.currently.temperature
-      default: return false
+      case .side:
+        return regionSortedDownward ? (b1.beach.side < b2.beach.side) : (b1.beach.side > b2.beach.side)
+      case .weatherCondition:
+        return weatherSortedDownward ? (b1.forecast!.currently.icon < b2.forecast!.currently.icon) : (b1.forecast!.currently.icon > b2.forecast!.currently.icon)
       }
     }
     
     switch sortType {
     case .alphabetical: alphaSortDownward = !alphaSortDownward
     case .temperature: temperatureSortDownward = !temperatureSortDownward
-    default: break
+    case .side: regionSortedDownward = !regionSortedDownward
+    case .weatherCondition: weatherSortedDownward = !weatherSortedDownward
     }
     
+  }
+  
+  private func sortByRegion() {
   }
   
   func retrieveBeacheNames(completion: @escaping () -> Void) {
