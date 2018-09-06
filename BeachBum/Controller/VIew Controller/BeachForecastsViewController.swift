@@ -46,13 +46,7 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   }
   
   func sortButtonPressed(_ sortType: Sort) {
-    var sortDirectionUp: Bool
-    switch sortType {
-    case .alphabetical: sortDirectionUp = alphaSortDownward; alphaSortDownward = !alphaSortDownward
-    case .temperature: sortDirectionUp = temperatureSortDownward; temperatureSortDownward = !temperatureSortDownward
-    case .side: sortDirectionUp = regionSorted; regionSorted = !regionSorted
-    }
-    beachForecastController.sortBeachForecasts(sortType, sortDirectionUp)
+    beachForecastController.sortBeachForecasts(sortType)
     dataSource = BeachForecastsDataSource(beachForecastController)
   }
   
@@ -65,7 +59,7 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
       self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
     }
     beachForecastTableView.refreshControl?.endRefreshing()
-  } 
+  }
 }
 
 //MARK: View Lifecycle
