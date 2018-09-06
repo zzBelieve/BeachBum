@@ -28,7 +28,6 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   @IBOutlet weak var beachForecastTableView: UITableView! {
     didSet {
       beachForecastTableView.delegate = self
-//      beachForecastTableView.register(UINib(nibName: "BeachForecastTableViewCell", bundle: nil), forCellReuseIdentifier: "Beach Cell")
       refresher.addTarget(self, action: #selector(refreshForecasts), for: .valueChanged)
       beachForecastTableView.refreshControl = refresher
       
@@ -62,17 +61,17 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-//    print("calling retrievBeachNames to retrieve beaches from Firebase")
-//    beachForecastController.retrieveBeacheNames { [weak self] in
-//      print("calling fetchForecast to obtain forecast for all beaches")
-//      self?.beachForecastController.updateForecasts { [weak self] in
-//        print("forecast has been finished updating")
-//        print("setting the data source")
-//        self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
-//      }
-//    }
-    beachForecastController.beachForecasts = mockData.beachForecasts
-    dataSource = BeachForecastsDataSource(beachForecastController)
+    print("calling retrievBeachNames to retrieve beaches from Firebase")
+    beachForecastController.retrieveBeacheNames { [weak self] in
+      print("calling fetchForecast to obtain forecast for all beaches")
+      self?.beachForecastController.updateForecasts { [weak self] in
+        print("forecast has been finished updating")
+        print("setting the data source")
+        self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
+      }
+    }
+//    beachForecastController.beachForecasts = mockData.beachForecasts
+//    dataSource = BeachForecastsDataSource(beachForecastController)
   }
 }
 
