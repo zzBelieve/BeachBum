@@ -28,7 +28,7 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   @IBOutlet weak var beachForecastTableView: UITableView! {
     didSet {
       beachForecastTableView.delegate = self
-      beachForecastTableView.register(UINib(nibName: "BeachForecastTableViewCell", bundle: nil), forCellReuseIdentifier: "Beach Cell")
+//      beachForecastTableView.register(UINib(nibName: "BeachForecastTableViewCell", bundle: nil), forCellReuseIdentifier: "Beach Cell")
       refresher.addTarget(self, action: #selector(refreshForecasts), for: .valueChanged)
       beachForecastTableView.refreshControl = refresher
       
