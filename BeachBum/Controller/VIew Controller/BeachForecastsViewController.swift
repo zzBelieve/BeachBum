@@ -76,7 +76,9 @@ extension BeachForecastsViewController {
 }
 
 extension BeachForecastsViewController: UITableViewDelegate {
-
+  func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    beachForecastTableView.cellForRow(at: indexPath)?.isSelected = false
+  }
   
 }
 
@@ -85,10 +87,9 @@ extension BeachForecastsViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "Show Detailed Forecast" {
       //TODO segue from table view cell
-      guard var destinationVC = segue.destination as? DetailedForecastViewController else { print("not a detailed VC"); return }
+      guard let destinationVC = segue.destination as? DetailedForecastViewController else { print("not a detailed VC"); return }
       guard let indexPath = beachForecastTableView?.indexPathForSelectedRow else { print("no row selected"); return }
       destinationVC.beachForecast = beachForecastController.beachForecasts[indexPath.row]
-      print("segue into destinationVC")
     }
   }
 }
