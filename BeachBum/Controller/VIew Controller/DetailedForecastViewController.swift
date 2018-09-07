@@ -10,11 +10,12 @@ import UIKit
 
 class DetailedForecastViewController: UIViewController {
   
+  
   var beachForecast: BeachForecast?
   private var hourlyForecastViewController: HourlyForecastViewController? {
     didSet {
-      print("returned from segue")
       hourlyForecastViewController?.hourlyForecast = self.beachForecast?.forecast?.hourly
+      hourlyForecastViewController?.delegate = self
       
     }
   }
@@ -43,21 +44,8 @@ class DetailedForecastViewController: UIViewController {
   @IBAction func collapseButtonPressed(_ sender: UIBarButtonItem) {
     toggleContainerViewCollapse()
   }
-  private func toggleContainerViewCollapse(initial: Bool = false) {
-    let height = containerViewHeight.bounds.height * (initial ? 0.90 : 0.33)
-    let initialConstraint = containerViewBottomConstraint.constant
-    let newConstraint = containerViewHidden ? (height + initialConstraint) : (initialConstraint - height)
-    if initial {
-      containerViewBottomConstraint.constant = newConstraint
-      view.layoutIfNeeded()
-    } else {
-      UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
-        self.containerViewBottomConstraint.constant = newConstraint
-        self.view.layoutIfNeeded()
-      })
-    }
-    containerViewHidden = !containerViewHidden
-  }
+  var swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToToggleExpansion(_:)))
+
   
   
   private func updateUI() {
@@ -81,12 +69,13 @@ class DetailedForecastViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    updateUI()
     self.detailedForecastView?.bottomView.transform = CGAffineTransform(translationX: 0.0, y: 1000)
     UIView.animate(withDuration: 0.6, delay: 0.3, usingSpringWithDamping: 0.7, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
       self.detailedForecastView?.bottomView.transform = CGAffineTransform.identity
     })
     toggleContainerViewCollapse(initial: true)
+    addSwipGesture()
+    updateUI()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -97,6 +86,47 @@ class DetailedForecastViewController: UIViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "Show Hourly Forecast" {
       hourlyForecastViewController = segue.destination as? HourlyForecastViewController
+      
+    }
+  }
+}
+
+//MARK: Container View Delegate and Methods
+extension DetailedForecastViewController: HourlyForecastViewControllerDelegate {
+  
+  private func toggleContainerViewCollapse(initial: Bool = false) {
+    let height = containerViewHeight.bounds.height * (initial ? 0.90 : 0.50)
+    let initialConstraint = containerViewBottomConstraint.constant
+    let newConstraint = containerViewHidden ? (height + initialConstraint) : (initialConstraint - height)
+    if initial {
+      containerViewBottomConstraint.constant = newConstraint
+      view.layoutIfNeeded()
+    } else {
+      UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+        self.containerViewBottomConstraint.constant = newConstraint
+        self.view.layoutIfNeeded()
+      })
+    }
+    containerViewHidden = !containerViewHidden
+  }
+  
+  func toggleExpansionPressed() {
+    toggleContainerViewCollapse()
+  }
+  
+  private func addSwipGesture() {
+    swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToToggleExpansion(_:)))
+    swipeGesture.direction = containerViewHidden ? .up : .down
+    self.view.addGestureRecognizer(swipeGesture)
+  }
+  
+  @objc private func swipeToToggleExpansion(_ recognizer: UISwipeGestureRecognizer) {
+    switch recognizer.state {
+    case .began, .changed, .ended:
+      toggleContainerViewCollapse()
+      self.view.removeGestureRecognizer(swipeGesture)
+      addSwipGesture()
+    default: break
     }
   }
 }

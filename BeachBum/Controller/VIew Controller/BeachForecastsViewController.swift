@@ -33,7 +33,7 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
       
     }
   }
-
+  
   @IBOutlet var beachForecastsView: BeachForecastsView! {
     didSet {
       beachForecastsView.delegate = self
@@ -61,8 +61,9 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-    retrievedata()
     //beachForecastController.beachForecasts = mockData.beachForecasts; dataSource = BeachForecastsDataSource(beachForecastController)
+    retrievedata()
+    
   }
   
   private func retrievedata() {
@@ -89,7 +90,6 @@ extension BeachForecastsViewController: UITableViewDelegate {
 extension BeachForecastsViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "Show Detailed Forecast" {
-      //TODO segue from table view cell
       guard let destinationVC = segue.destination as? DetailedForecastViewController else { print("not a detailed VC"); return }
       guard let indexPath = beachForecastTableView?.indexPathForSelectedRow else { print("no row selected"); return }
       destinationVC.beachForecast = beachForecastController.beachForecasts[indexPath.row]
