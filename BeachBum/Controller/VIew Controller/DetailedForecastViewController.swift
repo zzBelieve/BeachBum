@@ -10,34 +10,67 @@ import UIKit
 
 class DetailedForecastViewController: UIViewController {
   
-  var beachForecast: BeachForecast? {
-    didSet {
-     updateUI()
-    }
+  var beachForecast: BeachForecast?
+  
+  private let dateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateStyle = .none
+    formatter.timeStyle = .short
+    formatter.timeZone = TimeZone(abbreviation: "HST")
+    return formatter
+  }()
+  
+  private func timeToString(withSeconds seconds: Int?) -> String? {
+    guard let seconds = seconds else { print("seconds not avail"); return nil }
+    let date = Date(timeIntervalSince1970: TimeInterval(seconds))
+    let stringDate = dateFormatter.string(from: date)
+    print(stringDate)
+    return dateFormatter.string(from: date)
   }
+  
+  //MARK: Outlets
+  @IBOutlet var detailedForecastView: DetailedForecastView!
   
   @IBOutlet weak var beachNameLabel: UILabel!
   @IBOutlet weak var currentTemperatureLabel: UILabel!
+  @IBOutlet weak var currentSummaryLabel: UILabel!
+  @IBOutlet weak var currentWeatherImageView: UIImageView!
+  @IBOutlet weak var sunriseTimeLabel: UILabel!
+  @IBOutlet weak var sunsetTimeLabel: UILabel!
+  @IBOutlet weak var windSpeed: UILabel!
+  @IBOutlet weak var chanceOfRainLabel: UILabel!
+  @IBOutlet weak var apparentTemperatureLabel: UILabel!
+  @IBOutlet weak var humidityLabel: UILabel!
+  
   
   private func updateUI() {
     guard let beachForecast = beachForecast else { return }
     beachNameLabel?.text = beachForecast.beach.name
-    currentTemperatureLabel?.text = String(beachForecast.forecast!.currently.temperature)
+    currentTemperatureLabel?.text = beachForecast.forecast!.currently.temperature.temperatureFormatted
+    currentSummaryLabel?.text = beachForecast.forecast!.currently.summary
+    sunriseTimeLabel?.text = timeToString(withSeconds: beachForecast.forecast?.daily?.data.first?.sunriseTime)
+    sunsetTimeLabel?.text = timeToString(withSeconds: beachForecast.forecast?.daily?.data.first?.sunsetTime)
+    windSpeed?.text = "\(Int(beachForecast.forecast!.currently.windSpeed))mph"
+    chanceOfRainLabel?.text = "\(Int((beachForecast.forecast?.daily?.data.first?.precipProbability ?? 0) * 100))%"
+    apparentTemperatureLabel?.text = beachForecast.forecast!.currently.apparentTemperature.temperatureFormatted
+    humidityLabel?.text = "\(Int(beachForecast.forecast!.currently.humidity * 100))%"
+    if let iconString = beachForecast.forecast?.currently.icon {
+      if let image = UIImage(named: iconString) {
+        currentWeatherImageView?.image = image
+      }
+    }
+    
+    
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    //updateUI()
-    provideMockData()
+    updateUI()
+    //provideMockData()
   }
   
   private func provideMockData() {
-    let beach = Beach(name: "Haleiwa", side: "North", latitude: 21.5928, longitude: -158.1034)
-    let currently = Forecast.Currently(summary: "Parly Cloudy",
-                                       icon: "clear-day",
-                                       temperature: 84.40,
-                                       apparentTemperature: 90.32)
-    let haleiwaBeach = BeachForecast(beach: beach, forecast: Forecast(currently: currently, hourly: nil))
-    beachForecast = haleiwaBeach
+    let mockData = MockData()
+    beachForecast = mockData.beachForecasts.first!
   }
 }

@@ -10,11 +10,10 @@ import Foundation
 import UIKit
 
 class DetailedForecastView: UIView {
-
+  
   @IBOutlet weak var bottomView: UIView! {
     didSet {
-      let width = bottomView.frame.size.width
-      bottomView.layer.cornerRadius = width / 2
+      bottomView.layer.cornerRadius = bottomView.frame.size.width / 2
     }
   }
   @IBOutlet weak var detailsView: UIView! {
@@ -22,8 +21,5 @@ class DetailedForecastView: UIView {
       detailsView.layer.cornerRadius = 10.0
     }
   }
-  
-  
-  
 }
 

@@ -9,7 +9,7 @@
 import Foundation
 
 extension Double {
-  var twoDecimalPoints: String {
-    return String(format: "%.2f", self)
+  var temperatureFormatted: String {
+    return "\(String(format: "%.2f", self))°"
   }
 }

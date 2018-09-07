@@ -38,7 +38,7 @@ class BeachForecastTableViewCell: UITableViewCell {
         weatherIconImageView.image = image
       }
     }
-    temperatureLabel?.text = "\(beachForecast!.forecast!.currently.temperature.twoDecimalPoints)°"
+    temperatureLabel?.text = beachForecast!.forecast!.currently.temperature.temperatureFormatted
   }
   
   @IBOutlet weak var container: UIView!

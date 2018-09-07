@@ -61,17 +61,17 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-//    print("calling retrievBeachNames to retrieve beaches from Firebase")
-//    beachForecastController.retrieveBeacheNames { [weak self] in
-//      print("calling fetchForecast to obtain forecast for all beaches")
-//      self?.beachForecastController.updateForecasts { [weak self] in
-//        print("forecast has been finished updating")
-//        print("setting the data source")
-//        self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
-//      }
-//    }
-    beachForecastController.beachForecasts = mockData.beachForecasts
-    dataSource = BeachForecastsDataSource(beachForecastController)
+    print("calling retrievBeachNames to retrieve beaches from Firebase")
+    beachForecastController.retrieveBeacheNames { [weak self] in
+      print("calling fetchForecast to obtain forecast for all beaches")
+      self?.beachForecastController.updateForecasts { [weak self] in
+        print("forecast has been finished updating")
+        print("setting the data source")
+        self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
+      }
+    }
+//    beachForecastController.beachForecasts = mockData.beachForecasts
+//    dataSource = BeachForecastsDataSource(beachForecastController)
   }
 }
 
@@ -82,9 +82,13 @@ extension BeachForecastsViewController: UITableViewDelegate {
 
 //MARK: Navigation
 extension BeachForecastsViewController {
-//  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//    if segue.identifier == "Show Beach" {
-//      //TODO segue from table view cell
-//    }
-//  }
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "Show Detailed Forecast" {
+      //TODO segue from table view cell
+      guard var destinationVC = segue.destination as? DetailedForecastViewController else { print("not a detailed VC"); return }
+      guard let indexPath = beachForecastTableView?.indexPathForSelectedRow else { print("no row selected"); return }
+      destinationVC.beachForecast = beachForecastController.beachForecasts[indexPath.row]
+      print("segue into destinationVC")
+    }
+  }
 }

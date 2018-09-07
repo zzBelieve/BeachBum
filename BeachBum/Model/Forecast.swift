@@ -10,8 +10,11 @@ import Foundation
 
 struct Forecast: Codable {
   
+  var timezone: String = "Pacific/Honolulu"
   var currently: Currently
   var hourly: Hourly?
+  var daily: Daily?
+  
   
   enum SerializationError: Error {
     case missing(String)
@@ -23,6 +26,9 @@ struct Forecast: Codable {
     let icon: String
     let temperature: Double
     let apparentTemperature: Double
+    let windSpeed: Double
+    let precipProbability: Double
+    let humidity: Double
   }
   
   struct Hourly: Codable {
@@ -35,5 +41,20 @@ struct Forecast: Codable {
     let time: Double
     let summary: String
     let temperature: Double
+    let precipProbability: Double
+  }
+  
+  struct Daily: Codable {
+    let data: [DailyData]
+  }
+  
+  struct DailyData: Codable {
+    let sunriseTime: Int
+    let sunsetTime: Int
+    let precipProbability: Double
+  }
+  
+  init(timeZone: String = "Pacific/Honolulu", currently: Currently, hourly: Hourly? = nil, daily: Daily? = nil) {
+    self.currently = currently
   }
 }
