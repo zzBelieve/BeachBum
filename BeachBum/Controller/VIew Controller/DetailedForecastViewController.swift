@@ -29,6 +29,25 @@ class DetailedForecastViewController: UIViewController {
   //MARK: Outlets
   @IBOutlet var detailedForecastView: DetailedForecastView!
   
+  //MARK: Container View Constraints
+  private var containerViewHidden = false
+  @IBOutlet weak var containerViewHeight: UIView!
+  @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
+  @IBAction func collapseButtonPressed(_ sender: UIBarButtonItem) {
+    toggleContainerViewCollapse()
+  }
+  private func toggleContainerViewCollapse() {
+    let height = containerViewHeight.bounds.height
+    let constant = containerViewBottomConstraint.constant
+    let newConstraint = containerViewHidden ? (height + constant) : (constant - height)
+    UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+      self.containerViewBottomConstraint.constant = newConstraint
+      self.view.layoutIfNeeded()
+    })
+    containerViewHidden = !containerViewHidden
+  }
+  
+  
   private func updateUI() {
     guard let beachForecast = beachForecast else { return }
     guard let dfView = detailedForecastView else { print("no detailed forecast view"); return }
@@ -55,6 +74,7 @@ class DetailedForecastViewController: UIViewController {
     UIView.animate(withDuration: 0.6, delay: 0.3, usingSpringWithDamping: 0.7, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
       self.detailedForecastView?.bottomView.transform = CGAffineTransform.identity
     })
+    toggleContainerViewCollapse()
   }
   
   override func viewDidAppear(_ animated: Bool) {
