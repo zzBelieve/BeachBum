@@ -61,6 +61,11 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
+    retrievedata()
+    //beachForecastController.beachForecasts = mockData.beachForecasts; dataSource = BeachForecastsDataSource(beachForecastController)
+  }
+  
+  private func retrievedata() {
     print("calling retrievBeachNames to retrieve beaches from Firebase")
     beachForecastController.retrieveBeacheNames { [weak self] in
       print("calling fetchForecast to obtain forecast for all beaches")
@@ -70,8 +75,6 @@ extension BeachForecastsViewController {
         self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
       }
     }
-//    beachForecastController.beachForecasts = mockData.beachForecasts
-//    dataSource = BeachForecastsDataSource(beachForecastController)
   }
 }
 

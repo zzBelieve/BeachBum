@@ -10,26 +10,28 @@ import UIKit
 
 class BeachForecastTableViewCell: UITableViewCell {
   
+  
+  var beachForecast: BeachForecast? {
+    didSet {
+      updateUI()
+    }
+  }
+  
   private var borderColor: UIColor {
     switch beachForecast?.forecast?.currently.icon {
     case "clear-day": return UIColor.orange
     case "rain": return UIColor.blue
     case "partly-cloudy-day", "cloudy": return UIColor.gray
-    case "partly-cloudy-night": return UIColor.purple
+    case "partly-cloudy-night": return UIColor.darkGray
     default: return UIColor.white
     }
   }
-  
-  var beachForecast: BeachForecast? {
-    didSet {
-     updateUI()
-    }
-  }
+
   
   private func updateUI() {
-    container.layer.borderColor = borderColor.cgColor
-    container.layer.borderWidth = 3.0
-    container.layer.cornerRadius = 15.0
+    accentColorview?.backgroundColor = borderColor
+    container.layer.cornerRadius = 8.0
+    container.clipsToBounds = true
     beachNameLabel?.text = beachForecast!.beach.name
     sideOfIslandLabel?.text = "\(beachForecast!.beach.side) side"
     currentSummaryLabel?.text = beachForecast!.forecast!.currently.summary
@@ -44,6 +46,7 @@ class BeachForecastTableViewCell: UITableViewCell {
   @IBOutlet weak var container: UIView!
   
   
+  @IBOutlet weak var accentColorview: UIView!
   @IBOutlet weak var beachNameLabel: UILabel!
   @IBOutlet weak var sideOfIslandLabel: UILabel!
   @IBOutlet weak var currentSummaryLabel: UILabel! {
@@ -51,8 +54,6 @@ class BeachForecastTableViewCell: UITableViewCell {
       currentSummaryLabel.sizeToFit()
     }
   }
-  @IBOutlet weak var hourlySummary: UILabel!
-  
   
   @IBOutlet weak var weatherIconImageView: UIImageView! {
     didSet {

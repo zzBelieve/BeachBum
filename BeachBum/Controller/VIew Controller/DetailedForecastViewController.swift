@@ -11,6 +11,13 @@ import UIKit
 class DetailedForecastViewController: UIViewController {
   
   var beachForecast: BeachForecast?
+  private var hourlyForecastViewController: HourlyForecastViewController? {
+    didSet {
+      print("returned from segue")
+      hourlyForecastViewController?.hourlyForecast = self.beachForecast?.forecast?.hourly
+      
+    }
+  }
   
   private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
@@ -36,14 +43,19 @@ class DetailedForecastViewController: UIViewController {
   @IBAction func collapseButtonPressed(_ sender: UIBarButtonItem) {
     toggleContainerViewCollapse()
   }
-  private func toggleContainerViewCollapse() {
-    let height = containerViewHeight.bounds.height
-    let constant = containerViewBottomConstraint.constant
-    let newConstraint = containerViewHidden ? (height + constant) : (constant - height)
-    UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
-      self.containerViewBottomConstraint.constant = newConstraint
-      self.view.layoutIfNeeded()
-    })
+  private func toggleContainerViewCollapse(initial: Bool = false) {
+    let height = containerViewHeight.bounds.height * (initial ? 0.90 : 0.33)
+    let initialConstraint = containerViewBottomConstraint.constant
+    let newConstraint = containerViewHidden ? (height + initialConstraint) : (initialConstraint - height)
+    if initial {
+      containerViewBottomConstraint.constant = newConstraint
+      view.layoutIfNeeded()
+    } else {
+      UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+        self.containerViewBottomConstraint.constant = newConstraint
+        self.view.layoutIfNeeded()
+      })
+    }
     containerViewHidden = !containerViewHidden
   }
   
@@ -74,11 +86,17 @@ class DetailedForecastViewController: UIViewController {
     UIView.animate(withDuration: 0.6, delay: 0.3, usingSpringWithDamping: 0.7, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
       self.detailedForecastView?.bottomView.transform = CGAffineTransform.identity
     })
-    toggleContainerViewCollapse()
+    toggleContainerViewCollapse(initial: true)
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if segue.identifier == "Show Hourly Forecast" {
+      hourlyForecastViewController = segue.destination as? HourlyForecastViewController
+    }
   }
 }
