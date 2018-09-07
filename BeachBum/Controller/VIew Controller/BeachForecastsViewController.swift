@@ -61,8 +61,9 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-    //beachForecastController.beachForecasts = mockData.beachForecasts; dataSource = BeachForecastsDataSource(beachForecastController)
-    retrievedata()
+    beachForecastController.beachForecasts = mockData.beachForecasts; dataSource = BeachForecastsDataSource(beachForecastController)
+    //retrievedata()
+    beachForecastController.configureLocationManager()
     
   }
   

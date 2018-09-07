@@ -23,17 +23,21 @@
 	<key>STORAGE_BUCKET</key>
 	<string>beach-bum-e135b.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_APPINVITE_ENABLED</key>
-	<false></false>
+	<false/>
 	<key>IS_GCM_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>IS_SIGNIN_ENABLED</key>
-	<true></true>
+	<true/>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:760039271368:ios:50b6161268f346c8</string>
+	<key>NSLocationUsageDescription</key>
+	<string>We need your location to update distance from beaches</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need your location to update distance from beaches</string>
 	<key>DATABASE_URL</key>
 	<string>https://beach-bum-e135b.firebaseio.com</string>
 </dict>

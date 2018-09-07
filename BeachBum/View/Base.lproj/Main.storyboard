@@ -50,7 +50,7 @@
                                                                     <rect key="frame" x="18" y="18" width="40" height="40"/>
                                                                 </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Yzh-AY-nTL">
-                                                                    <rect key="frame" x="63" y="21.5" width="239" height="53"/>
+                                                                    <rect key="frame" x="63" y="21.5" width="180" height="53"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beach Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fkd-u9-hti">
                                                                             <rect key="frame" x="0.0" y="0.0" width="111" height="24"/>
@@ -73,10 +73,16 @@
                                                                     </subviews>
                                                                 </stackView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cAP-WT-Jgg">
-                                                                    <rect key="frame" x="312" y="32" width="43" height="31.5"/>
+                                                                    <rect key="frame" x="253" y="32" width="102" height="31.5"/>
                                                                     <subviews>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99 mi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnT-sn-8cU">
+                                                                            <rect key="frame" x="0.0" y="5.5" width="51" height="20.5"/>
+                                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                            <nil key="textColor"/>
+                                                                            <nil key="highlightedColor"/>
+                                                                        </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39J-zY-ClI">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="43" height="31.5"/>
+                                                                            <rect key="frame" x="59" y="0.0" width="43" height="31.5"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -285,7 +291,7 @@
                                         <rect key="frame" x="394" y="45" width="337.5" height="339"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="0MW-5X-esP">
-                                                <rect key="frame" x="54.5" y="59" width="229" height="221.5"/>
+                                                <rect key="frame" x="54.5" y="59.5" width="229" height="221.5"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="zzY-P8-hNC">
                                                         <rect key="frame" x="0.0" y="0.0" width="64.5" height="221.5"/>
@@ -437,14 +443,7 @@
                             <outlet property="windSpeed" destination="Q3G-mQ-y9e" id="2yZ-PQ-Cfu"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="PAy-MG-VhX">
-                        <barButtonItem key="rightBarButtonItem" title="Collapse" id="JF8-aR-hel">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <connections>
-                                <action selector="collapseButtonPressed:" destination="cYe-xm-IVn" id="APe-BF-p0H"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="PAy-MG-VhX"/>
                     <connections>
                         <outlet property="containerViewBottomConstraint" destination="Rdh-RL-oLA" id="LTg-V9-UiR"/>
                         <outlet property="containerViewHeight" destination="Ygu-uP-Avb" id="pj6-bk-Mlq"/>
@@ -598,25 +597,6 @@
             </objects>
             <point key="canvasLocation" x="3797.5999999999999" y="590.10494752623697"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="dwg-gu-pkS">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="P3G-TG-MLS" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Sg0-lS-TdL">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="cYe-xm-IVn" kind="relationship" relationship="rootViewController" id="e9Z-D1-ota"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uRW-SS-db8" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2746" y="-391"/>
-        </scene>
     </scenes>
     <resources>
         <image name="clear-day" width="40" height="40"/>
@@ -628,8 +608,5 @@
         <image name="sort" width="30" height="30"/>
         <image name="wind" width="40" height="40"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="iLD-Mt-xoy"/>
-    </inferredMetricsTieBreakers>
     <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
 </document>

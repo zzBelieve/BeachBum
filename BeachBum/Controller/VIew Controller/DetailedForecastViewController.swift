@@ -16,7 +16,6 @@ class DetailedForecastViewController: UIViewController {
     didSet {
       hourlyForecastViewController?.hourlyForecast = self.beachForecast?.forecast?.hourly
       hourlyForecastViewController?.delegate = self
-      
     }
   }
   
@@ -41,9 +40,6 @@ class DetailedForecastViewController: UIViewController {
   private var containerViewHidden = false
   @IBOutlet weak var containerViewHeight: UIView!
   @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
-  @IBAction func collapseButtonPressed(_ sender: UIBarButtonItem) {
-    toggleContainerViewCollapse()
-  }
   var swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToToggleExpansion(_:)))
 
   
@@ -108,6 +104,8 @@ extension DetailedForecastViewController: HourlyForecastViewControllerDelegate {
       })
     }
     containerViewHidden = !containerViewHidden
+    self.view.removeGestureRecognizer(swipeGesture)
+    addSwipGesture()
   }
   
   func toggleExpansionPressed() {
@@ -124,8 +122,6 @@ extension DetailedForecastViewController: HourlyForecastViewControllerDelegate {
     switch recognizer.state {
     case .began, .changed, .ended:
       toggleContainerViewCollapse()
-      self.view.removeGestureRecognizer(swipeGesture)
-      addSwipGesture()
     default: break
     }
   }

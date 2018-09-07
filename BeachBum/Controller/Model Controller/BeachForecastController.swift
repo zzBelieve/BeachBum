@@ -7,12 +7,15 @@
 //
 
 import Foundation
+import CoreLocation
 
-class BeachForecastController {
+class BeachForecastController: NSObject {
   
   var beachForecasts = [BeachForecast]()
   var networkController = NetworkController() //any network calls should be done through this controller
+  let locationManager = CLLocationManager()
   var beachNames = [Beach]()
+  
   
   private var alphaSortDownward = true
   private var temperatureSortDownward = true
@@ -70,6 +73,24 @@ class BeachForecastController {
       self?.beachForecasts = $0
       print("Beach name retrieval finished")
       completion()
+    }
+  }
+}
+
+extension BeachForecastController: CLLocationManagerDelegate {
+  func configureLocationManager() {
+    locationManager.delegate = self
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+    locationManager.requestWhenInUseAuthorization()
+    locationManager.startUpdatingLocation()  }
+  
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    guard let location = locations.last else { print("no locations to be found"); return }
+    if location.horizontalAccuracy > 0 {
+      self.locationManager.stopUpdatingLocation()
+      let lat = String(location.coordinate.latitude)
+      let long = String(location.coordinate.longitude)
+      print("\(lat), \(long)")
     }
   }
 }

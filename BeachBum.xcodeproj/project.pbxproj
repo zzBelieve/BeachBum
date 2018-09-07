@@ -10,6 +10,7 @@
 		171043D1213F13630004930A /* BeachForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171043CF213F13630004930A /* BeachForecastTableViewCell.swift */; };
 		171043D6213F6D1E0004930A /* FormattingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171043D5213F6D1E0004930A /* FormattingData.swift */; };
 		171043D8213F6FE60004930A /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171043D7213F6FE60004930A /* MockData.swift */; };
+		172BE806214322E1008DFA81 /* LocationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172BE805214322E1008DFA81 /* LocationController.swift */; };
 		1731E6E5211D6FA000D7E432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6E4211D6FA000D7E432 /* AppDelegate.swift */; };
 		1731E6EA211D6FA000D7E432 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1731E6E8211D6FA000D7E432 /* Main.storyboard */; };
 		1731E6EC211D6FA200D7E432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1731E6EB211D6FA200D7E432 /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 		171043CF213F13630004930A /* BeachForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastTableViewCell.swift; sourceTree = "<group>"; };
 		171043D5213F6D1E0004930A /* FormattingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattingData.swift; sourceTree = "<group>"; };
 		171043D7213F6FE60004930A /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		172BE805214322E1008DFA81 /* LocationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationController.swift; sourceTree = "<group>"; };
 		1731E6E1211D6FA000D7E432 /* BeachBum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeachBum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1731E6E4211D6FA000D7E432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1731E6E9211D6FA000D7E432 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -123,6 +125,7 @@
 				1731E6F8211D712100D7E432 /* BeachForecastsDataSource.swift */,
 				1731E6FA211D712100D7E432 /* NetworkController.swift */,
 				17439BDF21426A1E001E876A /* HourlyForecastDataSource.swift */,
+				172BE805214322E1008DFA81 /* LocationController.swift */,
 			);
 			path = "Model Controller";
 			sourceTree = "<group>";
@@ -309,6 +312,7 @@
 				1731E701211D712100D7E432 /* NetworkController.swift in Sources */,
 				171043D1213F13630004930A /* BeachForecastTableViewCell.swift in Sources */,
 				1731E6FE211D712100D7E432 /* BeachForecastController.swift in Sources */,
+				172BE806214322E1008DFA81 /* LocationController.swift in Sources */,
 				171043D8213F6FE60004930A /* MockData.swift in Sources */,
 				17439BE221426C73001E876A /* HourlyForecastCollectionViewCell.swift in Sources */,
 				17439BBE2141C774001E876A /* DetailedForecastView.swift in Sources */,
