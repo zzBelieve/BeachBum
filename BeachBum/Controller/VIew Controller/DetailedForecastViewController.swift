@@ -65,10 +65,10 @@ class DetailedForecastViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    self.detailedForecastView?.bottomView.transform = CGAffineTransform(translationX: 0.0, y: 1000)
-    UIView.animate(withDuration: 0.6, delay: 0.3, usingSpringWithDamping: 0.7, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
-      self.detailedForecastView?.bottomView.transform = CGAffineTransform.identity
-    })
+//    self.detailedForecastView?.bottomView.transform = CGAffineTransform(translationX: 0.0, y: 1000)
+//    UIView.animate(withDuration: 0.6, delay: 0.3, usingSpringWithDamping: 0.7, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+//      self.detailedForecastView?.bottomView.transform = CGAffineTransform.identity
+//    })
     toggleContainerViewCollapse(initial: true)
     addSwipGesture()
     updateUI()
