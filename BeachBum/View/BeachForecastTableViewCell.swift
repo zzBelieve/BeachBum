@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class BeachForecastTableViewCell: UITableViewCell {
   
@@ -15,6 +16,13 @@ class BeachForecastTableViewCell: UITableViewCell {
     didSet {
       updateUI()
     }
+  }
+  var userLocation: CLLocation?
+  private var distanceFromUser: CLLocationDistance? {
+    print("user location: \(userLocation)")
+    let dist = beachForecast?.calculateDistance(from: userLocation)
+    print("distance: \(dist)")
+    return dist
   }
   
   private var borderColor: UIColor {
@@ -41,6 +49,7 @@ class BeachForecastTableViewCell: UITableViewCell {
       }
     }
     temperatureLabel?.text = beachForecast!.forecast!.currently.temperature.temperatureFormatted
+    distanceLabel?.text = "\(Int(distanceFromUser?.distanceInMiles ?? 0)) mi."
   }
   
   @IBOutlet weak var container: UIView!
@@ -54,14 +63,14 @@ class BeachForecastTableViewCell: UITableViewCell {
       currentSummaryLabel.sizeToFit()
     }
   }
-  
   @IBOutlet weak var weatherIconImageView: UIImageView! {
     didSet {
       weatherIconImageView.sizeToFit()
     }
   }
-  
   @IBOutlet weak var temperatureLabel: UILabel!
+  @IBOutlet weak var distanceLabel: UILabel!
+  
   
   override func awakeFromNib() {
     super.awakeFromNib()

@@ -13,19 +13,12 @@ class BeachForecastController: NSObject {
   
   var beachForecasts = [BeachForecast]()
   var networkController = NetworkController() //any network calls should be done through this controller
-  let locationManager = CLLocationManager()
   var beachNames = [Beach]()
-  private var location: CLLocation?
-  
   
   private var alphaSortDownward = true
   private var temperatureSortDownward = true
   private var regionSortedDownward = true
   private var weatherSortedDownward = true
-  
-  func addForecast(for beachForecast: BeachForecast) {
-    beachForecasts.append(beachForecast)
-  }
   
   func updateForecasts(completion: @escaping(() -> Void) ) {
     let dispatchGroup = DispatchGroup()
@@ -63,10 +56,6 @@ class BeachForecastController: NSObject {
     case .side: regionSortedDownward = !regionSortedDownward
     case .weatherCondition: weatherSortedDownward = !weatherSortedDownward
     }
-    
-  }
-  
-  private func sortByRegion() {
   }
   
   func retrieveBeacheNames(completion: @escaping () -> Void) {
@@ -78,20 +67,8 @@ class BeachForecastController: NSObject {
   }
 }
 
-extension BeachForecastController: CLLocationManagerDelegate {
-  func configureLocationManager() {
-    locationManager.delegate = self
-    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-    locationManager.requestWhenInUseAuthorization()
-    locationManager.startUpdatingLocation()  }
-  
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    guard let loc = locations.last else { print("no locations to be found"); return }
-    if loc.horizontalAccuracy > 0 {
-      self.locationManager.stopUpdatingLocation()
-      let lat = loc.coordinate.latitude
-      let long = loc.coordinate.longitude
-      location = CLLocation(latitude: lat, longitude: long)
-    }
+extension CLLocationDistance {
+  var distanceInMiles: Double {
+      return self * 0.000621371
   }
 }

@@ -8,13 +8,16 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 class BeachForecastsDataSource: NSObject {
   
   var beachForecastController: BeachForecastController
+  var userLocation: CLLocation?
   
-  init(_ beachForecastController: BeachForecastController) {
+  init(_ beachForecastController: BeachForecastController, _ userLocation: CLLocation?) {
     self.beachForecastController = beachForecastController
+    self.userLocation = userLocation
   }
   
 }
@@ -28,6 +31,7 @@ extension BeachForecastsDataSource: UITableViewDataSource {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Beach Cell", for: indexPath)
     guard let beachCell = cell as? BeachForecastTableViewCell else { return cell }
     beachCell.beachForecast = beachForecastController.beachForecasts[indexPath.item]
+    beachCell.userLocation = self.userLocation
     return cell
   }
 }

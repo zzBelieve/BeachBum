@@ -50,7 +50,7 @@
                                                                     <rect key="frame" x="18" y="18" width="40" height="40"/>
                                                                 </imageView>
                                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="Yzh-AY-nTL">
-                                                                    <rect key="frame" x="63" y="21.5" width="180" height="53"/>
+                                                                    <rect key="frame" x="63" y="21.5" width="188" height="53"/>
                                                                     <subviews>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Beach Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Fkd-u9-hti">
                                                                             <rect key="frame" x="0.0" y="0.0" width="111" height="24"/>
@@ -72,17 +72,17 @@
                                                                         </label>
                                                                     </subviews>
                                                                 </stackView>
-                                                                <stackView opaque="NO" contentMode="scaleToFill" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cAP-WT-Jgg">
-                                                                    <rect key="frame" x="253" y="32" width="102" height="31.5"/>
+                                                                <stackView opaque="NO" contentMode="scaleAspectFit" distribution="fillEqually" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="cAP-WT-Jgg">
+                                                                    <rect key="frame" x="261" y="32" width="94" height="31.5"/>
                                                                     <subviews>
-                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99 mi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnT-sn-8cU">
-                                                                            <rect key="frame" x="0.0" y="5.5" width="51" height="20.5"/>
+                                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-- mi" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bnT-sn-8cU">
+                                                                            <rect key="frame" x="0.0" y="5.5" width="43" height="20.5"/>
                                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99°" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39J-zY-ClI">
-                                                                            <rect key="frame" x="59" y="0.0" width="43" height="31.5"/>
+                                                                            <rect key="frame" x="51" y="0.0" width="43" height="31.5"/>
                                                                             <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
@@ -117,6 +117,7 @@
                                                     <outlet property="beachNameLabel" destination="Fkd-u9-hti" id="1nO-do-FAu"/>
                                                     <outlet property="container" destination="dNL-md-OP1" id="NB3-1p-AiD"/>
                                                     <outlet property="currentSummaryLabel" destination="1ge-oW-Twe" id="ABn-9T-lCk"/>
+                                                    <outlet property="distanceLabel" destination="bnT-sn-8cU" id="00K-8A-hjU"/>
                                                     <outlet property="sideOfIslandLabel" destination="HCn-2K-y4r" id="tW2-s6-VDQ"/>
                                                     <outlet property="temperatureLabel" destination="39J-zY-ClI" id="lwV-85-lW1"/>
                                                     <outlet property="weatherIconImageView" destination="fXl-2s-3ke" id="EfP-0R-nHF"/>
@@ -434,13 +435,13 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fR5-fb-RZL"/>
                         <connections>
-                            <outlet property="apparentTemperatureLabel" destination="Y3s-qP-Hq1" id="t2O-nW-e0R"/>
                             <outlet property="beachNameLabel" destination="Odj-Dn-kKe" id="Keu-1L-tFP"/>
                             <outlet property="chanceOfRainLabel" destination="ftV-q0-enZ" id="n6i-MY-DOE"/>
                             <outlet property="currentSummaryLabel" destination="1fe-mE-bam" id="zBR-d8-Krp"/>
                             <outlet property="currentTemperatureLabel" destination="xHc-E5-slQ" id="uaM-Dj-DPP"/>
                             <outlet property="currentWeatherImageView" destination="C47-aE-KHe" id="I6V-gm-P2k"/>
                             <outlet property="detailsView" destination="9ui-gY-vZy" id="agC-kK-bfn"/>
+                            <outlet property="distanceLabel" destination="Y3s-qP-Hq1" id="t2O-nW-e0R"/>
                             <outlet property="humidityLabel" destination="LBS-S0-fdV" id="wdu-qP-vJK"/>
                             <outlet property="sunriseTimeLabel" destination="PsR-tE-1sX" id="X1z-zj-kv9"/>
                             <outlet property="sunsetTimeLabel" destination="Bdm-0D-cCD" id="9yU-nu-flw"/>

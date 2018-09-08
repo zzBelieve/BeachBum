@@ -18,7 +18,6 @@ struct Beach {
   
 }
 
-
 extension Beach {
   static private  let baseURL: URL? = {
     var components = URLComponents()
