@@ -11,13 +11,8 @@ import CoreLocation
 
 class DetailedForecastViewController: UIViewController {
   
-  
   var beachForecast: BeachForecast?
-  var userLocation: CLLocation?
-  private var distanceFromUser: CLLocationDistance? {
-    let dist = beachForecast?.calculateDistance(from: userLocation)
-    return dist
-  }
+  
   private var hourlyForecastViewController: HourlyForecastViewController? {
     didSet {
       hourlyForecastViewController?.hourlyForecast = self.beachForecast?.forecast?.hourly
@@ -48,6 +43,23 @@ class DetailedForecastViewController: UIViewController {
   @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
   var swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToToggleExpansion(_:)))
 
+  @IBOutlet weak var topColoredView: UIView! {
+    didSet {
+      topColoredView?.backgroundColor = colorForTopView
+    }
+  }
+  
+  
+  private var colorForTopView: UIColor {
+    switch beachForecast?.forecast?.currently.icon {
+    case "clear-day": return UIColor.orange
+    case "rain": return UIColor.blue
+    case "partly-cloudy-day", "cloudy": return UIColor.skyBlue
+    case "partly-cloudy-night": return UIColor.purple
+    case "wind": return UIColor.green
+    default: return UIColor.white
+    }
+  }
   
   
   private func updateUI() {
@@ -60,7 +72,7 @@ class DetailedForecastViewController: UIViewController {
     dfView.sunsetTimeLabel?.text = timeToString(withSeconds: beachForecast.forecast?.daily?.data.first?.sunsetTime)
     dfView.windSpeed?.text = "\(Int(beachForecast.forecast!.currently.windSpeed))mph"
     dfView.chanceOfRainLabel?.text = "\(Int((beachForecast.forecast?.daily?.data.first?.precipProbability ?? 0) * 100))%"
-    dfView.distanceLabel?.text = "\(Int(distanceFromUser?.distanceInMiles ?? 0))mi."
+    dfView.distanceLabel?.text = "\(Int(beachForecast.distanceFromUser ?? 0))mi."
     dfView.humidityLabel?.text = "\(Int(beachForecast.forecast!.currently.humidity * 100))%"
     if let iconString = beachForecast.forecast?.currently.icon {
       if let image = UIImage(named: iconString) {

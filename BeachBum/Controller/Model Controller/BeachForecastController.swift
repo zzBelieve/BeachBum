@@ -11,12 +11,28 @@ import CoreLocation
 
 class BeachForecastController: NSObject {
   
-  var beachForecasts = [BeachForecast]()
+  var beachForecasts = [BeachForecast]() {
+    didSet {
+      if userLocation != nil {
+        print("beaches received. setting distance from user")
+        beachForecasts.forEach { $0.distanceFromUser = self.calculateDistanceFrom($0) }
+      }
+    }
+  }
   var networkController = NetworkController() //any network calls should be done through this controller
   var beachNames = [Beach]()
   let locationManager = CLLocationManager()
   
-  var userLocation: CLLocation?
+  var userLocation: CLLocation? {
+    didSet {
+      print("User location updated. Sending message via notification post")
+      print("updating distance from each beach")
+      beachForecasts.forEach {
+        $0.distanceFromUser = self.calculateDistanceFrom($0)
+      }
+      NotificationCenter.default.post(name: .UserLocationObserver, object: self)
+    }
+  }
   
   private var alphaSortDownward = true
   private var temperatureSortDownward = true
@@ -70,6 +86,7 @@ class BeachForecastController: NSObject {
   }
 }
 
+//Manage location
 extension BeachForecastController: CLLocationManagerDelegate {
   func configureLocationManager() {
     locationManager.delegate = self
@@ -85,9 +102,19 @@ extension BeachForecastController: CLLocationManagerDelegate {
       let lat = loc.coordinate.latitude
       let long = loc.coordinate.longitude
       userLocation = CLLocation(latitude: lat, longitude: long)
-      //print(userLocation)
     }
   }
+  
+  func calculateDistanceFrom(_ beachForecast: BeachForecast) -> Double? {
+    let lat = CLLocationDegrees(Double(beachForecast.beach.latitude))
+    let long = CLLocationDegrees(Double(beachForecast.beach.longitude))
+    let beachLocation = CLLocation(latitude: lat, longitude: long)
+    return userLocation?.distance(from: beachLocation).distanceInMiles
+  }
+}
+
+extension Notification.Name {
+  static let UserLocationObserver = Notification.Name(rawValue: "UserLocationObserver")
 }
 
 extension CLLocationDistance {

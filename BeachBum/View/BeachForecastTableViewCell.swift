@@ -17,20 +17,15 @@ class BeachForecastTableViewCell: UITableViewCell {
       updateUI()
     }
   }
-  var userLocation: CLLocation?
-  private var distanceFromUser: CLLocationDistance? {
-    print("user location: \(userLocation)")
-    let dist = beachForecast?.calculateDistance(from: userLocation)
-    print("distance: \(dist)")
-    return dist
-  }
+  //var distanceFromUser: Double?
   
   private var borderColor: UIColor {
     switch beachForecast?.forecast?.currently.icon {
     case "clear-day": return UIColor.orange
     case "rain": return UIColor.blue
-    case "partly-cloudy-day", "cloudy": return UIColor.gray
-    case "partly-cloudy-night": return UIColor.darkGray
+    case "partly-cloudy-day", "cloudy": return UIColor.skyBlue
+    case "partly-cloudy-night": return UIColor.purple
+    case "wind": return UIColor.green
     default: return UIColor.white
     }
   }
@@ -49,7 +44,7 @@ class BeachForecastTableViewCell: UITableViewCell {
       }
     }
     temperatureLabel?.text = beachForecast!.forecast!.currently.temperature.temperatureFormatted
-    distanceLabel?.text = "\(Int(distanceFromUser?.distanceInMiles ?? 0)) mi."
+    distanceLabel?.text = "\(Int(beachForecast?.distanceFromUser ?? 0)) mi."
   }
   
   @IBOutlet weak var container: UIView!
@@ -70,16 +65,4 @@ class BeachForecastTableViewCell: UITableViewCell {
   }
   @IBOutlet weak var temperatureLabel: UILabel!
   @IBOutlet weak var distanceLabel: UILabel!
-  
-  
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    // Initialization code
-  }
-  
-  override func setSelected(_ selected: Bool, animated: Bool) {
-    super.setSelected(selected, animated: animated)
-    
-    // Configure the view for the selected state
-  }
 }

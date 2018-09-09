@@ -98,9 +98,9 @@
 			isa = PBXGroup;
 			children = (
 				1731E6E8211D6FA000D7E432 /* Main.storyboard */,
-				171043CF213F13630004930A /* BeachForecastTableViewCell.swift */,
 				17D8FBE821407B2E009F20B1 /* BeachForecastsView.swift */,
 				17439BBD2141C774001E876A /* DetailedForecastView.swift */,
+				171043CF213F13630004930A /* BeachForecastTableViewCell.swift */,
 				17439BE121426C73001E876A /* HourlyForecastCollectionViewCell.swift */,
 			);
 			path = View;
@@ -121,8 +121,8 @@
 			children = (
 				1731E6F7211D712100D7E432 /* BeachForecastController.swift */,
 				1731E6F8211D712100D7E432 /* BeachForecastsDataSource.swift */,
-				1731E6FA211D712100D7E432 /* NetworkController.swift */,
 				17439BDF21426A1E001E876A /* HourlyForecastDataSource.swift */,
+				1731E6FA211D712100D7E432 /* NetworkController.swift */,
 			);
 			path = "Model Controller";
 			sourceTree = "<group>";

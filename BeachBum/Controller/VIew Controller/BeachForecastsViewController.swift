@@ -21,6 +21,7 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   var beachForecastController = BeachForecastController()
   private var dataSource: BeachForecastsDataSource? {
     didSet {
+      print("datasource has been set")
       beachForecastTableView?.dataSource = dataSource
       beachForecastTableView?.reloadSections([0], with: .fade)
     }
@@ -42,16 +43,18 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   
   func sortButtonPressed(_ sortType: Sort) {
     beachForecastController.sortBeachForecasts(sortType)
-    dataSource = BeachForecastsDataSource(beachForecastController, beachForecastController.userLocation)
+    dataSource = BeachForecastsDataSource(beachForecastController)
   }
   
   
   @objc func refreshForecasts() {
+//    print("refreshing location")
+//    beachForecastController.configureLocationManager()
     print("calling fetch forecast")
     beachForecastController.updateForecasts { [weak self] in
       print("forecast has been finished updating")
       print("setting the data source")
-      self?.dataSource = BeachForecastsDataSource(self!.beachForecastController, self!.beachForecastController.userLocation)
+      self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
     }
     beachForecastTableView.refreshControl?.endRefreshing()
   }
@@ -61,8 +64,14 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
+    NotificationCenter.default.addObserver(forName: .UserLocationObserver,
+                                           object: self.beachForecastController,
+                                           queue: OperationQueue.main) { (_) in
+                                            print("loation has been observed")
+                                            self.dataSource = BeachForecastsDataSource(self.beachForecastController)
+    }
     beachForecastController.configureLocationManager()
-    //beachForecastController.beachForecasts = mockData.beachForecasts; dataSource = BeachForecastsDataSource(beachForecastController, userLocation)
+    //beachForecastController.beachForecasts = mockData.beachForecasts; dataSource = BeachForecastsDataSource(beachForecastController)
     retrievedata()
     
   }
@@ -74,7 +83,7 @@ extension BeachForecastsViewController {
       self?.beachForecastController.updateForecasts { [weak self] in
         print("forecast has been finished updating")
         print("setting the data source")
-        self?.dataSource = BeachForecastsDataSource(self!.beachForecastController, self?.beachForecastController.userLocation)
+        self?.dataSource = BeachForecastsDataSource(self!.beachForecastController)
       }
     }
   }
@@ -84,17 +93,16 @@ extension BeachForecastsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     beachForecastTableView.cellForRow(at: indexPath)?.isSelected = false
   }
-  
 }
 
 //MARK: Navigation
 extension BeachForecastsViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "Show Detailed Forecast" {
-      guard let destinationVC = segue.destination as? DetailedForecastViewController else { print("not a detailed VC"); return }
+      guard let detailedForecastVC = segue.destination as? DetailedForecastViewController else { print("not a detailed VC"); return }
       guard let indexPath = beachForecastTableView?.indexPathForSelectedRow else { print("no row selected"); return }
-      destinationVC.beachForecast = beachForecastController.beachForecasts[indexPath.row]
-      destinationVC.userLocation = beachForecastController.userLocation
+      let beachForecast = beachForecastController.beachForecasts[indexPath.row]
+      detailedForecastVC.beachForecast = beachForecast
     }
   }
 }
