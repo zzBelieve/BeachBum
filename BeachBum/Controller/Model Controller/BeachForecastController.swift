@@ -14,6 +14,9 @@ class BeachForecastController: NSObject {
   var beachForecasts = [BeachForecast]()
   var networkController = NetworkController() //any network calls should be done through this controller
   var beachNames = [Beach]()
+  let locationManager = CLLocationManager()
+  
+  var userLocation: CLLocation?
   
   private var alphaSortDownward = true
   private var temperatureSortDownward = true
@@ -63,6 +66,26 @@ class BeachForecastController: NSObject {
       self?.beachForecasts = $0
       print("Beach name retrieval finished")
       completion()
+    }
+  }
+}
+
+extension BeachForecastController: CLLocationManagerDelegate {
+  func configureLocationManager() {
+    locationManager.delegate = self
+    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+    locationManager.requestWhenInUseAuthorization()
+    locationManager.startUpdatingLocation()
+  }
+  
+  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+    guard let loc = locations.last else { print("no locations to be found"); return }
+    if loc.horizontalAccuracy > 0 {
+      self.locationManager.stopUpdatingLocation()
+      let lat = loc.coordinate.latitude
+      let long = loc.coordinate.longitude
+      userLocation = CLLocation(latitude: lat, longitude: long)
+      //print(userLocation)
     }
   }
 }
