@@ -29,6 +29,7 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   
   @IBOutlet weak var beachForecastTableView: UITableView! {
     didSet {
+      //beachForecastTableView?.backgroundColor = .sand
       beachForecastTableView.delegate = self
       refresher.addTarget(self, action: #selector(refreshForecasts), for: .valueChanged)
       beachForecastTableView.refreshControl = refresher

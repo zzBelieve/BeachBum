@@ -15,6 +15,8 @@ protocol BeachForecastsViewDelegate: class {
 
 class BeachForecastsView: UIView {
   
+  
+  
   weak var delegate: BeachForecastsViewDelegate?
   private var sortButtonExpanded = false
   

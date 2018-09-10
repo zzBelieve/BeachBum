@@ -43,7 +43,7 @@ class BeachForecastTableViewCell: UITableViewCell {
         weatherIconImageView.image = image
       }
     }
-    temperatureLabel?.text = beachForecast!.forecast!.currently.temperature.temperatureFormatted
+    temperatureLabel?.text = "\(Int(beachForecast!.forecast!.currently.temperature))°"
     distanceLabel?.text = "\(Int(beachForecast?.distanceFromUser ?? 0)) mi."
   }
   
