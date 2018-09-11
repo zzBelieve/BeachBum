@@ -16,17 +16,7 @@ class HourlyForecastViewController: UIViewController {
   
   weak var delegate: HourlyForecastViewControllerDelegate?
   
-  var hourlyForecast: Forecast.Hourly? {
-    didSet {
-      dataSource = HourlyForecastDataSource(hourlyForecast: hourlyForecast)
-    }
-  }
-  var dataSource: HourlyForecastDataSource? {
-    didSet {
-      hourlyForecastCollectionView?.dataSource = dataSource!
-      hourlyForecastCollectionView?.reloadData()
-    }
-  }
+  var hourlyForecast: Forecast.Hourly?
   
   @IBOutlet var hourlyForecastView: UIView! {
     didSet {
@@ -38,7 +28,7 @@ class HourlyForecastViewController: UIViewController {
     didSet {
       hourlyForecastCollectionView?.backgroundColor = .clear
       hourlyForecastCollectionView?.layer.cornerRadius = 10.0
-      hourlyForecastCollectionView?.dataSource = dataSource
+      hourlyForecastCollectionView?.dataSource = self
     }
   }
   
@@ -61,5 +51,18 @@ class HourlyForecastViewController: UIViewController {
       blurView.widthAnchor.constraint(equalTo: view.widthAnchor),
       ])
   }
+}
+
+//MARK: Data Source
+extension HourlyForecastViewController: UICollectionViewDataSource {
+  func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    return hourlyForecast?.data.count ?? 0
+  }
   
+  func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Hourly Forecast Cell", for: indexPath)
+    guard let hourlyCell = cell as? HourlyForecastCollectionViewCell  else { print("not able to set as hourly cell"); return cell}
+    hourlyCell.hourlyData = hourlyForecast!.data[indexPath.item]
+    return cell
+  }
 }
