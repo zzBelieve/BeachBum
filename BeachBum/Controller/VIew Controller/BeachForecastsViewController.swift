@@ -30,8 +30,8 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   
   @IBOutlet weak var beachForecastTableView: UITableView! {
     didSet {
-      //beachForecastTableView?.backgroundColor = UIColor.flatSand
-      beachForecastTableView?.backgroundColor = UIColor(gradientStyle: .diagonal, withFrame: (beachForecastTableView?.frame)!, andColors: [.white, .flatSand])
+      beachForecastTableView?.backgroundColor = UIColor.flatWhite
+      //beachForecastTableView?.backgroundColor = UIColor(gradientStyle: .diagonal, withFrame: (beachForecastTableView?.frame)!, andColors: [.flatSand, .flatSandDark])
       beachForecastTableView.delegate = self
       refresher.addTarget(self, action: #selector(refreshForecasts), for: .valueChanged)
       beachForecastTableView.refreshControl = refresher
@@ -94,7 +94,7 @@ extension BeachForecastsViewController {
 
 extension BeachForecastsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    beachForecastTableView.cellForRow(at: indexPath)?.isSelected = false
+    beachForecastTableView?.deselectRow(at: indexPath, animated: true)
   }
   
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

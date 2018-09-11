@@ -86,7 +86,7 @@ class BeachForecastController: NSObject {
   }
 }
 
-//Manage location
+//MARK: Location Manager
 extension BeachForecastController: CLLocationManagerDelegate {
   func configureLocationManager() {
     locationManager.delegate = self

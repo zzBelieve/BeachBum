@@ -56,7 +56,7 @@ class DetailedForecastViewController: UIViewController {
     case "clear-day": return UIColor.flatOrange
     case "rain": return UIColor.flatNavyBlue
     case "partly-cloudy-day", "cloudy": return UIColor(gradientStyle: .diagonal, withFrame: topColoredView.frame, andColors: [.flatWhite, .flatSkyBlue])
-    case "partly-cloudy-night": return UIColor.purple
+    case "partly-cloudy-night": return UIColor(gradientStyle: .diagonal, withFrame: topColoredView.frame, andColors: [.flatWhite, .flatMagenta])
     case "wind": return UIColor.green
     default: return UIColor.white
     }

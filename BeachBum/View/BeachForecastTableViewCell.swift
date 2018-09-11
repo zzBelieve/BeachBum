@@ -18,7 +18,6 @@ class BeachForecastTableViewCell: UITableViewCell {
       updateUI()
     }
   }
-  //var distanceFromUser: Double?
   
   private var borderColor: UIColor {
     switch beachForecast?.forecast?.currently.icon {
