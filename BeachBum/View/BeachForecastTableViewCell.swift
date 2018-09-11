@@ -19,6 +19,12 @@ class BeachForecastTableViewCell: UITableViewCell {
     }
   }
   
+  var distanceFromUser: Int? {
+    didSet {
+      distanceLabel?.text = "\(distanceFromUser ?? 0) mi."
+    }
+  }
+  
   private var borderColor: UIColor {
     switch beachForecast?.forecast?.currently.icon {
     case "clear-day": return UIColor.flatPowderBlue
@@ -44,7 +50,7 @@ class BeachForecastTableViewCell: UITableViewCell {
       }
     }
     temperatureLabel?.text = "\(Int(beachForecast!.forecast!.currently.temperature))°"
-    distanceLabel?.text = "\(Int(beachForecast?.distanceFromUser ?? 0)) mi."
+    distanceLabel?.text = "\(Int(distanceFromUser ?? 0)) mi."
   }
   
   @IBOutlet weak var container: UIView!

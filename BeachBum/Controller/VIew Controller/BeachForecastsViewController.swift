@@ -48,6 +48,7 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
     beachForecastController.updateForecasts { [weak self] in
       self?.beachForecastTableView?.reloadSections([0], with: .automatic)
     }
+    beachForecastController.locationManager.startUpdatingLocation()
     beachForecastTableView.refreshControl?.endRefreshing()
   }
 }
@@ -56,28 +57,36 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     NotificationCenter.default.addObserver(forName: .UserLocationObserver,
                                            object: self.beachForecastController,
-                                           queue: OperationQueue.main) { (_) in
-                                            print("loation has been observed")
+                                           queue: OperationQueue.main) { [weak self] (_) in
+                                            self?.beachForecastTableView?.reloadSections([0], with: .automatic)
     }
     beachForecastController.configureLocationManager()
     //beachForecastController.beachForecasts = mockData.beachForecasts
     retrievedata()
+    beachForecastController.locationManager.startUpdatingLocation()
     
   }
   
+  //retrieve beach names then fetch forecasts
   private func retrievedata() {
     print("calling retrievBeachNames to retrieve beaches from Firebase")
     beachForecastController.retrieveBeacheNames { [weak self] in
-      print("calling fetchForecast to obtain forecast for all beaches")
-      self?.beachForecastController.updateForecasts { [weak self] in
-        print("forecast has been finished updating")
-        print("setting the data source")
-        self?.beachForecastTableView?.reloadSections([0], with: .automatic)
-      }
+      self?.fetchForecasts()
     }
   }
+  
+  private func fetchForecasts() {
+    print("calling fetchForecast to obtain forecast for all beaches")
+    beachForecastController.updateForecasts { [weak self] in
+      print("forecast has been finished updating")
+      print("setting the data source")
+      self?.beachForecastTableView?.reloadSections([0], with: .automatic)
+    }
+  }
+  
 }
 
 //MARK: Data Source
@@ -91,11 +100,12 @@ extension BeachForecastsViewController: UITableViewDataSource {
     guard let beachCell = cell as? BeachForecastTableViewCell else { return cell }
     let beachForecast = beachForecastController.beachForecasts[indexPath.item]
     beachCell.beachForecast = beachForecast
-    //beachCell.distanceFromUser = beachForecastController.calculateDistanceFrom(beachForecast)
+    beachCell.distanceFromUser = beachForecastController.calculateDistanceFrom(beachForecast)
     return cell
   }
 }
 
+//MARK: Delegate Methods
 extension BeachForecastsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     beachForecastTableView?.deselectRow(at: indexPath, animated: true)
@@ -114,6 +124,7 @@ extension BeachForecastsViewController {
       guard let indexPath = beachForecastTableView?.indexPathForSelectedRow else { print("no row selected"); return }
       let beachForecast = beachForecastController.beachForecasts[indexPath.row]
       detailedForecastVC.beachForecast = beachForecast
+      
     }
   }
 }

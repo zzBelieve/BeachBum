@@ -73,7 +73,7 @@ class DetailedForecastViewController: UIViewController {
     dfView.sunsetTimeLabel?.text = timeToString(withSeconds: beachForecast.forecast?.daily?.data.first?.sunsetTime)
     dfView.windSpeed?.text = "\(Int(beachForecast.forecast!.currently.windSpeed))mph"
     dfView.chanceOfRainLabel?.text = "\(Int((beachForecast.forecast?.daily?.data.first?.precipProbability ?? 0) * 100))%"
-    dfView.distanceLabel?.text = "\(Int(beachForecast.distanceFromUser ?? 0))mi."
+    //dfView.distanceLabel?.text = "\(Int(beachForecast.distanceFromUser ?? 0))mi."
     dfView.humidityLabel?.text = "\(Int(beachForecast.forecast!.currently.humidity * 100))%"
     if let iconString = beachForecast.forecast?.currently.icon {
       if let image = UIImage(named: iconString) {

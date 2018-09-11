@@ -11,28 +11,11 @@ import CoreLocation
 
 class BeachForecastController: NSObject {
   
-  var beachForecasts = [BeachForecast]() {
-    didSet {
-      if userLocation != nil {
-        print("beaches received. setting distance from user")
-        beachForecasts.forEach { $0.distanceFromUser = self.calculateDistanceFrom($0) }
-      }
-    }
-  }
+  var beachForecasts = [BeachForecast]()
   var networkController = NetworkController() //any network calls should be done through this controller
-  var beachNames = [Beach]()
   let locationManager = CLLocationManager()
   
-  var userLocation: CLLocation? {
-    didSet {
-      print("User location updated. Sending message via notification post")
-      print("updating distance from each beach")
-      beachForecasts.forEach {
-        $0.distanceFromUser = self.calculateDistanceFrom($0)
-      }
-      NotificationCenter.default.post(name: .UserLocationObserver, object: self)
-    }
-  }
+  var userLocation: CLLocation? { didSet { NotificationCenter.default.post(name: .UserLocationObserver, object: self) } }
   
   private var alphaSortDownward = true
   private var temperatureSortDownward = true
@@ -51,6 +34,13 @@ class BeachForecastController: NSObject {
       }
     }
     dispatchGroup.notify(queue: .main) {
+      completion()
+    }
+  }
+  
+  func retrieveBeacheNames(completion: @escaping () -> Void) {
+    networkController.fetchData { [weak self] fetchedBeachForecasts in
+      self?.beachForecasts = fetchedBeachForecasts
       completion()
     }
   }
@@ -76,14 +66,6 @@ class BeachForecastController: NSObject {
     case .weatherCondition: weatherSortedDownward = !weatherSortedDownward
     }
   }
-  
-  func retrieveBeacheNames(completion: @escaping () -> Void) {
-    networkController.fetchData { [weak self] in  //$0 is an array of BeachForecast
-      self?.beachForecasts = $0
-      print("Beach name retrieval finished")
-      completion()
-    }
-  }
 }
 
 //MARK: Location Manager
@@ -92,7 +74,6 @@ extension BeachForecastController: CLLocationManagerDelegate {
     locationManager.delegate = self
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     locationManager.requestWhenInUseAuthorization()
-    locationManager.startUpdatingLocation()
   }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -105,7 +86,7 @@ extension BeachForecastController: CLLocationManagerDelegate {
     }
   }
   
-  func calculateDistanceFrom(_ beachForecast: BeachForecast) -> Double? {
+  func calculateDistanceFrom(_ beachForecast: BeachForecast) -> Int? {
     let lat = CLLocationDegrees(Double(beachForecast.beach.latitude))
     let long = CLLocationDegrees(Double(beachForecast.beach.longitude))
     let beachLocation = CLLocation(latitude: lat, longitude: long)
@@ -118,7 +99,7 @@ extension Notification.Name {
 }
 
 extension CLLocationDistance {
-  var distanceInMiles: Double {
-      return self * 0.000621371
+  var distanceInMiles: Int {
+      return Int(self * 0.000621371)
   }
 }
