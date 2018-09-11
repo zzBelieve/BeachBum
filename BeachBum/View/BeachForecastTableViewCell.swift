@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import ChameleonFramework
 
 class BeachForecastTableViewCell: UITableViewCell {
   
@@ -21,9 +22,9 @@ class BeachForecastTableViewCell: UITableViewCell {
   
   private var borderColor: UIColor {
     switch beachForecast?.forecast?.currently.icon {
-    case "clear-day": return UIColor.orange
-    case "rain": return UIColor.blue
-    case "partly-cloudy-day", "cloudy": return UIColor.skyBlue
+    case "clear-day": return UIColor.flatPowderBlue
+    case "rain": return UIColor.flatNavyBlue
+    case "partly-cloudy-day", "cloudy": return UIColor.flatSkyBlue
     case "partly-cloudy-night": return UIColor.purple
     case "wind": return UIColor.green
     default: return UIColor.white

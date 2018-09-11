@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import CoreLocation
+//import ChameleonFramework
 
 class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFlowLayout, BeachForecastsViewDelegate {
   
@@ -29,7 +30,8 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   
   @IBOutlet weak var beachForecastTableView: UITableView! {
     didSet {
-      //beachForecastTableView?.backgroundColor = .sand
+      //beachForecastTableView?.backgroundColor = UIColor.flatSand
+      beachForecastTableView?.backgroundColor = UIColor(gradientStyle: .diagonal, withFrame: (beachForecastTableView?.frame)!, andColors: [.white, .flatSand])
       beachForecastTableView.delegate = self
       refresher.addTarget(self, action: #selector(refreshForecasts), for: .valueChanged)
       beachForecastTableView.refreshControl = refresher
@@ -93,6 +95,10 @@ extension BeachForecastsViewController {
 extension BeachForecastsViewController: UITableViewDelegate {
   func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     beachForecastTableView.cellForRow(at: indexPath)?.isSelected = false
+  }
+  
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    cell.backgroundColor = .clear
   }
 }
 

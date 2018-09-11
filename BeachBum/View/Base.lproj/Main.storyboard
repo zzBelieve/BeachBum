@@ -114,7 +114,6 @@
                                                             </constraints>
                                                         </view>
                                                     </subviews>
-                                                    <color key="backgroundColor" red="0.96440852986040615" green="0.89290106142147807" blue="0.80704620772433522" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="dNL-md-OP1" secondAttribute="bottom" constant="4" id="05K-vM-YZ8"/>
                                                         <constraint firstAttribute="trailing" secondItem="dNL-md-OP1" secondAttribute="trailing" constant="8" id="9U2-lh-hbA"/>

@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import ChameleonFramework
 
 class DetailedForecastViewController: UIViewController {
   
@@ -45,16 +46,16 @@ class DetailedForecastViewController: UIViewController {
 
   @IBOutlet weak var topColoredView: UIView! {
     didSet {
-      topColoredView?.backgroundColor = colorForTopView
+      topColoredView?.backgroundColor = accentColor
     }
   }
   
   
-  private var colorForTopView: UIColor {
+  private var accentColor: UIColor {
     switch beachForecast?.forecast?.currently.icon {
-    case "clear-day": return UIColor.orange
-    case "rain": return UIColor.blue
-    case "partly-cloudy-day", "cloudy": return UIColor.skyBlue
+    case "clear-day": return UIColor.flatOrange
+    case "rain": return UIColor.flatNavyBlue
+    case "partly-cloudy-day", "cloudy": return UIColor(gradientStyle: .diagonal, withFrame: topColoredView.frame, andColors: [.flatWhite, .flatSkyBlue])
     case "partly-cloudy-night": return UIColor.purple
     case "wind": return UIColor.green
     default: return UIColor.white
