@@ -15,7 +15,6 @@
 		1731E6EC211D6FA200D7E432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1731E6EB211D6FA200D7E432 /* Assets.xcassets */; };
 		1731E6EF211D6FA200D7E432 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1731E6ED211D6FA200D7E432 /* LaunchScreen.storyboard */; };
 		1731E6FE211D712100D7E432 /* BeachForecastController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6F7211D712100D7E432 /* BeachForecastController.swift */; };
-		1731E6FF211D712100D7E432 /* BeachForecastsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6F8211D712100D7E432 /* BeachForecastsDataSource.swift */; };
 		1731E700211D712100D7E432 /* Beach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6F9211D712100D7E432 /* Beach.swift */; };
 		1731E701211D712100D7E432 /* NetworkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6FA211D712100D7E432 /* NetworkController.swift */; };
 		1731E702211D712100D7E432 /* BeachForecast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6FB211D712100D7E432 /* BeachForecast.swift */; };
@@ -43,7 +42,6 @@
 		1731E6EE211D6FA200D7E432 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1731E6F0211D6FA200D7E432 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1731E6F7211D712100D7E432 /* BeachForecastController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeachForecastController.swift; sourceTree = "<group>"; };
-		1731E6F8211D712100D7E432 /* BeachForecastsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeachForecastsDataSource.swift; sourceTree = "<group>"; };
 		1731E6F9211D712100D7E432 /* Beach.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Beach.swift; sourceTree = "<group>"; };
 		1731E6FA211D712100D7E432 /* NetworkController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkController.swift; sourceTree = "<group>"; };
 		1731E6FB211D712100D7E432 /* BeachForecast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BeachForecast.swift; sourceTree = "<group>"; };
@@ -120,7 +118,6 @@
 			isa = PBXGroup;
 			children = (
 				1731E6F7211D712100D7E432 /* BeachForecastController.swift */,
-				1731E6F8211D712100D7E432 /* BeachForecastsDataSource.swift */,
 				17439BDF21426A1E001E876A /* HourlyForecastDataSource.swift */,
 				1731E6FA211D712100D7E432 /* NetworkController.swift */,
 			);
@@ -321,7 +318,6 @@
 				1731E700211D712100D7E432 /* Beach.swift in Sources */,
 				17E74555211E1AB50024B005 /* ThemeColors.swift in Sources */,
 				171043D6213F6D1E0004930A /* FormattingData.swift in Sources */,
-				1731E6FF211D712100D7E432 /* BeachForecastsDataSource.swift in Sources */,
 				17439BE021426A1E001E876A /* HourlyForecastDataSource.swift in Sources */,
 				1731E702211D712100D7E432 /* BeachForecast.swift in Sources */,
 				17439BDE214267AA001E876A /* HourlyForecastViewController.swift in Sources */,
