@@ -13,6 +13,7 @@ import ChameleonFramework
 class DetailedForecastViewController: UIViewController {
   
   var beachForecast: BeachForecast?
+  var distanceFromUser: Int?
   
   private var hourlyForecastViewController: HourlyForecastViewController? {
     didSet {
@@ -53,12 +54,14 @@ class DetailedForecastViewController: UIViewController {
   
   private var accentColor: UIColor {
     switch beachForecast?.forecast?.currently.icon {
-    case "clear-day": return UIColor.flatOrange
-    case "rain": return UIColor.flatNavyBlue
-    case "partly-cloudy-day", "cloudy": return UIColor(gradientStyle: .diagonal, withFrame: topColoredView.frame, andColors: [.flatWhite, .flatSkyBlue])
-    case "partly-cloudy-night": return UIColor(gradientStyle: .diagonal, withFrame: topColoredView.frame, andColors: [.flatWhite, .flatMagenta])
-    case "wind": return UIColor.green
-    default: return UIColor.white
+    case "clear-day": return UIColor(gradientStyle: .leftToRight, withFrame: topColoredView.frame, andColors: [.flatSkyBlue, .flatSkyBlue, .flatSkyBlueDark, .flatSkyBlueDark])
+    case "rain": return UIColor(gradientStyle: .leftToRight, withFrame: topColoredView.frame, andColors: [.flatBlue, .flatBlue, .flatBlueDark, .flatBlueDark])
+    case "partly-cloudy-day", "cloudy": return UIColor(gradientStyle: .leftToRight, withFrame: topColoredView.frame, andColors:
+      [.flatPowderBlue, .flatPowderBlue, .flatPowderBlueDark, .flatPowderBlueDark,])
+    case "partly-cloudy-night": return UIColor(gradientStyle: .leftToRight, withFrame: topColoredView.frame, andColors: [.flatPlum,.flatPlum,.flatPlumDark,.flatPlumDark])
+    case "clear-night": return UIColor(gradientStyle: .leftToRight, withFrame: topColoredView.frame, andColors: [.flatNavyBlue, .flatNavyBlue, .flatNavyBlueDark, .flatNavyBlueDark])
+    case "wind": return UIColor(gradientStyle: .leftToRight, withFrame: topColoredView.frame, andColors: [.flatMint, .flatMint, .flatMintDark, .flatMintDark])
+    default: return .flatWhite
     }
   }
   
@@ -68,12 +71,15 @@ class DetailedForecastViewController: UIViewController {
     guard let dfView = detailedForecastView else { print("no detailed forecast view"); return }
     dfView.beachNameLabel?.text = beachForecast.beach.name
     dfView.currentTemperatureLabel?.text = beachForecast.forecast!.currently.temperature.temperatureFormatted
+    dfView.currentTemperatureLabel?.textColor = UIColor.init(contrastingBlackOrWhiteColorOn: accentColor, isFlat: true)
     dfView.currentSummaryLabel?.text = beachForecast.forecast!.currently.summary
+    dfView.currentSummaryLabel?.textColor = UIColor.init(contrastingBlackOrWhiteColorOn: accentColor, isFlat: true)
+    
     dfView.sunriseTimeLabel?.text = timeToString(withSeconds: beachForecast.forecast?.daily?.data.first?.sunriseTime)
     dfView.sunsetTimeLabel?.text = timeToString(withSeconds: beachForecast.forecast?.daily?.data.first?.sunsetTime)
     dfView.windSpeed?.text = "\(Int(beachForecast.forecast!.currently.windSpeed))mph"
     dfView.chanceOfRainLabel?.text = "\(Int((beachForecast.forecast?.daily?.data.first?.precipProbability ?? 0) * 100))%"
-    //dfView.distanceLabel?.text = "\(Int(beachForecast.distanceFromUser ?? 0))mi."
+    dfView.distanceLabel?.text = "\(distanceFromUser ?? 0)mi."
     dfView.humidityLabel?.text = "\(Int(beachForecast.forecast!.currently.humidity * 100))%"
     if let iconString = beachForecast.forecast?.currently.icon {
       if let image = UIImage(named: iconString) {
@@ -87,11 +93,25 @@ class DetailedForecastViewController: UIViewController {
     toggleContainerViewCollapse(initial: true)
     addSwipGesture()
     updateUI()
+    //navigationController?.navigationBar.backgroundColor = accentColor
+    navigationController?.navigationBar.barTintColor = accentColor
+    navigationController?.navigationBar.tintColor = UIColor.init(contrastingBlackOrWhiteColorOn: accentColor, isFlat: true)
+//    if let navigationBar = navigationController?.navigationBar {
+//      navigationBar.barTintColor = accentColor
+//    }
+    
   }
   
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
+  override func viewWillDisappear(_ animated: Bool) {
+    navigationController?.navigationBar.barTintColor = .white
+    super.viewWillDisappear(animated)
     
+//    if let navigationBar = navigationController?.navigationBar {
+//      navigationBar.barTintColor = .clear
+//      navigationBar.isTranslucent = false
+//      navigationBar.setBackgroundImage(UIImage(), for: .default)
+//      navigationBar.shadowImage = UIImage()
+//    }
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

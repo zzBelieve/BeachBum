@@ -27,11 +27,12 @@ class BeachForecastTableViewCell: UITableViewCell {
   
   private var borderColor: UIColor {
     switch beachForecast?.forecast?.currently.icon {
-    case "clear-day": return UIColor.flatPowderBlue
-    case "rain": return UIColor.flatNavyBlue
-    case "partly-cloudy-day", "cloudy": return UIColor.flatSkyBlue
-    case "partly-cloudy-night": return UIColor.purple
-    case "wind": return UIColor.green
+    case "clear-day": return .flatSkyBlue
+    case "rain": return .flatBlue
+    case "partly-cloudy-day", "cloudy": return .flatPowderBlue
+    case "partly-cloudy-night": return .flatPlum
+    case "wind": return .flatMintDark
+    case "clear-night": return .flatNavyBlue
     default: return UIColor.white
     }
   }

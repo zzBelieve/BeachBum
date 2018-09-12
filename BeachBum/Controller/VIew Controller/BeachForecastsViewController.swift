@@ -57,7 +57,11 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-    
+    if let navigationBar = navigationController?.navigationBar {
+      navigationBar.isTranslucent = false
+      navigationBar.setBackgroundImage(UIImage(), for: .default)
+      navigationBar.shadowImage = UIImage()
+    }
     NotificationCenter.default.addObserver(forName: .UserLocationObserver,
                                            object: self.beachForecastController,
                                            queue: OperationQueue.main) { [weak self] (_) in
@@ -69,6 +73,7 @@ extension BeachForecastsViewController {
     beachForecastController.locationManager.startUpdatingLocation()
     
   }
+  
   
   //retrieve beach names then fetch forecasts
   private func retrievedata() {
@@ -124,6 +129,7 @@ extension BeachForecastsViewController {
       guard let indexPath = beachForecastTableView?.indexPathForSelectedRow else { print("no row selected"); return }
       let beachForecast = beachForecastController.beachForecasts[indexPath.row]
       detailedForecastVC.beachForecast = beachForecast
+      detailedForecastVC.distanceFromUser = beachForecastController.calculateDistanceFrom(beachForecast)
       
     }
   }
