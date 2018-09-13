@@ -2,12 +2,11 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "snow.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "icons8-falling-snow.png",
+      "filename" : "sunset@2x.png",
       "scale" : "2x"
     },
     {

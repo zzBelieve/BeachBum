@@ -18,8 +18,9 @@ class HourlyForecastCollectionViewCell: UICollectionViewCell {
   
   private let dateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateStyle = .none
-    formatter.timeStyle = .short
+//    formatter.dateStyle = .none
+//    formatter.timeStyle = .short
+    formatter.dateFormat = "h a"
     formatter.timeZone = TimeZone(abbreviation: "HST")
     return formatter
   }()
@@ -35,12 +36,14 @@ class HourlyForecastCollectionViewCell: UICollectionViewCell {
   @IBOutlet weak var temperatureLabel: UILabel!
   
   private func updateUI() {
-    temperatureLabel?.text = hourlyData?.temperature.temperatureFormatted
+    temperatureLabel?.text = "\(Int(hourlyData!.temperature))°"
     if let iconString = hourlyData?.icon {
       if let image = UIImage(named: iconString) {
         weatherIconImageView.image = image
       }
     }
     timeLabel?.text = timeToString(withSeconds: hourlyData!.time)
+    self.sizeToFit()
   }
+  
 }

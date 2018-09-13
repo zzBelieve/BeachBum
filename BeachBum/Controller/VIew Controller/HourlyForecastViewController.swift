@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import ChameleonFramework
 protocol HourlyForecastViewControllerDelegate: class {
   func toggleExpansionPressed()
 }
@@ -41,15 +41,16 @@ class HourlyForecastViewController: UIViewController {
     super.viewDidLoad()
     view.backgroundColor = .clear
 
-    let blurEffect = UIBlurEffect(style: .light)
+    let blurEffect = UIBlurEffect(style: .regular)
     let blurView = UIVisualEffectView(effect: blurEffect)
-    blurView.layer.cornerRadius = 10.0
+    
     blurView.translatesAutoresizingMaskIntoConstraints = false
     view.insertSubview(blurView, at: 0)
     NSLayoutConstraint.activate([
       blurView.heightAnchor.constraint(equalTo: view.heightAnchor),
       blurView.widthAnchor.constraint(equalTo: view.widthAnchor),
       ])
+    blurView.layer.cornerRadius = 10.0
   }
 }
 

@@ -57,11 +57,12 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-    if let navigationBar = navigationController?.navigationBar {
-      navigationBar.isTranslucent = false
-      navigationBar.setBackgroundImage(UIImage(), for: .default)
-      navigationBar.shadowImage = UIImage()
-    }
+//    if let navigationBar = navigationController?.navigationBar {
+//      navigationBar.isTranslucent = false
+//      navigationBar.setBackgroundImage(UIImage(), for: .default)
+//      navigationBar.shadowImage = UIImage()
+//    }
+    navigationController?.navigationBar.prefersLargeTitles = true
     NotificationCenter.default.addObserver(forName: .UserLocationObserver,
                                            object: self.beachForecastController,
                                            queue: OperationQueue.main) { [weak self] (_) in
