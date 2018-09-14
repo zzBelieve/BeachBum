@@ -16,6 +16,11 @@ protocol BeachForecastsViewDelegate: class {
 
 class BeachForecastsView: UIView {
   
+  @IBOutlet weak var sortButtonsView: UIView! {
+    didSet {
+     
+    }
+  }
   weak var delegate: BeachForecastsViewDelegate?
   private var sortButtonExpanded = false
   
