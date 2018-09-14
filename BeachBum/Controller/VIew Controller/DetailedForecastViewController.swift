@@ -26,20 +26,20 @@ class DetailedForecastViewController: UIViewController {
       hourlyForecastViewController?.borderColor = accentColor
     }
   }
-  
-  private let dateFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .none
-    formatter.timeStyle = .short
-    formatter.timeZone = TimeZone(abbreviation: "HST")
-    return formatter
-  }()
-  
-  private func timeToString(withSeconds seconds: Int?) -> String? {
-    guard let seconds = seconds else { print("seconds not avail"); return nil }
-    let date = Date(timeIntervalSince1970: TimeInterval(seconds))
-    return dateFormatter.string(from: date)
-  }
+//
+//  private let dateFormatter: DateFormatter = {
+//    let formatter = DateFormatter()
+//    formatter.dateStyle = .none
+//    formatter.timeStyle = .short
+//    formatter.timeZone = TimeZone(abbreviation: "HST")
+//    return formatter
+//  }()
+//
+//  private func timeToString(withSeconds seconds: Int?) -> String? {
+//    guard let seconds = seconds else { print("seconds not avail"); return nil }
+//    let date = Date(timeIntervalSince1970: TimeInterval(seconds))
+//    return dateFormatter.string(from: date)
+//  }
   
   //MARK: Outlets
   @IBOutlet var detailedForecastView: DetailedForecastView!
@@ -89,8 +89,8 @@ class DetailedForecastViewController: UIViewController {
     dfView.beachNameLabel?.text = beachForecast.beach.name
     dfView.currentTemperatureLabel?.text = beachForecast.forecast!.currently.temperature.temperatureFormatted
     dfView.currentSummaryLabel?.text = beachForecast.forecast!.currently.summary
-    dfView.sunriseTimeLabel?.text = timeToString(withSeconds: beachForecast.forecast?.daily?.data.first?.sunriseTime) ?? "00:00 pm"
-    dfView.sunsetTimeLabel?.text = timeToString(withSeconds: beachForecast.forecast?.daily?.data.first?.sunsetTime) ?? "00:00 pm"
+    dfView.sunriseTimeLabel?.text = beachForecast.forecast?.daily?.data.first?.sunriseTime.formatTimeAs("h:mm a")
+    dfView.sunsetTimeLabel?.text = beachForecast.forecast?.daily?.data.first?.sunsetTime.formatTimeAs("h:mm a")
     dfView.windSpeed?.text = "\(Int(beachForecast.forecast!.currently.windSpeed))mph"
     dfView.chanceOfRainLabel?.text = "\(Int((beachForecast.forecast?.daily?.data.first?.precipProbability ?? 0) * 100))%"
     dfView.distanceLabel?.text = "\(distanceFromUser ?? 0)mi."

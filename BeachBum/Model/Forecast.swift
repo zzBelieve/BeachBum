@@ -60,3 +60,14 @@ struct Forecast: Codable {
     self.daily = nil
   }
 }
+
+extension Int {
+  func formatTimeAs(_ formatString: String) -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateStyle = .none
+    dateFormatter.dateFormat = formatString
+    dateFormatter.timeZone = TimeZone(abbreviation: "HST")
+    let date = Date(timeIntervalSince1970: TimeInterval(self))
+    return dateFormatter.string(from: date)
+  }
+}
