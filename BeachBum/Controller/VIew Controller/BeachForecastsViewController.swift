@@ -66,8 +66,8 @@ extension BeachForecastsViewController {
                                             self?.beachForecastTableView?.reloadSections([0], with: .automatic)
     }
     beachForecastController.configureLocationManager()
-    //beachForecastController.beachForecasts = mockData.beachForecasts
-    retrievedata()
+    beachForecastController.beachForecasts = mockData.beachForecasts
+    //retrievedata()
     beachForecastController.locationManager.startUpdatingLocation()
     
   }
@@ -139,6 +139,10 @@ extension BeachForecastsViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
     cell.backgroundColor = .clear
+  }
+  
+  func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    return 8.0
   }
 }
 

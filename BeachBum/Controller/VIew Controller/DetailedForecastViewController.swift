@@ -23,6 +23,7 @@ class DetailedForecastViewController: UIViewController {
     didSet {
       hourlyForecastViewController?.hourlyForecast = self.beachForecast?.forecast?.hourly
       hourlyForecastViewController?.delegate = self
+      hourlyForecastViewController?.borderColor = accentColor
     }
   }
   
@@ -45,7 +46,7 @@ class DetailedForecastViewController: UIViewController {
   
   //MARK: Container View Constraints
   private var containerViewHidden = false
-  @IBOutlet weak var containerViewHeight: UIView!
+  @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
   var swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToToggleExpansion(_:)))
 
@@ -145,7 +146,7 @@ class DetailedForecastViewController: UIViewController {
 extension DetailedForecastViewController: HourlyForecastViewControllerDelegate {
   
   private func toggleContainerViewCollapse(initial: Bool = false) {
-    let height = containerViewHeight.bounds.height * (initial ? 0.90 : 0.70)
+    let height = containerView.bounds.height * (initial ? 0.90 : 0.70)
     let initialConstraint = containerViewBottomConstraint.constant
     let newConstraint = containerViewHidden ? (height + initialConstraint) : (initialConstraint - height)
     if initial {

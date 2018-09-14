@@ -16,9 +16,14 @@ protocol BeachForecastsViewDelegate: class {
 
 class BeachForecastsView: UIView {
   
+  
+  
+  @IBOutlet weak var sortButtonsViewWidthConstraint: NSLayoutConstraint!
+  
   @IBOutlet weak var sortButtonsView: UIView! {
     didSet {
-     
+      sortButtonsView?.backgroundColor = UIColor.flatSkyBlue
+      sortButtonsView?.layer.cornerRadius = sortButtonsView.frame.size.height / 2
     }
   }
   weak var delegate: BeachForecastsViewDelegate?
@@ -41,8 +46,17 @@ class BeachForecastsView: UIView {
     didSet {
       let width = sortButton.frame.width
       sortButton.layer.cornerRadius = width / 2
-      sortButton.clipsToBounds = true
       sortButton.backgroundColor = .flatSkyBlue
+      if let image = UIImage(named: "sort") {
+        sortButton.setImage(image, for: .normal)
+      }
+      let number = 10
+      sortButton.imageEdgeInsets = UIEdgeInsetsMake(CGFloat(number), CGFloat(number), CGFloat(number), CGFloat(number))
+
+      
+      
+      sortButton.clipsToBounds = true
+      
     }
   }
   
@@ -52,8 +66,15 @@ class BeachForecastsView: UIView {
   
   private func toggleSortBarExpansion() {
     sortButton.isEnabled = false
-    //if sortButtonExpanded { sortOptions.forEach { $0.center.x = sortButton.center.x } }
+    let expandedWidth = sortButton.frame.size.width * CGFloat(sortOptions.count + 1)
+    if self.sortButtonExpanded {
+      self.sortButtonsViewWidthConstraint.constant = 50
+    } else {
+      self.sortButtonsViewWidthConstraint.constant = expandedWidth
+    }
+    
     UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: { [weak self] in
+      self!.layoutIfNeeded()
       for index in 0..<self!.sortOptions.count {
         if self!.sortButtonExpanded {
           self!.sortOptions[index].transform = CGAffineTransform.identity
@@ -77,11 +98,12 @@ class BeachForecastsView: UIView {
       let width = button.frame.width
       button.layer.cornerRadius = width / 2
       button.clipsToBounds = true
-      button.backgroundColor = .flatSkyBlue
+      button.backgroundColor = .clear
       let sortType = Sort.all[index]
       if let image = UIImage(named: sortType.rawValue) {
         button.setImage(image, for: .normal)
       }
+      sortOptions[index].imageEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
     }
   }
 }
