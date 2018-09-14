@@ -12,7 +12,7 @@ import CoreLocation
 class BeachForecastController: NSObject {
   
   var beachForecasts = [BeachForecast]()
-  var filteredBeachForecasts = [BeachForecast]()
+  var filteredBeachForecasts: [BeachForecast]?
   //Service managers
   let networkController = NetworkController()
   let locationManager = CLLocationManager()
@@ -79,14 +79,14 @@ extension BeachForecastController {
   }
   
   func filterBeachesBy(_ searchString: String?, _ sideOfIsland: String?) {
-    if searchString == "All" { isFiltered = false; return}
+    if searchString == "All" { filteredBeachForecasts = nil; return}
     
     if let searchString = searchString {
       filteredBeachForecasts = beachForecasts.filter {
         $0.beach.name.lowercased().contains(searchString.lowercased())
       }
     }
-    isFiltered = true
+    //isFiltered = true
   }
 }
 

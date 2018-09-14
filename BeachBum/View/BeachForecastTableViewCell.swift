@@ -12,64 +12,34 @@ import ChameleonFramework
 
 class BeachForecastTableViewCell: UITableViewCell {
   
-  
-  var beachForecast: BeachForecast? {
+  //MARK: Outlets
+  @IBOutlet private weak var container: UIView! {
     didSet {
-      updateUI()
+      container.layer.cornerRadius = 8.0
+      container.clipsToBounds = true
     }
   }
+  @IBOutlet private weak var accentColorview: UIView!
+  @IBOutlet private weak var beachNameLabel: UILabel!
+  @IBOutlet private weak var sideOfIslandLabel: UILabel!
+  @IBOutlet private weak var summaryLabel: UILabel!
+  @IBOutlet private weak var weatherIconImageView: UIImageView!
+  @IBOutlet private weak var temperatureLabel: UILabel!
+  @IBOutlet private weak var distanceLabel: UILabel!
   
-  var distanceFromUser: Int? {
+  //MARK: Property observers set from the data source
+  var accentColor: UIColor? { didSet { accentColorview?.backgroundColor = accentColor}}
+  var distanceFromUser: Int? {didSet { distanceLabel?.text = "\(distanceFromUser ?? 0) mi." } }
+  var beachName: String? { didSet { beachNameLabel?.text = beachName } }
+  var sideOfIsland: String? { didSet { sideOfIslandLabel?.text = "\(sideOfIsland ?? "--") side" } }
+  var summary: String? { didSet { summaryLabel?.text = summary } }
+  var temperature: Int? { didSet { temperatureLabel?.text = "\(temperature ?? 0)°"}}
+  var iconString: String? {
     didSet {
-      distanceLabel?.text = "\(distanceFromUser ?? 0) mi."
-    }
-  }
-  
-  private var borderColor: UIColor {
-    switch beachForecast?.forecast?.currently.icon {
-    case "clear-day": return .flatSkyBlue
-    case "rain": return .flatBlue
-    case "partly-cloudy-day", "cloudy": return .flatPowderBlue
-    case "partly-cloudy-night": return .flatPlum
-    case "wind": return .flatMintDark
-    case "clear-night": return .flatNavyBlue
-    default: return UIColor.white
-    }
-  }
-
-  
-  private func updateUI() {
-    accentColorview?.backgroundColor = borderColor
-    container.layer.cornerRadius = 8.0
-    container.clipsToBounds = true
-    beachNameLabel?.text = beachForecast!.beach.name
-    sideOfIslandLabel?.text = "\(beachForecast!.beach.side) side"
-    currentSummaryLabel?.text = beachForecast!.forecast!.currently.summary
-    if let iconString = beachForecast?.forecast?.currently.icon {
-      if let image = UIImage(named: iconString) {
+      if let image = UIImage(named: iconString!) {
         weatherIconImageView.image = image
       }
     }
-    temperatureLabel?.text = "\(Int(beachForecast!.forecast!.currently.temperature))°"
-    distanceLabel?.text = "\(Int(distanceFromUser ?? 0)) mi."
   }
-  
-  @IBOutlet weak var container: UIView!
-  
-  
-  @IBOutlet weak var accentColorview: UIView!
-  @IBOutlet weak var beachNameLabel: UILabel!
-  @IBOutlet weak var sideOfIslandLabel: UILabel!
-  @IBOutlet weak var currentSummaryLabel: UILabel! {
-    didSet {
-      currentSummaryLabel.sizeToFit()
-    }
-  }
-  @IBOutlet weak var weatherIconImageView: UIImageView! {
-    didSet {
-      weatherIconImageView.sizeToFit()
-    }
-  }
-  @IBOutlet weak var temperatureLabel: UILabel!
-  @IBOutlet weak var distanceLabel: UILabel!
 }
+

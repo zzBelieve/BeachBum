@@ -27,7 +27,7 @@
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" estimatedRowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9uf-T8-5Al">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="502"/>
-                                        <color key="backgroundColor" red="0.96440852990000003" green="0.89290106140000003" blue="0.80704620770000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Beach Cell" id="xdL-5n-2zi" customClass="BeachForecastTableViewCell" customModule="BeachBum" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="28" width="375" height="100"/>
@@ -129,9 +129,9 @@
                                                     <outlet property="accentColorview" destination="OTQ-oK-p79" id="uhb-wu-Hhg"/>
                                                     <outlet property="beachNameLabel" destination="Fkd-u9-hti" id="1nO-do-FAu"/>
                                                     <outlet property="container" destination="dNL-md-OP1" id="NB3-1p-AiD"/>
-                                                    <outlet property="currentSummaryLabel" destination="1ge-oW-Twe" id="ABn-9T-lCk"/>
                                                     <outlet property="distanceLabel" destination="bnT-sn-8cU" id="00K-8A-hjU"/>
                                                     <outlet property="sideOfIslandLabel" destination="HCn-2K-y4r" id="tW2-s6-VDQ"/>
+                                                    <outlet property="summaryLabel" destination="1ge-oW-Twe" id="ABn-9T-lCk"/>
                                                     <outlet property="temperatureLabel" destination="39J-zY-ClI" id="lwV-85-lW1"/>
                                                     <outlet property="weatherIconImageView" destination="fXl-2s-3ke" id="EfP-0R-nHF"/>
                                                     <segue destination="cYe-xm-IVn" kind="show" identifier="Show Detailed Forecast" id="iLD-Mt-xoy"/>
