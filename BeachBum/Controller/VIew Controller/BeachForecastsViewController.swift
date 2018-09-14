@@ -57,6 +57,7 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
+    
     navigationController?.navigationBar.prefersLargeTitles = true
     configureSearch()
     NotificationCenter.default.addObserver(forName: .UserLocationObserver,
