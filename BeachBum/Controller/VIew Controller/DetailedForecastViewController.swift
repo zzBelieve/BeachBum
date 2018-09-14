@@ -116,12 +116,14 @@ class DetailedForecastViewController: UIViewController {
     updateUI()
     
     //Navigation bar configuration
-    navigationItem.largeTitleDisplayMode = .never
+    
     navBar?.isTranslucent = false
     navBar?.setBackgroundImage(UIImage(), for: .default)
     navBar?.shadowImage = UIImage()
     navBar?.barTintColor = accentColor
     navBar?.tintColor = UIColor(contrastingBlackOrWhiteColorOn: accentColor, isFlat: true)
+    navigationItem.largeTitleDisplayMode = .never
+
   }
   
   override func viewWillDisappear(_ animated: Bool) {

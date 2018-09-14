@@ -12,6 +12,8 @@ import CoreLocation
 class BeachForecastController: NSObject {
   
   var beachForecasts = [BeachForecast]()
+  var filteredBeachForecasts = [BeachForecast]()
+  var isFiltered = false
   var networkController = NetworkController() //any network calls should be done through this controller
   let locationManager = CLLocationManager()
   
@@ -45,11 +47,13 @@ class BeachForecastController: NSObject {
     }
   }
   
+}
+
+extension BeachForecastController {
+  
   func sortBeachForecasts(_ sortType: Sort) {
     beachForecasts.sort { (b1, b2) -> Bool in
       switch sortType {
-      case .alphabetical:
-        return alphaSortDownward ? (b1.beach.name < b2.beach.name) : (b1.beach.name > b2.beach.name)
       case .temperature:
         return temperatureSortDownward ? b1.forecast!.currently.temperature < b2.forecast!.currently.temperature : b1.forecast!.currently.temperature > b2.forecast!.currently.temperature
       case .side:
@@ -60,11 +64,21 @@ class BeachForecastController: NSObject {
     }
     
     switch sortType {
-    case .alphabetical: alphaSortDownward = !alphaSortDownward
     case .temperature: temperatureSortDownward = !temperatureSortDownward
     case .side: regionSortedDownward = !regionSortedDownward
     case .weatherCondition: weatherSortedDownward = !weatherSortedDownward
     }
+  }
+  
+  func filterBeachesBy(_ searchString: String?, _ sideOfIsland: String?) {
+    if searchString == "All" { isFiltered = false; return}
+    
+    if let searchString = searchString {
+      filteredBeachForecasts = beachForecasts.filter {
+        $0.beach.name.lowercased().contains(searchString.lowercased())
+      }
+    }
+    isFiltered = true
   }
 }
 

@@ -8,14 +8,13 @@
 
 import Foundation
 import UIKit
+import ChameleonFramework
 
 protocol BeachForecastsViewDelegate: class {
   func sortButtonPressed(_ sortType: Sort)
 }
 
 class BeachForecastsView: UIView {
-  
-  
   
   weak var delegate: BeachForecastsViewDelegate?
   private var sortButtonExpanded = false
@@ -38,6 +37,7 @@ class BeachForecastsView: UIView {
       let width = sortButton.frame.width
       sortButton.layer.cornerRadius = width / 2
       sortButton.clipsToBounds = true
+      sortButton.backgroundColor = .flatSkyBlue
     }
   }
   
@@ -72,6 +72,7 @@ class BeachForecastsView: UIView {
       let width = button.frame.width
       button.layer.cornerRadius = width / 2
       button.clipsToBounds = true
+      button.backgroundColor = .flatSkyBlue
       let sortType = Sort.all[index]
       if let image = UIImage(named: sortType.rawValue) {
         button.setImage(image, for: .normal)
@@ -81,12 +82,11 @@ class BeachForecastsView: UIView {
 }
 
 enum Sort: String, RawRepresentable {
-  case alphabetical
   case side
   case temperature
   case weatherCondition
   
   static var all: [Sort] {
-    return [Sort.alphabetical, .side, .temperature, .weatherCondition]
+    return [Sort.side, .temperature, .weatherCondition]
   }
 }

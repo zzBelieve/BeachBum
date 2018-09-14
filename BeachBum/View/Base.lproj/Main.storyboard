@@ -191,7 +191,7 @@
                                                     <action selector="sortOptionButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="v7r-lV-fVA"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-oE-o0R" userLabel="Sort Option 4">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-oE-o0R" userLabel="SortOptionToBeRemoved">
                                                 <rect key="frame" x="315" y="5" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -201,9 +201,6 @@
                                                 <state key="normal">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="sortOptionButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="Az6-xT-EdN"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -251,7 +248,6 @@
                             <outletCollection property="sortOptions" destination="3x5-Ne-wXO" collectionClass="NSMutableArray" id="5z4-aP-NtW"/>
                             <outletCollection property="sortOptions" destination="wS8-cZ-YFJ" collectionClass="NSMutableArray" id="Txe-z2-6vg"/>
                             <outletCollection property="sortOptions" destination="XRr-sg-Gfd" collectionClass="NSMutableArray" id="wOK-p2-0Hi"/>
-                            <outletCollection property="sortOptions" destination="CyX-oE-o0R" collectionClass="NSMutableArray" id="ayn-Wn-uJz"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Beaches" id="ny7-GL-E8q"/>
@@ -645,10 +641,10 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7w-AR-s8g">
-                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="120"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="80" height="120"/>
                                                     <subviews>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="b3a-1J-ndO">
-                                                            <rect key="frame" x="20" y="3" width="50" height="114"/>
+                                                            <rect key="frame" x="15" y="3" width="50" height="114"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6r-xC-ew9">
                                                                     <rect key="frame" x="4" y="0.0" width="42" height="27.5"/>

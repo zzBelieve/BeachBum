@@ -57,12 +57,8 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
 extension BeachForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-//    if let navigationBar = navigationController?.navigationBar {
-//      navigationBar.isTranslucent = false
-//      navigationBar.setBackgroundImage(UIImage(), for: .default)
-//      navigationBar.shadowImage = UIImage()
-//    }
     navigationController?.navigationBar.prefersLargeTitles = true
+    configureSearch()
     NotificationCenter.default.addObserver(forName: .UserLocationObserver,
                                            object: self.beachForecastController,
                                            queue: OperationQueue.main) { [weak self] (_) in
@@ -95,16 +91,38 @@ extension BeachForecastsViewController {
   
 }
 
+//MARK: Search
+extension BeachForecastsViewController: UISearchResultsUpdating {
+  
+  private func configureSearch() {
+    let searchController = UISearchController(searchResultsController: nil)
+    searchController.searchResultsUpdater = self
+    searchController.obscuresBackgroundDuringPresentation = true
+    searchController.searchBar.placeholder = "Search Beaches"
+    definesPresentationContext = false
+    navigationItem.searchController = searchController
+    navigationItem.hidesSearchBarWhenScrolling = true
+  }
+  
+  func updateSearchResults(for searchController: UISearchController) {
+    var searchBarIsEmpty: Bool {
+      return searchController.searchBar.text?.isEmpty ?? true
+    }
+    beachForecastController.filterBeachesBy((searchBarIsEmpty ? "All" : searchController.searchBar.text!), nil)
+    beachForecastTableView.reloadSections([0], with: .automatic)
+  }
+}
+
 //MARK: Data Source
 extension BeachForecastsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return beachForecastController.beachForecasts.count
+    return beachForecastController.isFiltered ? beachForecastController.filteredBeachForecasts.count : beachForecastController.beachForecasts.count
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "Beach Cell", for: indexPath)
     guard let beachCell = cell as? BeachForecastTableViewCell else { return cell }
-    let beachForecast = beachForecastController.beachForecasts[indexPath.item]
+    let beachForecast = beachForecastController.isFiltered ? beachForecastController.filteredBeachForecasts[indexPath.item] : beachForecastController.beachForecasts[indexPath.item]
     beachCell.beachForecast = beachForecast
     beachCell.distanceFromUser = beachForecastController.calculateDistanceFrom(beachForecast)
     return cell
