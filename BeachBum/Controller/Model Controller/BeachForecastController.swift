@@ -19,7 +19,7 @@ class BeachForecastController: NSObject {
   
   var userLocation: CLLocation? { didSet { NotificationCenter.default.post(name: .UserLocationObserver, object: self) } }
   
-  private var alphaSortDownward = true
+  private var distanceSortedDownward = true
   private var temperatureSortDownward = true
   private var regionSortedDownward = true
   private var weatherSortedDownward = true
@@ -60,6 +60,8 @@ extension BeachForecastController {
         return regionSortedDownward ? (b1.beach.side < b2.beach.side) : (b1.beach.side > b2.beach.side)
       case .weatherCondition:
         return weatherSortedDownward ? (b1.forecast!.currently.icon < b2.forecast!.currently.icon) : (b1.forecast!.currently.icon > b2.forecast!.currently.icon)
+      case .distance:
+        return distanceSortedDownward ? (calculateDistanceFrom(b1)! < calculateDistanceFrom(b2)!) : (calculateDistanceFrom(b1)! > calculateDistanceFrom(b2)!)
       }
     }
     
@@ -67,6 +69,7 @@ extension BeachForecastController {
     case .temperature: temperatureSortDownward = !temperatureSortDownward
     case .side: regionSortedDownward = !regionSortedDownward
     case .weatherCondition: weatherSortedDownward = !weatherSortedDownward
+    case .distance: distanceSortedDownward = !distanceSortedDownward
     }
   }
   

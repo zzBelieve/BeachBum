@@ -191,7 +191,7 @@
                                                     <action selector="sortOptionButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="v7r-lV-fVA"/>
                                                 </connections>
                                             </button>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-oE-o0R" userLabel="SortOptionToBeRemoved">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CyX-oE-o0R" userLabel="Sort Option 4">
                                                 <rect key="frame" x="315" y="5" width="40" height="40"/>
                                                 <color key="backgroundColor" red="0.31372549020000001" green="0.62352941179999999" blue="0.81176470590000005" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
@@ -201,6 +201,9 @@
                                                 <state key="normal">
                                                     <color key="titleColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="sortOptionButtonPressed:" destination="8jS-RA-xhw" eventType="touchUpInside" id="g3r-vI-OcX"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <constraints>
@@ -249,6 +252,7 @@
                             <outletCollection property="sortOptions" destination="3x5-Ne-wXO" collectionClass="NSMutableArray" id="5z4-aP-NtW"/>
                             <outletCollection property="sortOptions" destination="wS8-cZ-YFJ" collectionClass="NSMutableArray" id="Txe-z2-6vg"/>
                             <outletCollection property="sortOptions" destination="XRr-sg-Gfd" collectionClass="NSMutableArray" id="wOK-p2-0Hi"/>
+                            <outletCollection property="sortOptions" destination="CyX-oE-o0R" collectionClass="NSMutableArray" id="bUg-SL-0Pu"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Beaches" id="ny7-GL-E8q"/>
