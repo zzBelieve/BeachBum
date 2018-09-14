@@ -13,16 +13,22 @@ class BeachForecastController: NSObject {
   
   var beachForecasts = [BeachForecast]()
   var filteredBeachForecasts = [BeachForecast]()
-  var isFiltered = false
-  var networkController = NetworkController() //any network calls should be done through this controller
+  //Service managers
+  let networkController = NetworkController()
   let locationManager = CLLocationManager()
   
   var userLocation: CLLocation? { didSet { NotificationCenter.default.post(name: .UserLocationObserver, object: self) } }
   
+  //Vars for sorting and filtering
+  var isFiltered = false
   private var distanceSortedDownward = true
   private var temperatureSortDownward = true
   private var regionSortedDownward = true
   private var weatherSortedDownward = true
+}
+
+//MARK: Network calls for forecasts and beach names
+extension BeachForecastController {
   
   func updateForecasts(completion: @escaping(() -> Void) ) {
     let dispatchGroup = DispatchGroup()
@@ -46,11 +52,10 @@ class BeachForecastController: NSObject {
       completion()
     }
   }
-  
 }
 
+//Mark: Sorting and filtering functions
 extension BeachForecastController {
-  
   func sortBeachForecasts(_ sortType: Sort) {
     beachForecasts.sort { (b1, b2) -> Bool in
       switch sortType {
@@ -85,7 +90,7 @@ extension BeachForecastController {
   }
 }
 
-//MARK: Location Manager
+//MARK: Location manager
 extension BeachForecastController: CLLocationManagerDelegate {
   func configureLocationManager() {
     locationManager.delegate = self

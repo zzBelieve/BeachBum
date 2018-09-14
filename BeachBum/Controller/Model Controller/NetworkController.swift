@@ -11,7 +11,7 @@ import Firebase
 
 class NetworkController {
   
-  //fetch weather forecast given a url, and hands it over to completion
+  //Fetch weather forecast given a url, and hands it over to completion
   func fetchForecast(_ url: URL, completion: @escaping ((Forecast) -> Void)) {
     let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
       guard let data = data else { print("Data failed: \(error!)"); return}
@@ -25,7 +25,7 @@ class NetworkController {
     task.resume()
   }
   
-  
+  //Fetch name data for beaches from Firebase
   func fetchData(completion: @escaping ([BeachForecast]) -> Void) {
     let beachesDB = Database.database().reference().child("Beaches")
     //OBSERVE IS OFF OF THE MAIN THREAD
