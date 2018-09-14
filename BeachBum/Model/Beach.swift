@@ -9,10 +9,10 @@
 import Foundation
 
 struct Beach {
-  var name: String
-  var side: String
-  var latitude: Double
-  var longitude: Double
+  let name: String
+  let side: String
+  let latitude: Double
+  let longitude: Double
   var coordinates: String { return "\(latitude),\(longitude)" }
   var url: URL? { return Beach.baseURL?.appendingPathComponent(coordinates) }
   

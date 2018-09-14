@@ -10,11 +10,9 @@ import Foundation
 
 struct Forecast: Codable {
   
-  var timezone: String = "Pacific/Honolulu"
-  var currently: Currently
-  var hourly: Hourly?
-  var daily: Daily?
-  
+  let currently: Currently
+  let hourly: Hourly?
+  let daily: Daily?
   
   enum SerializationError: Error {
     case missing(String)
@@ -55,7 +53,10 @@ struct Forecast: Codable {
     let precipProbability: Double
   }
   
+  //Keeping init for Mock data
   init(timeZone: String = "Pacific/Honolulu", currently: Currently, hourly: Hourly? = nil, daily: Daily? = nil) {
     self.currently = currently
+    self.hourly = nil
+    self.daily = nil
   }
 }

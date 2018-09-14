@@ -13,7 +13,6 @@ class BeachForecast {
   
   let beach: Beach
   var forecast: Forecast?
-  //var distanceFromUser: Double?
   
   init(beach: Beach, forecast: Forecast? = nil) {
     self.beach = beach

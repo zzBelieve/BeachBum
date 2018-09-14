@@ -66,8 +66,8 @@ extension BeachForecastsViewController {
                                             self?.beachForecastTableView?.reloadSections([0], with: .automatic)
     }
     beachForecastController.configureLocationManager()
-    beachForecastController.beachForecasts = mockData.beachForecasts
-    //retrievedata()
+    //beachForecastController.beachForecasts = mockData.beachForecasts
+    retrievedata()
     beachForecastController.locationManager.startUpdatingLocation()
     
   }
@@ -102,7 +102,7 @@ extension BeachForecastsViewController: UISearchResultsUpdating {
     searchController.searchBar.placeholder = "Search Beaches"
     definesPresentationContext = true
     navigationItem.searchController = searchController
-    navigationItem.hidesSearchBarWhenScrolling = true
+    //navigationItem.hidesSearchBarWhenScrolling = false
   }
   
   func updateSearchResults(for searchController: UISearchController) {
