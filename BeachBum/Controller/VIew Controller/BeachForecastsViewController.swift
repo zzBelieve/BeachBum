@@ -97,9 +97,9 @@ extension BeachForecastsViewController: UISearchResultsUpdating {
   private func configureSearch() {
     let searchController = UISearchController(searchResultsController: nil)
     searchController.searchResultsUpdater = self
-    searchController.obscuresBackgroundDuringPresentation = true
+    searchController.obscuresBackgroundDuringPresentation = false
     searchController.searchBar.placeholder = "Search Beaches"
-    definesPresentationContext = false
+    definesPresentationContext = true
     navigationItem.searchController = searchController
     navigationItem.hidesSearchBarWhenScrolling = true
   }
@@ -110,6 +110,7 @@ extension BeachForecastsViewController: UISearchResultsUpdating {
     }
     beachForecastController.filterBeachesBy((searchBarIsEmpty ? "All" : searchController.searchBar.text!), nil)
     beachForecastTableView.reloadSections([0], with: .automatic)
+    
   }
 }
 
