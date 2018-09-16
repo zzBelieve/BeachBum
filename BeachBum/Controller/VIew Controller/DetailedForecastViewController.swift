@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreLocation
 import ChameleonFramework
 
 class DetailedForecastViewController: UIViewController {
@@ -34,50 +33,20 @@ class DetailedForecastViewController: UIViewController {
   
   @IBOutlet var detailedForecastView: DetailedForecastView!
   
-  //MARK: Container View Constraints
-  private var drawerViewHidden = true
+  //MARK: Drawer View Constraints and variables
   @IBOutlet weak var drawerView: UIView!
   @IBOutlet weak var drawerViewBottomConstraint: NSLayoutConstraint!
-  
+  private var drawerViewHidden = true
   var swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToToggleExpansion(_:)))
-  
-  private func updateUI() {
-    guard let beachForecast = beachForecast else { return }
-    guard let detailedForecastView = detailedForecastView else { print("no detailed forecast view"); return }
-    
-    //TODO: Send color to view so that view can configure
-    detailedForecastView.mainColor = accentColors
-    //Set the text
-    detailedForecastView.beachName = beachForecast.beach.name
-    detailedForecastView.temperature = beachForecast.forecast!.currently.temperature
-    detailedForecastView.summary = beachForecast.forecast?.currently.summary
-    detailedForecastView.imageIcon = beachForecast.forecast?.currently.icon
-    detailedForecastView.sunriseTime = beachForecast.forecast?.daily?.data.first?.sunriseTime
-    detailedForecastView.sunsetTime = beachForecast.forecast?.daily?.data.first?.sunsetTime
-    detailedForecastView.windSpeed = beachForecast.forecast?.currently.windSpeed
-    detailedForecastView.chanceOfRain = beachForecast.forecast?.daily?.data.first?.precipProbability
-    detailedForecastView.distance = distanceFromUser
-    detailedForecastView.humidity = beachForecast.forecast!.currently.humidity
-  }
-  
+}
+
+//MARK: View Lifecycle
+extension DetailedForecastViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     updateUI()
     configureNavbar()
     addSwipGesture()
-    
-  }
-  
-  private func configureNavbar() {
-    if let navBar = navigationController?.navigationBar {
-      navBar.isTranslucent = false
-      navBar.setBackgroundImage(UIImage(), for: .default)
-      navBar.shadowImage = UIImage()
-      navBar.barTintColor = UIColor.init(gradientStyle: .leftToRight, withFrame: navBar.frame, andColors: gradientColorArray ?? [.white])
-      navBar.tintColor = UIColor(contrastingBlackOrWhiteColorOn: accentColors?.first ?? .black, isFlat: true)
-    }
-   
-    navigationItem.largeTitleDisplayMode = .never
   }
   
   override func viewWillDisappear(_ animated: Bool) {
@@ -91,6 +60,37 @@ class DetailedForecastViewController: UIViewController {
   }
 }
 
+//MARK: UI and Navbar
+extension DetailedForecastViewController {
+  private func updateUI() {
+    guard let beachForecast = beachForecast else { return }
+    guard let detailedForecastView = detailedForecastView else { print("no detailed forecast view"); return }
+    detailedForecastView.mainColor = accentColors
+    detailedForecastView.beachName = beachForecast.beach.name
+    detailedForecastView.temperature = beachForecast.forecast!.currently.temperature
+    detailedForecastView.summary = beachForecast.forecast?.currently.summary
+    detailedForecastView.imageIcon = beachForecast.forecast?.currently.icon
+    detailedForecastView.sunriseTime = beachForecast.forecast?.daily?.data.first?.sunriseTime
+    detailedForecastView.sunsetTime = beachForecast.forecast?.daily?.data.first?.sunsetTime
+    detailedForecastView.windSpeed = beachForecast.forecast?.currently.windSpeed
+    detailedForecastView.chanceOfRain = beachForecast.forecast?.daily?.data.first?.precipProbability
+    detailedForecastView.distance = distanceFromUser
+    detailedForecastView.humidity = beachForecast.forecast!.currently.humidity
+  }
+  
+  private func configureNavbar() {
+    if let navBar = navigationController?.navigationBar {
+      navBar.isTranslucent = false
+      navBar.setBackgroundImage(UIImage(), for: .default)
+      navBar.shadowImage = UIImage()
+      navBar.barTintColor = UIColor.init(gradientStyle: .leftToRight, withFrame: navBar.frame, andColors: gradientColorArray ?? [.white])
+      navBar.tintColor = UIColor(contrastingBlackOrWhiteColorOn: accentColors?.first ?? .black, isFlat: true)
+    }
+    navigationItem.largeTitleDisplayMode = .never
+  }
+}
+
+//MARK: Navigation
 extension DetailedForecastViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "Show Hourly Forecast" {
@@ -101,7 +101,7 @@ extension DetailedForecastViewController {
 
 //MARK: Drawer View Delegate and Methods
 extension DetailedForecastViewController: HourlyForecastViewControllerDelegate {
-  
+
   private func toggleDrawerViewExpansion() {
     let amountToMove = drawerView.bounds.height * 0.70
     let initialConstraint = drawerViewBottomConstraint.constant

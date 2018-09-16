@@ -35,6 +35,8 @@ class DetailedForecastView: UIView {
     }
   }
   
+  //MARK: Property observers to format data
+  //and pass to the appropriate label
   var mainColor: [UIColor]? { didSet { setMainColorTo(mainColor ?? [.white]) } }
   var beachName: String? { didSet { beachNameLabel?.text = beachName  ?? ""} }
   var temperature: Double? { didSet { currentTemperatureLabel?.text = "\(temperature?.temperatureFormatted ?? "00")"}}
@@ -59,7 +61,5 @@ class DetailedForecastView: UIView {
     summaryLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: firstColor, isFlat: true)
     beachNameLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: firstColor, isFlat: true)
     currentTemperatureLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: firstColor, isFlat: true)
-    
-    
   }
 }
