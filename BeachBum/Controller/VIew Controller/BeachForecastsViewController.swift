@@ -106,7 +106,7 @@ extension BeachForecastsViewController: UISearchResultsUpdating {
   func updateSearchResults(for searchController: UISearchController) {
     var searchBarIsEmpty: Bool { return searchController.searchBar.text?.isEmpty ?? true }
     //if search bar is empty then return entire beach forecast
-    beachForecastController.filterBeachesBy((searchBarIsEmpty ? "All" : searchController.searchBar.text!), nil)
+    beachForecastController.filterBeachesBy((searchBarIsEmpty ? "All" : searchController.searchBar.text))
     beachForecastTableView.reloadSections([0], with: .automatic)
   }
 }

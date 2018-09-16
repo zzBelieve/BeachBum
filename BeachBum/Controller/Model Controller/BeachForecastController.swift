@@ -78,15 +78,16 @@ extension BeachForecastController {
     }
   }
   
-  func filterBeachesBy(_ searchString: String?, _ sideOfIsland: String?) {
-    if searchString == "All" { filteredBeachForecasts = nil; return}
-    
-    if let searchString = searchString {
-      filteredBeachForecasts = beachForecasts.filter {
-        $0.beach.name.lowercased().contains(searchString.lowercased())
-      }
+  func filterBeachesBy(_ searchString: String?) {
+    guard let searchString = searchString else { print("no search criteria"); return }
+    switch searchString.lowercased() {
+    case "all": filteredBeachForecasts = nil; return
+    case "north": filteredBeachForecasts = beachForecasts.filter { $0.beach.side == "North" }
+    case "east": filteredBeachForecasts = beachForecasts.filter { $0.beach.side == "East" }
+    case "south": filteredBeachForecasts = beachForecasts.filter { $0.beach.side == "South" }
+    case "west": filteredBeachForecasts = beachForecasts.filter { $0.beach.side == "West" }
+    default: filteredBeachForecasts = beachForecasts.filter { $0.beach.name.lowercased().contains(searchString.lowercased()) }
     }
-    //isFiltered = true
   }
 }
 
@@ -122,6 +123,6 @@ extension Notification.Name {
 
 extension CLLocationDistance {
   var distanceInMiles: Int {
-      return Int(self * 0.000621371)
+    return Int(self * 0.000621371)
   }
 }
