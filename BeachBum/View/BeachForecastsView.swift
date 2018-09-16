@@ -15,11 +15,7 @@ protocol BeachForecastsViewDelegate: class {
 }
 
 class BeachForecastsView: UIView {
-  
-  
-  
   @IBOutlet weak var sortButtonsViewWidthConstraint: NSLayoutConstraint!
-  
   @IBOutlet weak var sortButtonsView: UIView! {
     didSet {
       sortButtonsView?.backgroundColor = UIColor.flatSkyBlue
@@ -41,7 +37,6 @@ class BeachForecastsView: UIView {
     }
   }
   
-  
   @IBOutlet weak var sortButton: UIButton! {
     didSet {
       let width = sortButton.frame.width
@@ -52,11 +47,7 @@ class BeachForecastsView: UIView {
       }
       let number = 10
       sortButton.imageEdgeInsets = UIEdgeInsetsMake(CGFloat(number), CGFloat(number), CGFloat(number), CGFloat(number))
-
-      
-      
       sortButton.clipsToBounds = true
-      
     }
   }
   
@@ -112,7 +103,6 @@ enum Sort: String, RawRepresentable {
   case temperature
   case weatherCondition
   case distance
-  
   static var all: [Sort] {
     return [Sort.temperature, .weatherCondition, .distance]
   }
