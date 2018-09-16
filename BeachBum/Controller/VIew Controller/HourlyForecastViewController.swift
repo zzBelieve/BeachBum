@@ -8,44 +8,45 @@
 
 import UIKit
 import ChameleonFramework
+
 protocol HourlyForecastViewControllerDelegate: class {
   func toggleExpansionPressed()
 }
 
 class HourlyForecastViewController: UIViewController {
-  
   weak var delegate: HourlyForecastViewControllerDelegate?
-  
   var hourlyForecast: Forecast.Hourly?
   var borderColor: UIColor?
-  
-  @IBOutlet var hourlyForecastView: UIView! {
-    didSet {
-      hourlyForecastView.layer.cornerRadius = 10.0
-    }
-  }
-  
-  @IBOutlet weak var hourlyForecastCollectionView: UICollectionView! {
-    didSet {
-      hourlyForecastCollectionView?.backgroundColor = .clear
-      hourlyForecastCollectionView?.layer.cornerRadius = 10.0
-      hourlyForecastCollectionView?.dataSource = self
-    }
-  }
-  
-  @IBAction func toggleCollapseButtonPressed(_ sender: UIButton) {
-    delegate?.toggleExpansionPressed()
-  }
-  
-  
+  @IBOutlet var hourlyForecastView: UIView! { didSet { configureView() } }
+  @IBOutlet weak var hourlyForecastCollectionView: UICollectionView! { didSet { configureCollectionView() } }
+}
+
+//MARK: View Lifecycle
+extension HourlyForecastViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
-    view.layer.cornerRadius = 30.0
-    view.layer.masksToBounds = true
-    view.layer.borderColor = borderColor?.cgColor
-    view.layer.borderWidth = 2.0
-    
-    
+    configureView()
+    configureBlurEffect()
+  }
+}
+
+//MARK: UI Configuration
+extension HourlyForecastViewController {
+  
+  private func configureCollectionView() {
+    hourlyForecastCollectionView?.backgroundColor = .clear
+    hourlyForecastCollectionView?.layer.cornerRadius = 10.0
+    hourlyForecastCollectionView?.dataSource = self
+  }
+  
+  private func configureView() {
+    hourlyForecastView?.layer.cornerRadius = 30.0
+    hourlyForecastView?.layer.masksToBounds = true
+    hourlyForecastView?.layer.borderColor = borderColor?.cgColor
+    hourlyForecastView?.layer.borderWidth = 2.0
+  }
+  
+  private func configureBlurEffect() {
     let blurEffect = UIBlurEffect(style: .extraLight)
     let blurView = UIVisualEffectView(effect: blurEffect)
     blurView.translatesAutoresizingMaskIntoConstraints = false
@@ -54,7 +55,6 @@ class HourlyForecastViewController: UIViewController {
       blurView.heightAnchor.constraint(equalTo: view.heightAnchor),
       blurView.widthAnchor.constraint(equalTo: view.widthAnchor),
       ])
-    
   }
 }
 
@@ -66,8 +66,18 @@ extension HourlyForecastViewController: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Hourly Forecast Cell", for: indexPath)
-    guard let hourlyCell = cell as? HourlyForecastCollectionViewCell  else { print("not able to set as hourly cell"); return cell}
-    hourlyCell.hourlyData = hourlyForecast!.data[indexPath.item]
+    guard let hourlyCell = cell as? HourlyForecastCollectionViewCell  else { print("Invalid cell type"); return cell}
+    let hourlyForecast = self.hourlyForecast?.data[indexPath.item]
+    hourlyCell.time = hourlyForecast?.time
+    hourlyCell.weatherIcon = hourlyForecast?.icon
+    hourlyCell.temperature = hourlyForecast?.temperature
     return cell
+  }
+}
+
+//MARK: Hourly Forecast View Controller Delegate Method
+extension HourlyForecastViewController {
+  @IBAction func toggleCollapseButtonPressed(_ sender: UIButton) {
+    delegate?.toggleExpansionPressed()
   }
 }
