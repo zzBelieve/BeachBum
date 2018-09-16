@@ -159,7 +159,7 @@ extension BeachForecastsViewController {
   }
 }
 
-//MARK: extension for String gives color based off of icon string
+//MARK: extensions for String gives color and image based off of icon string
 extension String {
   var toColor: [UIColor] {
     switch self {

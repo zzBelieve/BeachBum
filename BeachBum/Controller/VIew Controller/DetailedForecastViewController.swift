@@ -23,11 +23,7 @@ class DetailedForecastViewController: UIViewController {
     guard let firstColor = accentColors?.first, let secondColor = accentColors?.last else { return nil}
     return [firstColor, firstColor, secondColor, secondColor]
   }
-  
-  private var navBar: UINavigationBar? {
-    return navigationController?.navigationBar
-  }
-  
+  private var navBar: UINavigationBar? {  return navigationController?.navigationBar }
   private var hourlyForecastViewController: HourlyForecastViewController? {
     didSet {
       hourlyForecastViewController?.hourlyForecast = self.beachForecast?.forecast?.hourly
@@ -35,15 +31,14 @@ class DetailedForecastViewController: UIViewController {
       hourlyForecastViewController?.borderColor = beachForecast?.forecast?.currently.icon.toColor.first ?? .white
     }
   }
-
   
-  //MARK: Outlets
   @IBOutlet var detailedForecastView: DetailedForecastView!
   
   //MARK: Container View Constraints
-  private var containerViewHidden = false
-  @IBOutlet weak var containerView: UIView!
-  @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
+  private var drawerViewHidden = true
+  @IBOutlet weak var drawerView: UIView!
+  @IBOutlet weak var drawerViewBottomConstraint: NSLayoutConstraint!
+  
   var swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToToggleExpansion(_:)))
   
   private func updateUI() {
@@ -67,12 +62,10 @@ class DetailedForecastViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    toggleContainerViewCollapse(initial: true)
-    addSwipGesture()
     updateUI()
     configureNavbar()
+    addSwipGesture()
     
-
   }
   
   private func configureNavbar() {
@@ -106,41 +99,37 @@ extension DetailedForecastViewController {
   }
 }
 
-//MARK: Container View Delegate and Methods
+//MARK: Drawer View Delegate and Methods
 extension DetailedForecastViewController: HourlyForecastViewControllerDelegate {
   
-  private func toggleContainerViewCollapse(initial: Bool = false) {
-    let height = containerView.bounds.height * (initial ? 0.90 : 0.70)
-    let initialConstraint = containerViewBottomConstraint.constant
-    let newConstraint = containerViewHidden ? (height + initialConstraint) : (initialConstraint - height)
-    if initial {
-      containerViewBottomConstraint.constant = newConstraint
-      view.layoutIfNeeded()
-    } else {
-      UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
-        self.containerViewBottomConstraint.constant = newConstraint
-        self.view.layoutIfNeeded()
-      })
-    }
-    containerViewHidden = !containerViewHidden
+  private func toggleDrawerViewExpansion() {
+    let amountToMove = drawerView.bounds.height * 0.70
+    let initialConstraint = drawerViewBottomConstraint.constant
+    let newConstraint = initialConstraint + (drawerViewHidden ? amountToMove : -amountToMove)
+    UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 0.6, initialSpringVelocity: 1.0, options: .curveEaseIn, animations: {
+      self.drawerViewBottomConstraint.constant = newConstraint
+      self.view.layoutIfNeeded()
+    })
+    drawerViewHidden = !drawerViewHidden
     self.view.removeGestureRecognizer(swipeGesture)
     addSwipGesture()
   }
   
+  //Delegate method from HourlyForecastViewControllerDelegate Protocol
   func toggleExpansionPressed() {
-    toggleContainerViewCollapse()
+    toggleDrawerViewExpansion()
   }
   
   private func addSwipGesture() {
     swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToToggleExpansion(_:)))
-    swipeGesture.direction = containerViewHidden ? .up : .down
+    swipeGesture.direction = drawerViewHidden ? .up : .down
     self.view.addGestureRecognizer(swipeGesture)
   }
   
   @objc private func swipeToToggleExpansion(_ recognizer: UISwipeGestureRecognizer) {
     switch recognizer.state {
     case .began, .changed, .ended:
-      toggleContainerViewCollapse()
+      toggleDrawerViewExpansion()
     default: break
     }
   }
