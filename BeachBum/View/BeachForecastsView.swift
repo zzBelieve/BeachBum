@@ -109,12 +109,11 @@ class BeachForecastsView: UIView {
 }
 
 enum Sort: String, RawRepresentable {
-  case side
   case temperature
   case weatherCondition
   case distance
   
   static var all: [Sort] {
-    return [Sort.side, .temperature, .weatherCondition, .distance]
+    return [Sort.temperature, .weatherCondition, .distance]
   }
 }

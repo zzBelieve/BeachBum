@@ -23,7 +23,6 @@ class BeachForecastController: NSObject {
   var isFiltered = false
   private var distanceSortedDownward = true
   private var temperatureSortDownward = true
-  private var regionSortedDownward = true
   private var weatherSortedDownward = true
 }
 
@@ -61,8 +60,6 @@ extension BeachForecastController {
       switch sortType {
       case .temperature:
         return temperatureSortDownward ? b1.forecast!.currently.temperature < b2.forecast!.currently.temperature : b1.forecast!.currently.temperature > b2.forecast!.currently.temperature
-      case .side:
-        return regionSortedDownward ? (b1.beach.side < b2.beach.side) : (b1.beach.side > b2.beach.side)
       case .weatherCondition:
         return weatherSortedDownward ? (b1.forecast!.currently.icon < b2.forecast!.currently.icon) : (b1.forecast!.currently.icon > b2.forecast!.currently.icon)
       case .distance:
@@ -72,7 +69,6 @@ extension BeachForecastController {
     
     switch sortType {
     case .temperature: temperatureSortDownward = !temperatureSortDownward
-    case .side: regionSortedDownward = !regionSortedDownward
     case .weatherCondition: weatherSortedDownward = !weatherSortedDownward
     case .distance: distanceSortedDownward = !distanceSortedDownward
     }
