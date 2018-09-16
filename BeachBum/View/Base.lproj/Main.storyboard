@@ -555,21 +555,22 @@
                             <outlet property="beachNameLabel" destination="Odj-Dn-kKe" id="Keu-1L-tFP"/>
                             <outlet property="chanceOfRainLabel" destination="PfE-fa-p5O" id="6AH-gE-smy"/>
                             <outlet property="circledWeatherIconView" destination="fKf-Fc-x7C" id="qXH-fK-84N"/>
-                            <outlet property="currentSummaryLabel" destination="1fe-mE-bam" id="zBR-d8-Krp"/>
                             <outlet property="currentTemperatureLabel" destination="xHc-E5-slQ" id="uaM-Dj-DPP"/>
                             <outlet property="currentWeatherImageView" destination="C47-aE-KHe" id="I6V-gm-P2k"/>
                             <outlet property="distanceLabel" destination="Khz-Zg-tSP" id="k4H-5N-0ui"/>
                             <outlet property="humidityLabel" destination="wdO-5n-v9y" id="ia6-p2-2Hg"/>
-                            <outlet property="sunriseCircleView" destination="EzZ-zO-Un9" id="pSu-vz-uoC"/>
+                            <outlet property="summaryLabel" destination="1fe-mE-bam" id="zBR-d8-Krp"/>
                             <outlet property="sunriseTimeLabel" destination="xpw-zo-aa2" id="22m-TI-LuV"/>
                             <outlet property="sunsetTimeLabel" destination="8is-tE-juF" id="oIH-wJ-Bpw"/>
-                            <outlet property="windSpeed" destination="LBH-20-57T" id="Yhf-8P-IUE"/>
+                            <outlet property="topColoredView" destination="9z7-Dh-dWZ" id="dAM-UY-dZN"/>
+                            <outlet property="windSpeedLabel" destination="LBH-20-57T" id="Yhf-8P-IUE"/>
                             <outletCollection property="circledViews" destination="HUK-9I-OUM" collectionClass="NSMutableArray" id="vav-GF-nva"/>
                             <outletCollection property="circledViews" destination="EzZ-zO-Un9" collectionClass="NSMutableArray" id="NoK-OX-M22"/>
                             <outletCollection property="circledViews" destination="8UE-5j-3RM" collectionClass="NSMutableArray" id="VaP-zB-4vg"/>
                             <outletCollection property="circledViews" destination="74Z-Mn-v7m" collectionClass="NSMutableArray" id="uz6-7K-RmX"/>
                             <outletCollection property="circledViews" destination="uEs-C8-3Mt" collectionClass="NSMutableArray" id="MRN-N3-mez"/>
                             <outletCollection property="circledViews" destination="Bju-38-VZe" collectionClass="NSMutableArray" id="IHC-NE-ye6"/>
+                            <outletCollection property="circledViews" destination="fKf-Fc-x7C" collectionClass="NSMutableArray" id="wKf-JC-fFQ"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="PAy-MG-VhX"/>
@@ -577,7 +578,6 @@
                         <outlet property="containerView" destination="Ygu-uP-Avb" id="pj6-bk-Mlq"/>
                         <outlet property="containerViewBottomConstraint" destination="Rdh-RL-oLA" id="LTg-V9-UiR"/>
                         <outlet property="detailedForecastView" destination="GPA-sK-M0P" id="Vfm-ke-V7Z"/>
-                        <outlet property="topColoredView" destination="9z7-Dh-dWZ" id="4B1-gk-WKD"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9f-Pd-Wlk" userLabel="First Responder" sceneMemberID="firstResponder"/>

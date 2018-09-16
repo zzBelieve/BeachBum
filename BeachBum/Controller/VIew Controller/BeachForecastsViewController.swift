@@ -120,7 +120,7 @@ extension BeachForecastsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "Beach Cell", for: indexPath) as? BeachForecastTableViewCell else { return UITableViewCell() }
     let beachForecast = beachForecastController.filteredBeachForecasts?[indexPath.item] ?? beachForecastController.beachForecasts[indexPath.item]
-    cell.accentColor = beachForecast.forecast?.currently.icon.colorFromString[0]
+    cell.accentColor = beachForecast.forecast?.currently.icon.toColor[0]
     cell.beachName = beachForecast.beach.name
     cell.sideOfIsland = beachForecast.beach.side
     cell.summary = beachForecast.forecast?.currently.summary ?? "no summary"
@@ -161,7 +161,7 @@ extension BeachForecastsViewController {
 
 //MARK: extension for String gives color based off of icon string
 extension String {
-  var colorFromString: [UIColor] {
+  var toColor: [UIColor] {
     switch self {
     case "clear-day": return [.flatSkyBlue, .flatSkyBlueDark]
     case "rain": return [.flatBlue, .flatBlueDark]
@@ -171,5 +171,9 @@ extension String {
     case "clear-night": return [.flatNavyBlue, .flatNavyBlueDark]
     default: return [.white, .white]
     }
+  }
+  
+  var toImage: UIImage? {
+    return UIImage(named: self)
   }
 }

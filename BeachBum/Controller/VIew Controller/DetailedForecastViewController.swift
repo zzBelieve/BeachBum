@@ -12,8 +12,17 @@ import ChameleonFramework
 
 class DetailedForecastViewController: UIViewController {
   
-  var beachForecast: BeachForecast?
+  var beachForecast: BeachForecast? {
+    didSet {
+      accentColors = beachForecast?.forecast?.currently.icon.toColor
+    }
+  }
   var distanceFromUser: Int?
+  private var accentColors: [UIColor]?
+  private var gradientColorArray: [UIColor]? {
+    guard let firstColor = accentColors?.first, let secondColor = accentColors?.last else { return nil}
+    return [firstColor, firstColor, secondColor, secondColor]
+  }
   
   private var navBar: UINavigationBar? {
     return navigationController?.navigationBar
@@ -23,23 +32,10 @@ class DetailedForecastViewController: UIViewController {
     didSet {
       hourlyForecastViewController?.hourlyForecast = self.beachForecast?.forecast?.hourly
       hourlyForecastViewController?.delegate = self
-      hourlyForecastViewController?.borderColor = accentColor
+      hourlyForecastViewController?.borderColor = beachForecast?.forecast?.currently.icon.toColor.first ?? .white
     }
   }
-//
-//  private let dateFormatter: DateFormatter = {
-//    let formatter = DateFormatter()
-//    formatter.dateStyle = .none
-//    formatter.timeStyle = .short
-//    formatter.timeZone = TimeZone(abbreviation: "HST")
-//    return formatter
-//  }()
-//
-//  private func timeToString(withSeconds seconds: Int?) -> String? {
-//    guard let seconds = seconds else { print("seconds not avail"); return nil }
-//    let date = Date(timeIntervalSince1970: TimeInterval(seconds))
-//    return dateFormatter.string(from: date)
-//  }
+
   
   //MARK: Outlets
   @IBOutlet var detailedForecastView: DetailedForecastView!
@@ -49,92 +45,60 @@ class DetailedForecastViewController: UIViewController {
   @IBOutlet weak var containerView: UIView!
   @IBOutlet weak var containerViewBottomConstraint: NSLayoutConstraint!
   var swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToToggleExpansion(_:)))
-
-  @IBOutlet weak var topColoredView: UIView! {
-    didSet {
-      //topColoredView?.backgroundColor = accentColor
-    }
-  }
-  
-  
-  private var accentColor: UIColor {
-    switch beachForecast?.forecast?.currently.icon {
-    case "clear-day": return UIColor(gradientStyle: .leftToRight, withFrame: topColoredView.bounds, andColors: [.flatSkyBlue, .flatSkyBlue, .flatSkyBlueDark, .flatSkyBlueDark])
-      
-    case "rain": return UIColor(gradientStyle: .leftToRight, withFrame: topColoredView.bounds, andColors: [.flatBlue, .flatBlue, .flatBlueDark, .flatBlueDark])
-      
-    case "partly-cloudy-day", "cloudy": return UIColor(gradientStyle: .leftToRight, withFrame: topColoredView.bounds, andColors:
-      [.flatPowderBlue, .flatPowderBlue, .flatPowderBlueDark, .flatPowderBlueDark,])
-      
-    case "partly-cloudy-night": return UIColor(gradientStyle: .leftToRight, withFrame: topColoredView.bounds, andColors: [.flatPlum,.flatPlum,.flatPlumDark,.flatPlumDark])
-      
-    case "clear-night": return UIColor(gradientStyle: .leftToRight, withFrame: topColoredView.bounds, andColors: [.flatNavyBlue, .flatNavyBlue, .flatNavyBlueDark, .flatNavyBlueDark])
-      
-    case "wind": return UIColor(gradientStyle: .leftToRight, withFrame: topColoredView.bounds, andColors: [.flatMint, .flatMint, .flatMintDark, .flatMintDark])
-      
-    default: return .flatWhite
-    }
-  }
-  
   
   private func updateUI() {
     guard let beachForecast = beachForecast else { return }
-    guard let dfView = detailedForecastView else { print("no detailed forecast view"); return }
+    guard let detailedForecastView = detailedForecastView else { print("no detailed forecast view"); return }
     
-    //Set Colors
-    dfView.setThemeColorTo([accentColor])
-    topColoredView?.backgroundColor = accentColor
-    
+    //TODO: Send color to view so that view can configure
+    detailedForecastView.mainColor = accentColors
     //Set the text
-    dfView.beachNameLabel?.text = beachForecast.beach.name
-    dfView.currentTemperatureLabel?.text = beachForecast.forecast!.currently.temperature.temperatureFormatted
-    dfView.currentSummaryLabel?.text = beachForecast.forecast!.currently.summary
-    dfView.sunriseTimeLabel?.text = beachForecast.forecast?.daily?.data.first?.sunriseTime.formatTimeAs("h:mm a")
-    dfView.sunsetTimeLabel?.text = beachForecast.forecast?.daily?.data.first?.sunsetTime.formatTimeAs("h:mm a")
-    dfView.windSpeed?.text = "\(Int(beachForecast.forecast!.currently.windSpeed))mph"
-    dfView.chanceOfRainLabel?.text = "\(Int((beachForecast.forecast?.daily?.data.first?.precipProbability ?? 0) * 100))%"
-    dfView.distanceLabel?.text = "\(distanceFromUser ?? 0)mi."
-    dfView.humidityLabel?.text = "\(Int(beachForecast.forecast!.currently.humidity * 100))%"
-    
-    //Set the text color
-    dfView.currentSummaryLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: accentColor, isFlat: true)
-    dfView.beachNameLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: accentColor, isFlat: true)
-    dfView.currentTemperatureLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: accentColor, isFlat: true)
-    
-    //Set icon image
-    if let iconString = beachForecast.forecast?.currently.icon {
-      if let image = UIImage(named: iconString) {
-        dfView.currentWeatherImageView?.image = image
-      }
-    }
+    detailedForecastView.beachName = beachForecast.beach.name
+    detailedForecastView.temperature = beachForecast.forecast!.currently.temperature
+    detailedForecastView.summary = beachForecast.forecast?.currently.summary
+    detailedForecastView.imageIcon = beachForecast.forecast?.currently.icon
+    detailedForecastView.sunriseTime = beachForecast.forecast?.daily?.data.first?.sunriseTime
+    detailedForecastView.sunsetTime = beachForecast.forecast?.daily?.data.first?.sunsetTime
+    detailedForecastView.windSpeed = beachForecast.forecast?.currently.windSpeed
+    detailedForecastView.chanceOfRain = beachForecast.forecast?.daily?.data.first?.precipProbability
+    detailedForecastView.distance = distanceFromUser
+    detailedForecastView.humidity = beachForecast.forecast!.currently.humidity
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
     toggleContainerViewCollapse(initial: true)
     addSwipGesture()
-    detailedForecastView?.circledWeatherIconView?.layer.borderColor = accentColor.cgColor
     updateUI()
+    configureNavbar()
     
-    //Navigation bar configuration
-    
-    navBar?.isTranslucent = false
-    navBar?.setBackgroundImage(UIImage(), for: .default)
-    navBar?.shadowImage = UIImage()
-    navBar?.barTintColor = accentColor
-    navBar?.tintColor = UIColor(contrastingBlackOrWhiteColorOn: accentColor, isFlat: true)
-    navigationItem.largeTitleDisplayMode = .never
 
+  }
+  
+  private func configureNavbar() {
+    if let navBar = navigationController?.navigationBar {
+      navBar.isTranslucent = false
+      navBar.setBackgroundImage(UIImage(), for: .default)
+      navBar.shadowImage = UIImage()
+      navBar.barTintColor = UIColor.init(gradientStyle: .leftToRight, withFrame: navBar.frame, andColors: gradientColorArray ?? [.white])
+      navBar.tintColor = UIColor(contrastingBlackOrWhiteColorOn: accentColors?.first ?? .black, isFlat: true)
+    }
+   
+    navigationItem.largeTitleDisplayMode = .never
   }
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    navBar?.barTintColor = .white
-    navBar?.setBackgroundImage(nil, for: .default)
-    navBar?.shadowImage = nil
-    navBar?.isTranslucent = true
+    if let navBar = navigationController?.navigationBar {
+      navBar.barTintColor = .white
+      navBar.setBackgroundImage(nil, for: .default)
+      navBar.shadowImage = nil
+      navBar.isTranslucent = true
+    }
   }
-  
+}
+
+extension DetailedForecastViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "Show Hourly Forecast" {
       hourlyForecastViewController = segue.destination as? HourlyForecastViewController
