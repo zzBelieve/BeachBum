@@ -12,6 +12,8 @@ struct MockData {
   
   var beachForecasts: [BeachForecast]
   
+  static let mockData = MockData()
+  
   init() {
     var beach = Beach(name: "Haleiwa", side: "North", latitude: 21.5928, longitude: -158.1034)
     var currently = Forecast.Currently(summary: "Parly Cloudy",

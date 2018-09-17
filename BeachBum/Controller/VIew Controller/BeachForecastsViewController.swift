@@ -13,9 +13,6 @@ import ChameleonFramework
 
 class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFlowLayout, BeachForecastsViewDelegate {
   
-  //Mock Data for testing
-  let mockData = MockData()
-  
   //BeachForecastController handles logic of beach forecasts
   //and fetching of beach forecast data
   var beachForecastController = BeachForecastController()
@@ -39,7 +36,6 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
     beachForecastTableView?.reloadSections([0], with: .automatic)
   }
   
-  
   @objc func refreshForecasts() {
     print("calling fetch forecast")
     beachForecastController.updateForecasts { [weak self] in
@@ -62,10 +58,8 @@ extension BeachForecastsViewController {
                                             self?.beachForecastTableView?.reloadSections([0], with: .automatic)
     }
     beachForecastController.configureLocationManager()
-    //beachForecastController.beachForecasts = mockData.beachForecasts
     retrievedata()
     beachForecastController.locationManager.startUpdatingLocation()
-    
   }
   
   //MARK: Separating retrieve and fetch functions for better testing
@@ -86,7 +80,6 @@ extension BeachForecastsViewController {
       self?.beachForecastTableView?.reloadSections([0], with: .automatic)
     }
   }
-  
 }
 
 //MARK: Search
