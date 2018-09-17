@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		171043D1213F13630004930A /* BeachForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171043CF213F13630004930A /* BeachForecastTableViewCell.swift */; };
-		171043D6213F6D1E0004930A /* FormattingData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171043D5213F6D1E0004930A /* FormattingData.swift */; };
 		171043D8213F6FE60004930A /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171043D7213F6FE60004930A /* MockData.swift */; };
 		1731E6E5211D6FA000D7E432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6E4211D6FA000D7E432 /* AppDelegate.swift */; };
 		1731E6EA211D6FA000D7E432 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1731E6E8211D6FA000D7E432 /* Main.storyboard */; };
@@ -26,13 +25,12 @@
 		17C2E5882122B66500FAB47E /* DetailedForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */; };
 		17D8FBE921407B2E009F20B1 /* BeachForecastsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8FBE821407B2E009F20B1 /* BeachForecastsView.swift */; };
 		17E508A72131FD6300816317 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17E508A62131FD6300816317 /* GoogleService-Info.plist */; };
-		17E74555211E1AB50024B005 /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E74554211E1AB50024B005 /* ThemeColors.swift */; };
+		17E74555211E1AB50024B005 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17E74554211E1AB50024B005 /* Extensions.swift */; };
 		756ACB9AD04E7E0240F6168A /* Pods_BeachBum.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E17C175CC179D0BE7914DF4B /* Pods_BeachBum.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		171043CF213F13630004930A /* BeachForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastTableViewCell.swift; sourceTree = "<group>"; };
-		171043D5213F6D1E0004930A /* FormattingData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormattingData.swift; sourceTree = "<group>"; };
 		171043D7213F6FE60004930A /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		1731E6E1211D6FA000D7E432 /* BeachBum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeachBum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1731E6E4211D6FA000D7E432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -52,7 +50,7 @@
 		17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedForecastViewController.swift; sourceTree = "<group>"; };
 		17D8FBE821407B2E009F20B1 /* BeachForecastsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastsView.swift; sourceTree = "<group>"; };
 		17E508A62131FD6300816317 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		17E74554211E1AB50024B005 /* ThemeColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
+		17E74554211E1AB50024B005 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E012DD8D880FA3F72F7D17C7 /* Pods-BeachBum.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeachBum.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BeachBum/Pods-BeachBum.debug.xcconfig"; sourceTree = "<group>"; };
 		E17C175CC179D0BE7914DF4B /* Pods_BeachBum.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BeachBum.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FD59EC302CFF27A3DE139286 /* Pods-BeachBum.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BeachBum.release.xcconfig"; path = "Pods/Target Support Files/Pods-BeachBum/Pods-BeachBum.release.xcconfig"; sourceTree = "<group>"; };
@@ -155,11 +153,10 @@
 		1731E6F6211D6FEF00D7E432 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				17E74554211E1AB50024B005 /* ThemeColors.swift */,
+				17E74554211E1AB50024B005 /* Extensions.swift */,
 				1731E6E4211D6FA000D7E432 /* AppDelegate.swift */,
 				1731E6EB211D6FA200D7E432 /* Assets.xcassets */,
 				1731E6ED211D6FA200D7E432 /* LaunchScreen.storyboard */,
-				171043D5213F6D1E0004930A /* FormattingData.swift */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -313,8 +310,7 @@
 				1731E706211D717500D7E432 /* BeachForecastsViewController.swift in Sources */,
 				17C2E5882122B66500FAB47E /* DetailedForecastViewController.swift in Sources */,
 				1731E700211D712100D7E432 /* Beach.swift in Sources */,
-				17E74555211E1AB50024B005 /* ThemeColors.swift in Sources */,
-				171043D6213F6D1E0004930A /* FormattingData.swift in Sources */,
+				17E74555211E1AB50024B005 /* Extensions.swift in Sources */,
 				1731E702211D712100D7E432 /* BeachForecast.swift in Sources */,
 				17439BDE214267AA001E876A /* HourlyForecastViewController.swift in Sources */,
 				1731E6E5211D6FA000D7E432 /* AppDelegate.swift in Sources */,

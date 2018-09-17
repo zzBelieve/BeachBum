@@ -25,14 +25,14 @@ class BeachForecastsView: UIView {
   weak var delegate: BeachForecastsViewDelegate?
   private var sortButtonExpanded = false
   
-  @IBOutlet var sortOptions: [UIButton]! {
+  @IBOutlet var sortOptionButtons: [UIButton]! {
     didSet {
       configureButtons()
     }
   }
   
   @IBAction func sortOptionButtonPressed(_ sender: UIButton) {
-    if let index = sortOptions.index(of: sender) {
+    if let index = sortOptionButtons.index(of: sender) {
       delegate?.sortButtonPressed(Sort.all[index])
     }
   }
@@ -57,7 +57,7 @@ class BeachForecastsView: UIView {
   
   private func toggleSortBarExpansion() {
     sortButton.isEnabled = false
-    let expandedWidth = sortButton.frame.size.width * CGFloat(sortOptions.count + 1)
+    let expandedWidth = sortButton.frame.size.width * CGFloat(sortOptionButtons.count + 1)
     if self.sortButtonExpanded {
       self.sortButtonsViewWidthConstraint.constant = 50
     } else {
@@ -66,15 +66,15 @@ class BeachForecastsView: UIView {
     
     UIView.animate(withDuration: 0.5, delay: 0.0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.0, options: .curveEaseIn, animations: { [weak self] in
       self!.layoutIfNeeded()
-      for index in 0..<self!.sortOptions.count {
+      for index in 0..<self!.sortOptionButtons.count {
         if self!.sortButtonExpanded {
-          self!.sortOptions[index].transform = CGAffineTransform.identity
-          self!.sortOptions[index].alpha = 0.0
+          self!.sortOptionButtons[index].transform = CGAffineTransform.identity
+          self!.sortOptionButtons[index].alpha = 0.0
         } else {
           let x = (self!.sortButton?.frame.size.width ?? 0) * CGFloat(index + 1)
-          self!.sortOptions[index].transform = CGAffineTransform(translationX: -x, y: 0.0)
-          self!.sortOptions[index].alpha = 1.0
-          self!.sortOptions[index].isHidden = false
+          self!.sortOptionButtons[index].transform = CGAffineTransform(translationX: -x, y: 0.0)
+          self!.sortOptionButtons[index].alpha = 1.0
+          self!.sortOptionButtons[index].isHidden = false
         }
       }
     }) { completion in
@@ -84,8 +84,8 @@ class BeachForecastsView: UIView {
   }
   
   func configureButtons() {
-    for index in 0..<sortOptions.count {
-      let button = sortOptions[index]
+    for index in 0..<sortOptionButtons.count {
+      let button = sortOptionButtons[index]
       let width = button.frame.width
       button.layer.cornerRadius = width / 2
       button.clipsToBounds = true
@@ -94,7 +94,7 @@ class BeachForecastsView: UIView {
       if let image = UIImage(named: sortType.rawValue) {
         button.setImage(image, for: .normal)
       }
-      sortOptions[index].imageEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
+      sortOptionButtons[index].imageEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
     }
   }
 }

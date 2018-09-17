@@ -34,12 +34,6 @@ class BeachForecastTableViewCell: UITableViewCell {
   var sideOfIsland: String? { didSet { sideOfIslandLabel?.text = "\(sideOfIsland ?? "--") side" } }
   var summary: String? { didSet { summaryLabel?.text = summary } }
   var temperature: Int? { didSet { temperatureLabel?.text = "\(temperature ?? 0)°"}}
-  var iconString: String? {
-    didSet {
-      if let image = UIImage(named: iconString!) {
-        weatherIconImageView.image = image
-      }
-    }
-  }
+  var iconString: String? { didSet { weatherIconImageView?.image = iconString?.toImage ?? UIImage() } }
 }
 

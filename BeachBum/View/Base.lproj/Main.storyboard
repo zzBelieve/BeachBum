@@ -249,9 +249,9 @@
                             <outlet property="sortButton" destination="e0w-hn-tVJ" id="Zpe-Dj-orL"/>
                             <outlet property="sortButtonsView" destination="OOW-6b-WXn" id="7rt-5G-Eqs"/>
                             <outlet property="sortButtonsViewWidthConstraint" destination="67h-fN-LcV" id="7ed-QC-4SX"/>
-                            <outletCollection property="sortOptions" destination="3x5-Ne-wXO" collectionClass="NSMutableArray" id="5z4-aP-NtW"/>
-                            <outletCollection property="sortOptions" destination="wS8-cZ-YFJ" collectionClass="NSMutableArray" id="Txe-z2-6vg"/>
-                            <outletCollection property="sortOptions" destination="XRr-sg-Gfd" collectionClass="NSMutableArray" id="wOK-p2-0Hi"/>
+                            <outletCollection property="sortOptionButtons" destination="3x5-Ne-wXO" collectionClass="NSMutableArray" id="5z4-aP-NtW"/>
+                            <outletCollection property="sortOptionButtons" destination="wS8-cZ-YFJ" collectionClass="NSMutableArray" id="Txe-z2-6vg"/>
+                            <outletCollection property="sortOptionButtons" destination="XRr-sg-Gfd" collectionClass="NSMutableArray" id="wOK-p2-0Hi"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Beaches" id="ny7-GL-E8q"/>
@@ -581,7 +581,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9f-Pd-Wlk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3799.1999999999998" y="28.078817733990149"/>
+            <point key="canvasLocation" x="2954" y="29"/>
         </scene>
         <!--Beaches-->
         <scene sceneID="uUr-jT-AtW">
@@ -719,7 +719,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y0X-jy-0il" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3797.5999999999999" y="590.10494752623697"/>
+            <point key="canvasLocation" x="2953" y="592"/>
         </scene>
     </scenes>
     <resources>
