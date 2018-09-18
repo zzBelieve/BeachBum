@@ -60,22 +60,11 @@ extension DetailedForecastViewController {
   }
 }
 
-//MARK: UI and Navbar
+//MARK: UI, Navbar configuration, and Swipe gesture
 extension DetailedForecastViewController {
   private func updateUI() {
     guard let beachForecast = beachForecast else { return }
-    guard let detailedForecastView = detailedForecastView else { print("no detailed forecast view"); return }
-    detailedForecastView.mainColor = accentColors
-    detailedForecastView.beachName = beachForecast.beach.name
-    detailedForecastView.temperature = beachForecast.forecast!.currently.temperature
-    detailedForecastView.summary = beachForecast.forecast?.currently.summary
-    detailedForecastView.imageIcon = beachForecast.forecast?.currently.icon
-    detailedForecastView.sunriseTime = beachForecast.forecast?.daily?.data.first?.sunriseTime
-    detailedForecastView.sunsetTime = beachForecast.forecast?.daily?.data.first?.sunsetTime
-    detailedForecastView.windSpeed = beachForecast.forecast?.currently.windSpeed
-    detailedForecastView.chanceOfRain = beachForecast.forecast?.daily?.data.first?.precipProbability
-    detailedForecastView.distance = distanceFromUser
-    detailedForecastView.humidity = beachForecast.forecast!.currently.humidity
+    detailedForecastView.model = DetailedForecastViewModel(beachForecast, distanceFromUser ?? 00)
   }
   
   private func configureNavbar() {
@@ -87,6 +76,12 @@ extension DetailedForecastViewController {
       navBar.tintColor = UIColor(contrastingBlackOrWhiteColorOn: accentColors?.first ?? .black, isFlat: true)
     }
     navigationItem.largeTitleDisplayMode = .never
+  }
+  
+  private func addSwipGesture() {
+    swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToToggleExpansion(_:)))
+    swipeGesture.direction = drawerViewHidden ? .up : .down
+    self.view.addGestureRecognizer(swipeGesture)
   }
 }
 
@@ -118,12 +113,6 @@ extension DetailedForecastViewController: HourlyForecastViewControllerDelegate {
   //Delegate method from HourlyForecastViewControllerDelegate Protocol
   func toggleExpansionPressed() {
     toggleDrawerViewExpansion()
-  }
-  
-  private func addSwipGesture() {
-    swipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(swipeToToggleExpansion(_:)))
-    swipeGesture.direction = drawerViewHidden ? .up : .down
-    self.view.addGestureRecognizer(swipeGesture)
   }
   
   @objc private func swipeToToggleExpansion(_ recognizer: UISwipeGestureRecognizer) {

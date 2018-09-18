@@ -35,19 +35,22 @@ class DetailedForecastView: UIView {
     }
   }
   
-  //MARK: Property observers to format data
-  //and pass to the appropriate label
-  var mainColor: [UIColor]? { didSet { setMainColorTo(mainColor ?? [.white]) } }
-  var beachName: String? { didSet { beachNameLabel?.text = beachName  ?? ""} }
-  var temperature: Double? { didSet { currentTemperatureLabel?.text = "\(temperature?.temperatureFormatted ?? "00")"}}
-  var summary: String? { didSet { summaryLabel?.text = summary ?? "" } }
-  var imageIcon: String? { didSet { currentWeatherImageView?.image = imageIcon?.toImage ?? UIImage()}}
-  var sunriseTime: Int? { didSet { sunriseTimeLabel?.text = sunriseTime?.formatTimeAs("h:mm a") ?? "00:00" } }
-  var sunsetTime: Int? { didSet { sunsetTimeLabel?.text = sunsetTime?.formatTimeAs("h:mm a") ?? "00:00" } }
-  var windSpeed: Double? { didSet { windSpeedLabel?.text = "\(Int(windSpeed ?? 00))mph"}}
-  var chanceOfRain: Double? { didSet { chanceOfRainLabel?.text = "\(Int((chanceOfRain ?? 0) * 100 ))%" } }
-  var distance: Int? { didSet { distanceLabel?.text = "\(distance ?? 0)mi."}}
-  var humidity: Double? { didSet { humidityLabel?.text = "\(Int((humidity ?? 0) * 100))%" } }
+  var model: DetailedForecastViewModel? {
+    didSet {
+      guard let model = model else { return }
+      beachNameLabel?.text = model.beachName
+      currentTemperatureLabel?.text = model.temperatureString
+      summaryLabel?.text = model.temperatureString
+      currentWeatherImageView?.image = model.weatherImage
+      sunriseTimeLabel?.text = model.sunrriseTimeString
+      sunsetTimeLabel?.text = model.sunsetTimmeString
+      windSpeedLabel?.text = model.windSpeedstring
+      chanceOfRainLabel?.text = model.chanceOfRainString
+      distanceLabel?.text = model.distanceString
+      humidityLabel?.text = model.humidityString
+      setMainColorTo(model.colors)
+    }
+  }
   
   private func setMainColorTo(_ colors: [UIColor]) {
     guard let firstColor = colors.first, let secondColor = colors.last else { return }
@@ -62,4 +65,33 @@ class DetailedForecastView: UIView {
     beachNameLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: firstColor, isFlat: true)
     currentTemperatureLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: firstColor, isFlat: true)
   }
+}
+
+struct DetailedForecastViewModel {
+  var beachName: String
+  var temperatureString: String
+  var summary: String
+  var weatherImage: UIImage
+  var sunrriseTimeString: String
+  var sunsetTimmeString: String
+  var windSpeedstring: String
+  var chanceOfRainString: String
+  var distanceString: String
+  var humidityString: String
+  var colors: [UIColor]
+  
+  init(_ beachForecast: BeachForecast, _ distanceFromUser: Int?) {
+    self.beachName = beachForecast.beach.name
+    self.temperatureString = "\(beachForecast.forecast?.currently.temperature.temperatureFormatted ?? "00")"
+    self.summary = beachForecast.forecast?.currently.summary ?? "..."
+    self.weatherImage = beachForecast.forecast?.currently.icon.toImage ?? UIImage()
+    self.sunrriseTimeString = "\(beachForecast.forecast?.daily?.data.first?.sunriseTime.formatTimeAs("h:mm a") ?? "00:00")"
+    self.sunsetTimmeString = "\(beachForecast.forecast?.daily?.data.first?.sunsetTime.formatTimeAs("h:mm a") ?? "00:00")"
+    self.windSpeedstring = "\(Int(beachForecast.forecast?.currently.windSpeed ?? 00))mph"
+    self.chanceOfRainString = "\(Int((beachForecast.forecast?.daily?.data.first?.precipProbability ?? 0) * 100 ))%"
+    self.distanceString = "\(distanceFromUser ?? 0)mi."
+    self.humidityString = "\(Int((beachForecast.forecast?.currently.humidity ?? 0) * 100))%"
+    self.colors = beachForecast.forecast?.currently.icon.toColor ?? [.white, .white]
+  }
+  
 }

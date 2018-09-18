@@ -44,10 +44,12 @@ extension BeachForecastsViewController {
     super.viewDidLoad()
     
     configureSearchController()
-    NotificationCenter.default.addObserver(forName: .UserLocationObserver,
-                                           object: self.beachForecastController,
-                                           queue: OperationQueue.main) { [weak self] (_) in
-                                            self?.beachForecastTableView?.reloadSections([0], with: .automatic)
+    NotificationCenter.default.addObserver(
+      forName: .UserLocationObserver,
+      object: self.beachForecastController,
+      queue: OperationQueue.main) {
+        [weak self] (_) in
+        self?.beachForecastTableView?.reloadSections([0], with: .automatic)
     }
     beachForecastController.configureLocationManager()
     retrievedata()
