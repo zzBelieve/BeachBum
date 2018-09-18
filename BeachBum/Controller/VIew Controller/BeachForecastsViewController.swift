@@ -93,8 +93,6 @@ extension BeachForecastsViewController: UISearchResultsUpdating {
     searchController.searchBar.placeholder = "Search Beaches"
     definesPresentationContext = true
     navigationItem.searchController = searchController
-    //can remove below code once decided if needed or not
-    //navigationItem.hidesSearchBarWhenScrolling = false
   }
   
   func updateSearchResults(for searchController: UISearchController) {
@@ -114,13 +112,8 @@ extension BeachForecastsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "Beach Cell", for: indexPath) as? BeachForecastTableViewCell else { return UITableViewCell() }
     let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.item)
-    cell.accentColor = beachForecast.forecast?.currently.icon.toColor[0]
-    cell.beachName = beachForecast.beach.name
-    cell.sideOfIsland = beachForecast.beach.side
-    cell.summary = beachForecast.forecast?.currently.summary ?? "no summary"
-    cell.temperature = Int(beachForecast.forecast?.currently.temperature ?? 0)
-    cell.iconString = beachForecast.forecast?.currently.icon ?? "no icon"
-    cell.distanceFromUser = beachForecastController.calculateDistanceFrom(beachForecast)
+    let distance = beachForecastController.calculateDistanceFrom(beachForecast) ?? 00
+    cell.model = BeachForecastCellViewModel(beachForecast, distance)
     return cell
   }
 }

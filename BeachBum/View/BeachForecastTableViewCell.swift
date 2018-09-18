@@ -27,13 +27,36 @@ class BeachForecastTableViewCell: UITableViewCell {
   @IBOutlet private weak var temperatureLabel: UILabel!
   @IBOutlet private weak var distanceLabel: UILabel!
   
-  //MARK: Property observers set from the data source
-  var accentColor: UIColor? { didSet { accentColorview?.backgroundColor = accentColor}}
-  var distanceFromUser: Int? {didSet { distanceLabel?.text = "\(distanceFromUser ?? 0) mi." } }
-  var beachName: String? { didSet { beachNameLabel?.text = beachName } }
-  var sideOfIsland: String? { didSet { sideOfIslandLabel?.text = "\(sideOfIsland ?? "--") side" } }
-  var summary: String? { didSet { summaryLabel?.text = summary } }
-  var temperature: Int? { didSet { temperatureLabel?.text = "\(temperature ?? 0)°"}}
-  var iconString: String? { didSet { weatherIconImageView?.image = iconString?.toImage ?? UIImage() } }
+  var model: BeachForecastCellViewModel? {
+    didSet {
+      guard let model = model else { return }
+      accentColorview?.backgroundColor = model.colors
+      beachNameLabel?.text = model.beachName
+      sideOfIslandLabel?.text = model.sideOfIsland
+      summaryLabel?.text = model.summary
+      weatherIconImageView?.image = model.weatherImage
+      temperatureLabel?.text = model.temperatureString
+      distanceLabel?.text = model.distanceFromUserString
+    }
+  }
 }
 
+struct BeachForecastCellViewModel {
+  var beachName: String
+  var colors: UIColor
+  var distanceFromUserString: String
+  var sideOfIsland: String
+  var summary: String
+  var temperatureString: String
+  var weatherImage: UIImage
+  
+  init(_ beachForecast: BeachForecast, _ distance: Int) {
+    self.beachName = beachForecast.beach.name
+    self.colors = beachForecast.forecast?.currently.icon.toColor.first ?? .white
+    self.distanceFromUserString = "\(distance) mi."
+    self.sideOfIsland = "\(beachForecast.beach.side) side"
+    self.summary = beachForecast.forecast?.currently.summary ?? "---"
+    self.temperatureString = "\(Int(beachForecast.forecast?.currently.temperature ?? 00))°"
+    self.weatherImage = beachForecast.forecast?.currently.icon.toImage ?? UIImage()
+  }
+}
