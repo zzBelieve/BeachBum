@@ -9,12 +9,12 @@
 import Foundation
 import CoreLocation
 
-class BeachForecast {
+struct BeachForecast {
   
   let beach: Beach
-  var forecast: Forecast?
+  let forecast: Forecast?
   
-  init(beach: Beach, forecast: Forecast? = nil) {
+  init(_ beach: Beach, _ forecast: Forecast) {
     self.beach = beach
     self.forecast = forecast
   }

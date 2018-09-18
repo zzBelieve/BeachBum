@@ -15,7 +15,6 @@ struct Beach {
   let longitude: Double
   var coordinates: String { return "\(latitude),\(longitude)" }
   var url: URL? { return Beach.baseURL?.appendingPathComponent(coordinates) }
-  
 }
 
 extension Beach {

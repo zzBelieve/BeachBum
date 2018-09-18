@@ -54,7 +54,7 @@ struct Forecast: Codable {
   }
   
   //Keeping init for Mock data
-  init(timeZone: String = "Pacific/Honolulu", currently: Currently, hourly: Hourly? = nil, daily: Daily? = nil) {
+  init(currently: Currently, hourly: Hourly? = nil, daily: Daily? = nil) {
     self.currently = currently
     self.hourly = nil
     self.daily = nil

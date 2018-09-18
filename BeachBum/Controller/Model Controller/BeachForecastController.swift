@@ -28,26 +28,32 @@ class BeachForecastController: NSObject {
 
 //MARK: Network calls for forecasts and beach names
 extension BeachForecastController {
+  //Retrieve a list of names from the online database.
+  //Pass the list through the completion so that
+  //the following fetch forecast call can use the list of beaches
+  //to fetch all forecasts
+  func retrieveBeachNames(completion: @escaping ([Beach]) -> Void) {
+    networkController.fetchData { completion($0) }
+  }
   
-  func updateForecasts(completion: @escaping(() -> Void) ) {
+  //For each beach retrieved from Database, make a network call to fetch the forecast
+  //Use Beach and Forecast to make a new object of type BeachForecast and append to
+  //Beach Forecast array
+  func updateForecasts(for beachNames: [Beach], completion: @escaping(() -> Void) ) {
     let dispatchGroup = DispatchGroup()
-    for bf in beachForecasts {
-      if let url = bf.beach.url {
+    var newBeachForecasts = [BeachForecast]()
+    for beach in beachNames {
+      if let url = beach.url {
         dispatchGroup.enter()
         networkController.fetchForecast(url) { forecast in
-          bf.forecast = forecast
+          let newBeachForecast = BeachForecast(beach, forecast)
+          newBeachForecasts.append(newBeachForecast)
           dispatchGroup.leave()
         }
       }
     }
-    dispatchGroup.notify(queue: .main) {
-      completion()
-    }
-  }
-  
-  func retrieveBeacheNames(completion: @escaping () -> Void) {
-    networkController.fetchData { [weak self] fetchedBeachForecasts in
-      self?.beachForecasts = fetchedBeachForecasts
+    dispatchGroup.notify(queue: .main) { [weak self] in
+      self?.beachForecasts = newBeachForecasts
       completion()
     }
   }

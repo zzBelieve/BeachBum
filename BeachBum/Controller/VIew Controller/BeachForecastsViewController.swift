@@ -36,14 +36,6 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
     beachForecastTableView?.reloadSections([0], with: .automatic)
   }
   
-  @objc func refreshForecasts() {
-    print("calling fetch forecast")
-    beachForecastController.updateForecasts { [weak self] in
-      self?.beachForecastTableView?.reloadSections([0], with: .automatic)
-    }
-    beachForecastController.locationManager.startUpdatingLocation()
-    beachForecastTableView?.refreshControl?.endRefreshing()
-  }
 }
 
 //MARK: View Lifecycle
@@ -66,19 +58,26 @@ extension BeachForecastsViewController {
   //can consolidate once testing is done
   //retrieve beach names then fetch forecasts
   private func retrievedata() {
-    print("calling retrievBeachNames to retrieve beaches from Firebase")
-    beachForecastController.retrieveBeacheNames { [weak self] in
-      self?.fetchForecasts()
+    print("calling retrieveBeachNames to retrieve beaches from Firebase")
+    beachForecastController.retrieveBeachNames { [weak self] in
+      self?.fetchForecasts(for: $0)
     }
   }
   
-  private func fetchForecasts() {
+  private func fetchForecasts(for beaches: [Beach]) {
     print("calling fetchForecast to obtain forecast for all beaches")
-    beachForecastController.updateForecasts { [weak self] in
+    beachForecastController.updateForecasts(for: beaches) { [weak self] in
       print("forecast has been finished updating")
       print("setting the data source")
       self?.beachForecastTableView?.reloadSections([0], with: .automatic)
     }
+  }
+  
+  @objc func refreshForecasts() {
+    print("calling fetch forecast")
+    retrievedata()
+    beachForecastController.locationManager.startUpdatingLocation()
+    beachForecastTableView?.refreshControl?.endRefreshing()
   }
 }
 
