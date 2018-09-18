@@ -51,7 +51,7 @@ extension BeachForecastsViewController {
     }
     beachForecastController.configureLocationManager()
     retrievedata()
-    beachForecastController.locationManager.startUpdatingLocation()
+    beachForecastController.updateLocation()
   }
   
   //MARK: Separating retrieve and fetch functions for better testing
@@ -76,7 +76,7 @@ extension BeachForecastsViewController {
   @objc func refreshForecasts() {
     print("calling fetch forecast")
     retrievedata()
-    beachForecastController.locationManager.startUpdatingLocation()
+    beachForecastController.updateLocation()
     beachForecastTableView?.refreshControl?.endRefreshing()
   }
 }
@@ -106,12 +106,12 @@ extension BeachForecastsViewController: UISearchResultsUpdating {
 //MARK: Data Source
 extension BeachForecastsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return beachForecastController.filteredBeachForecasts?.count ?? beachForecastController.beachForecasts.count
+    return beachForecastController.beachForecastsCount
   }
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "Beach Cell", for: indexPath) as? BeachForecastTableViewCell else { return UITableViewCell() }
-    let beachForecast = beachForecastController.filteredBeachForecasts?[indexPath.item] ?? beachForecastController.beachForecasts[indexPath.item]
+    let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.item)
     cell.accentColor = beachForecast.forecast?.currently.icon.toColor[0]
     cell.beachName = beachForecast.beach.name
     cell.sideOfIsland = beachForecast.beach.side
@@ -144,7 +144,7 @@ extension BeachForecastsViewController {
     if segue.identifier == "Show Detailed Forecast" {
       guard let detailedForecastVC = segue.destination as? DetailedForecastViewController else { print("not a detailed VC"); return }
       guard let indexPath = beachForecastTableView?.indexPathForSelectedRow else { print("no row selected"); return }
-      let beachForecast = beachForecastController.filteredBeachForecasts?[indexPath.row] ?? beachForecastController.beachForecasts[indexPath.row]
+      let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.item)
       detailedForecastVC.beachForecast = beachForecast
       detailedForecastVC.distanceFromUser = beachForecastController.calculateDistanceFrom(beachForecast)
     }

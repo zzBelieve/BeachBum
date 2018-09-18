@@ -11,19 +11,29 @@ import CoreLocation
 
 class BeachForecastController: NSObject {
   
-  var beachForecasts = [BeachForecast]()
-  var filteredBeachForecasts: [BeachForecast]?
+  private var beachForecasts = [BeachForecast]()
+  private var filteredBeachForecasts: [BeachForecast]?
   //Service managers
-  let networkController = NetworkController()
-  let locationManager = CLLocationManager()
+  private let networkController = NetworkController()
+  private let locationManager = CLLocationManager()
   
-  var userLocation: CLLocation? { didSet { NotificationCenter.default.post(name: .UserLocationObserver, object: self) } }
+  private var userLocation: CLLocation? { didSet { NotificationCenter.default.post(name: .UserLocationObserver, object: self) } }
   
   //Vars for sorting and filtering
-  var isFiltered = false
+  private var isFiltered = false
   private var distanceSortedDownward = true
   private var temperatureSortDownward = true
   private var weatherSortedDownward = true
+  
+}
+
+extension BeachForecastController {
+  //Helper Interface Variable and Method
+  var beachForecastsCount: Int { return filteredBeachForecasts?.count ?? beachForecasts.count }
+  
+  func beachForecastForIndexAt(_ index: Int) -> BeachForecast {
+    return filteredBeachForecasts?[index] ?? beachForecasts[index]
+  }
 }
 
 //MARK: Network calls for forecasts and beach names
@@ -100,6 +110,8 @@ extension BeachForecastController: CLLocationManagerDelegate {
     locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
     locationManager.requestWhenInUseAuthorization()
   }
+  
+  func updateLocation() { locationManager.startUpdatingLocation() }
   
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     guard let loc = locations.last else { print("no locations to be found"); return }
