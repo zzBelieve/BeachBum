@@ -35,7 +35,6 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
     beachForecastController.sortBeachForecasts(sortType)
     beachForecastTableView?.reloadSections([0], with: .automatic)
   }
-  
 }
 
 //MARK: View Lifecycle
