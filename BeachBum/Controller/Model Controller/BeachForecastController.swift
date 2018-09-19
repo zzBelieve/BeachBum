@@ -34,6 +34,18 @@ extension BeachForecastController {
   func beachForecastForIndexAt(_ index: Int) -> BeachForecast {
     return filteredBeachForecasts?[index] ?? beachForecasts[index]
   }
+  
+  func addBeachForecast(_ beachForecast: BeachForecast) {
+    beachForecasts.append(beachForecast)
+    print("beach appended to forecasts")
+  }
+  
+  func removeBeach(_ beachForecast: BeachForecast) {
+    if let index = beachForecasts.index(where: { $0.beach.name == beachForecast.beach.name }) {
+      beachForecasts.remove(at: index)
+    }
+    print("beach removed from forecasts")
+  }
 }
 
 //MARK: Network calls for forecasts and beach names

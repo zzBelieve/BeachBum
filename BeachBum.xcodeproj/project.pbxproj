@@ -22,6 +22,8 @@
 		17439BBE2141C774001E876A /* DetailedForecastView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17439BBD2141C774001E876A /* DetailedForecastView.swift */; };
 		17439BDE214267AA001E876A /* HourlyForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17439BDD214267AA001E876A /* HourlyForecastViewController.swift */; };
 		17439BE221426C73001E876A /* HourlyForecastCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17439BE121426C73001E876A /* HourlyForecastCollectionViewCell.swift */; };
+		17A45D902151C4490054E554 /* FavoriteBeachesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A45D8F2151C4490054E554 /* FavoriteBeachesViewController.swift */; };
+		17A45D922151C6700054E554 /* StorageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A45D912151C6700054E554 /* StorageController.swift */; };
 		17C2E5882122B66500FAB47E /* DetailedForecastViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */; };
 		17D8FBE921407B2E009F20B1 /* BeachForecastsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D8FBE821407B2E009F20B1 /* BeachForecastsView.swift */; };
 		17E508A72131FD6300816317 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 17E508A62131FD6300816317 /* GoogleService-Info.plist */; };
@@ -47,6 +49,8 @@
 		17439BBD2141C774001E876A /* DetailedForecastView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedForecastView.swift; sourceTree = "<group>"; };
 		17439BDD214267AA001E876A /* HourlyForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastViewController.swift; sourceTree = "<group>"; };
 		17439BE121426C73001E876A /* HourlyForecastCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourlyForecastCollectionViewCell.swift; sourceTree = "<group>"; };
+		17A45D8F2151C4490054E554 /* FavoriteBeachesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBeachesViewController.swift; sourceTree = "<group>"; };
+		17A45D912151C6700054E554 /* StorageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageController.swift; sourceTree = "<group>"; };
 		17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedForecastViewController.swift; sourceTree = "<group>"; };
 		17D8FBE821407B2E009F20B1 /* BeachForecastsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastsView.swift; sourceTree = "<group>"; };
 		17E508A62131FD6300816317 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -106,6 +110,7 @@
 				1731E705211D717500D7E432 /* BeachForecastsViewController.swift */,
 				17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */,
 				17439BDD214267AA001E876A /* HourlyForecastViewController.swift */,
+				17A45D8F2151C4490054E554 /* FavoriteBeachesViewController.swift */,
 			);
 			path = "VIew Controller";
 			sourceTree = "<group>";
@@ -115,6 +120,7 @@
 			children = (
 				1731E6F7211D712100D7E432 /* BeachForecastController.swift */,
 				1731E6FA211D712100D7E432 /* NetworkController.swift */,
+				17A45D912151C6700054E554 /* StorageController.swift */,
 			);
 			path = "Model Controller";
 			sourceTree = "<group>";
@@ -307,6 +313,8 @@
 				17439BBE2141C774001E876A /* DetailedForecastView.swift in Sources */,
 				1731E703211D712100D7E432 /* Forecast.swift in Sources */,
 				17D8FBE921407B2E009F20B1 /* BeachForecastsView.swift in Sources */,
+				17A45D922151C6700054E554 /* StorageController.swift in Sources */,
+				17A45D902151C4490054E554 /* FavoriteBeachesViewController.swift in Sources */,
 				1731E706211D717500D7E432 /* BeachForecastsViewController.swift in Sources */,
 				17C2E5882122B66500FAB47E /* DetailedForecastViewController.swift in Sources */,
 				1731E700211D712100D7E432 /* Beach.swift in Sources */,

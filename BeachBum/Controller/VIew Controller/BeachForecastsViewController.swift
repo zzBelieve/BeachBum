@@ -16,7 +16,7 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   //BeachForecastController handles logic of beach forecasts
   //and fetching of beach forecast data
   var beachForecastController = BeachForecastController()
-  
+  var storageController = StorageController()
   let refresher = UIRefreshControl()
   //Mark: Outlets
   @IBOutlet weak var beachForecastTableView: UITableView! {
@@ -34,6 +34,29 @@ class BeachForecastsViewController: UIViewController, UICollectionViewDelegateFl
   func sortButtonPressed(_ sortType: Sort) {
     beachForecastController.sortBeachForecasts(sortType)
     beachForecastTableView?.reloadSections([0], with: .automatic)
+  }
+  
+  
+  //MARK: Separating retrieve and fetch functions for better testing
+  //can consolidate once testing is done
+  //retrieve beach names then fetch forecasts
+  func retrievedata() {
+        print("calling retrieveBeachNames to retrieve beaches from Firebase")
+        beachForecastController.retrieveBeachNames { [weak self] in
+          self?.fetchForecasts(for: $0)
+        }
+//    MockData.mockBeachForecasts.forEach {
+//      beachForecastController.addBeachForecast($0)
+//    }
+  }
+  
+  func fetchForecasts(for beaches: [Beach]) {
+    print("calling fetchForecast to obtain forecast for all beaches")
+    beachForecastController.updateForecasts(for: beaches) { [weak self] in
+      print("forecast has been finished updating")
+      print("setting the data source")
+      self?.beachForecastTableView?.reloadSections([0], with: .automatic)
+    }
   }
 }
 
@@ -55,24 +78,6 @@ extension BeachForecastsViewController {
     beachForecastController.updateLocation()
   }
   
-  //MARK: Separating retrieve and fetch functions for better testing
-  //can consolidate once testing is done
-  //retrieve beach names then fetch forecasts
-  private func retrievedata() {
-    print("calling retrieveBeachNames to retrieve beaches from Firebase")
-    beachForecastController.retrieveBeachNames { [weak self] in
-      self?.fetchForecasts(for: $0)
-    }
-  }
-  
-  private func fetchForecasts(for beaches: [Beach]) {
-    print("calling fetchForecast to obtain forecast for all beaches")
-    beachForecastController.updateForecasts(for: beaches) { [weak self] in
-      print("forecast has been finished updating")
-      print("setting the data source")
-      self?.beachForecastTableView?.reloadSections([0], with: .automatic)
-    }
-  }
   
   @objc func refreshForecasts() {
     print("calling fetch forecast")
@@ -129,6 +134,30 @@ extension BeachForecastsViewController: UITableViewDelegate {
   
   func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
     return 8.0
+  }
+  
+  func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+    let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.row)
+    let leadingSwipeAction = UIContextualAction(style: .normal, title: "Add To Favorites") { (action, view, completion) in
+      if StorageController.favoriteBeaches.contains(where: { $0.name == beachForecast.beach.name}) {
+        print("Already in favorites")
+        completion(false)
+      } else {
+        print("Adding to favorites")
+        if let navCon = self.tabBarController?.viewControllers?.last as? UINavigationController {
+          if let favoriteBeachesVC = navCon.viewControllers.first as? FavoriteBeachesViewController {
+              favoriteBeachesVC.addBeachForecast(beachForecast)
+          }
+        }
+        completion(true)
+      }
+    }
+    leadingSwipeAction.backgroundColor = .flatMint
+    return UISwipeActionsConfiguration(actions: [leadingSwipeAction])
+  }
+  
+  func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+      return UISwipeActionsConfiguration(actions: [])
   }
 }
 
