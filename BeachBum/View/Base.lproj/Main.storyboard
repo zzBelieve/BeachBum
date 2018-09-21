@@ -22,6 +22,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gKg-sT-ivL">
+                                <rect key="frame" x="117" y="263" width="140" height="140"/>
+                                <subviews>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PXQ-iU-CxJ">
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="wSe-gl-Uth">
+                                            <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Added" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DX-Hi-sDb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <constraints>
+                                                <constraint firstItem="0DX-Hi-sDb" firstAttribute="leading" secondItem="wSe-gl-Uth" secondAttribute="leading" id="V63-uK-zhU"/>
+                                                <constraint firstAttribute="bottom" secondItem="0DX-Hi-sDb" secondAttribute="bottom" id="abo-FB-J5Z"/>
+                                                <constraint firstItem="0DX-Hi-sDb" firstAttribute="top" secondItem="wSe-gl-Uth" secondAttribute="top" id="b54-Om-zZt"/>
+                                                <constraint firstAttribute="trailing" secondItem="0DX-Hi-sDb" secondAttribute="trailing" id="cCe-E7-K0h"/>
+                                            </constraints>
+                                        </view>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="PXQ-iU-CxJ" firstAttribute="top" secondItem="gKg-sT-ivL" secondAttribute="top" id="NhP-b2-yvD"/>
+                                    <constraint firstAttribute="trailing" secondItem="PXQ-iU-CxJ" secondAttribute="trailing" id="Old-LF-dlB"/>
+                                    <constraint firstAttribute="bottom" secondItem="PXQ-iU-CxJ" secondAttribute="bottom" id="XiZ-po-Xbt"/>
+                                    <constraint firstAttribute="height" constant="140" id="oKi-RE-l75"/>
+                                    <constraint firstItem="PXQ-iU-CxJ" firstAttribute="leading" secondItem="gKg-sT-ivL" secondAttribute="leading" id="vTz-ji-vxB"/>
+                                    <constraint firstAttribute="width" constant="140" id="vyE-7m-gQS"/>
+                                </constraints>
+                            </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YOC-zC-Iyv" userLabel="Main View">
                                 <rect key="frame" x="0.0" y="116" width="375" height="502"/>
                                 <subviews>
@@ -239,13 +277,17 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="gKg-sT-ivL" firstAttribute="centerY" secondItem="8jS-RA-xhw" secondAttribute="centerY" id="IOb-Tg-Ohe"/>
                             <constraint firstItem="YOC-zC-Iyv" firstAttribute="top" secondItem="YFq-1b-f4G" secondAttribute="top" id="OdU-q5-hMO"/>
+                            <constraint firstItem="gKg-sT-ivL" firstAttribute="centerX" secondItem="8jS-RA-xhw" secondAttribute="centerX" id="iWi-fd-0ZB"/>
                             <constraint firstItem="YOC-zC-Iyv" firstAttribute="leading" secondItem="YFq-1b-f4G" secondAttribute="leading" id="uOF-ov-ri2"/>
                             <constraint firstItem="YFq-1b-f4G" firstAttribute="trailing" secondItem="YOC-zC-Iyv" secondAttribute="trailing" id="v1J-M0-ViH"/>
                             <constraint firstItem="YFq-1b-f4G" firstAttribute="bottom" secondItem="YOC-zC-Iyv" secondAttribute="bottom" id="zu0-mh-bez"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YFq-1b-f4G"/>
                         <connections>
+                            <outlet property="popupLabel" destination="0DX-Hi-sDb" id="cDX-Yv-oDj"/>
+                            <outlet property="popupView" destination="gKg-sT-ivL" id="LQ1-z8-2ZV"/>
                             <outlet property="sortButton" destination="e0w-hn-tVJ" id="Zpe-Dj-orL"/>
                             <outlet property="sortButtonsView" destination="OOW-6b-WXn" id="7rt-5G-Eqs"/>
                             <outlet property="sortButtonsViewWidthConstraint" destination="67h-fN-LcV" id="7ed-QC-4SX"/>
@@ -1002,7 +1044,7 @@
         <image name="wind-speed" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bql-me-A04"/>
+        <segue reference="iLD-Mt-xoy"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
 </document>

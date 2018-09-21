@@ -22,6 +22,17 @@ class BeachForecastsView: UIView {
       sortButtonsView?.layer.cornerRadius = sortButtonsView.frame.size.height / 2
     }
   }
+  
+  @IBOutlet weak var popupView: UIView! {
+    didSet {
+      popupView.layer.cornerRadius = popupView.frame.size.width / 2
+      popupView?.clipsToBounds = true
+    }
+  }
+  @IBOutlet weak var popupLabel: UILabel!
+  
+  
+  
   weak var delegate: BeachForecastsViewDelegate?
   private var sortButtonExpanded = false
   
@@ -96,6 +107,19 @@ class BeachForecastsView: UIView {
       }
       sortOptionButtons[index].imageEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
     }
+  }
+  
+  func showPopupView(with text: String) {
+    popupLabel?.text = text
+    UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 2.0, options: [.allowUserInteraction, .curveEaseIn], animations: {
+      self.bringSubview(toFront: self.popupView)
+      self.layoutSubviews()
+      self.popupView.alpha = 1.0
+    }, completion: { _ in
+      UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .allowUserInteraction, animations: {
+        self.popupView.alpha = 0.0
+      })
+    })
   }
 }
 
