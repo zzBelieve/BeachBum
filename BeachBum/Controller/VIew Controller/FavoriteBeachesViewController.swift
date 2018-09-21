@@ -7,46 +7,52 @@
 //
 
 import UIKit
+import Firebase
+import CoreLocation
+import ChameleonFramework
 
-class FavoriteBeachesViewController: BeachForecastsViewController {
+class FavoriteBeachesViewController: ForecastsViewController {
 
+  var favoriteBeaches = [Beach]()
+  var storageController = StorageController()
   
-  override func retrievedata() {
+  override func retrieveBeaches() {
     //TODO retrieve data from the storage controller
-    let beaches = StorageController.favoriteBeaches
-    fetchForecasts(for: beaches)
-  }
-  
-  func addBeachForecast(_ beachForecast: BeachForecast) {
-    //TODO: tell storage controller to add to favorite beaches
-    storageController.addToBeaches(beachForecast.beach)
-    //add the beachforecast to the beachForecasts
-    beachForecastController.addBeachForecast(beachForecast)
-    //reload sections for the tableview
-    beachForecastTableView?.reloadData()
+    guard let favoriteBeaches = storageController.loadData() else { print("error loading beaches"); return }
+    self.favoriteBeaches = favoriteBeaches
+    fetchForecasts(for: self.favoriteBeaches)
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.row)
+    //let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.row)
     switch editingStyle {
     case .delete:
-      //TODO
-      //remove from favorite beaches
-      storageController.removeBeach(beachForecast.beach)
       //remove from beach forecasts
-      beachForecastController.removeBeach(beachForecast)
+      let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.row)
+      beachForecastController.removeBeach(at: indexPath.row)
       //remove from beachforecast table view
-      beachForecastTableView?.deleteRows(at: [indexPath], with: .automatic)
+      forecastTableView?.deleteRows(at: [indexPath], with: .automatic)
+      storage(willDeleteBeachFrom: beachForecast)
     default: break
     }
   }
-  
-  override func tableView(_ tableView: UITableView, leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    return UISwipeActionsConfiguration(actions: [])
+}
+
+extension FavoriteBeachesViewController: StorageDelegate {
+  func storage(willAddBeachFrom beachForecast: BeachForecast) {
+    guard !favoriteBeaches.contains(where: { $0.name == beachForecast.beach.name }) else { print("beach exists in array"); return }
+    favoriteBeaches.append(beachForecast.beach)
+    storageController.saveData(favoriteBeaches)
+    if let loadedBeaches = storageController.loadData() { favoriteBeaches = loadedBeaches }
+    beachForecastController.addBeachForecast(beachForecast)
+    forecastTableView?.reloadSections([0], with: .automatic)
   }
   
-  override func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-    return nil
+  func storage(willDeleteBeachFrom beachForecast: BeachForecast) {
+    //remove from favorite beaches
+    if let index = favoriteBeaches.index(where: { $0.name == beachForecast.beach.name }) { favoriteBeaches.remove(at: index) }
+    //call storageController to save new array
+    storageController.saveData(favoriteBeaches)
+    if let loadedBeaches = storageController.loadData() { favoriteBeaches = loadedBeaches }
   }
-  
 }

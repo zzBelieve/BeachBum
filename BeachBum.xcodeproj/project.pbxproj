@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		171043D1213F13630004930A /* BeachForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171043CF213F13630004930A /* BeachForecastTableViewCell.swift */; };
 		171043D8213F6FE60004930A /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171043D7213F6FE60004930A /* MockData.swift */; };
+		17301904215382940090D27D /* ForecastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17301903215382940090D27D /* ForecastsViewController.swift */; };
 		1731E6E5211D6FA000D7E432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6E4211D6FA000D7E432 /* AppDelegate.swift */; };
 		1731E6EA211D6FA000D7E432 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1731E6E8211D6FA000D7E432 /* Main.storyboard */; };
 		1731E6EC211D6FA200D7E432 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1731E6EB211D6FA200D7E432 /* Assets.xcassets */; };
@@ -34,6 +35,7 @@
 /* Begin PBXFileReference section */
 		171043CF213F13630004930A /* BeachForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastTableViewCell.swift; sourceTree = "<group>"; };
 		171043D7213F6FE60004930A /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		17301903215382940090D27D /* ForecastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastsViewController.swift; sourceTree = "<group>"; };
 		1731E6E1211D6FA000D7E432 /* BeachBum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeachBum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1731E6E4211D6FA000D7E432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1731E6E9211D6FA000D7E432 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -107,10 +109,11 @@
 		171CD54C213B3BF900E264ED /* VIew Controller */ = {
 			isa = PBXGroup;
 			children = (
+				17301903215382940090D27D /* ForecastsViewController.swift */,
 				1731E705211D717500D7E432 /* BeachForecastsViewController.swift */,
+				17A45D8F2151C4490054E554 /* FavoriteBeachesViewController.swift */,
 				17C2E5872122B66500FAB47E /* DetailedForecastViewController.swift */,
 				17439BDD214267AA001E876A /* HourlyForecastViewController.swift */,
-				17A45D8F2151C4490054E554 /* FavoriteBeachesViewController.swift */,
 			);
 			path = "VIew Controller";
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 				1731E702211D712100D7E432 /* BeachForecast.swift in Sources */,
 				17439BDE214267AA001E876A /* HourlyForecastViewController.swift in Sources */,
 				1731E6E5211D6FA000D7E432 /* AppDelegate.swift in Sources */,
+				17301904215382940090D27D /* ForecastsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

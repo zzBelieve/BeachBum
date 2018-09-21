@@ -40,7 +40,7 @@ class DetailedForecastView: UIView {
       guard let model = model else { return }
       beachNameLabel?.text = model.beachName
       currentTemperatureLabel?.text = model.temperatureString
-      summaryLabel?.text = model.temperatureString
+      summaryLabel?.text = model.summary
       currentWeatherImageView?.image = model.weatherImage
       sunriseTimeLabel?.text = model.sunrriseTimeString
       sunsetTimeLabel?.text = model.sunsetTimmeString

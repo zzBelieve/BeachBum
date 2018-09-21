@@ -256,8 +256,8 @@
                     </view>
                     <navigationItem key="navigationItem" title="Beaches" id="ny7-GL-E8q"/>
                     <connections>
-                        <outlet property="beachForecastTableView" destination="9uf-T8-5Al" id="Xl9-cv-bz3"/>
-                        <outlet property="beachForecastsView" destination="8jS-RA-xhw" id="cbL-oW-iWk"/>
+                        <outlet property="forecastTableView" destination="9uf-T8-5Al" id="n0Q-Tb-fHR"/>
+                        <outlet property="forecastsView" destination="8jS-RA-xhw" id="vTE-uc-pwN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aUH-Du-E7u" sceneMemberID="firstResponder"/>
@@ -722,7 +722,7 @@
             </objects>
             <point key="canvasLocation" x="2953" y="592"/>
         </scene>
-        <!--Beaches-->
+        <!--Favorites-->
         <scene sceneID="ncW-wA-k3K">
             <objects>
                 <viewController id="3aW-gU-Wgg" customClass="FavoriteBeachesViewController" customModule="BeachBum" customModuleProvider="target" sceneMemberID="viewController">
@@ -842,6 +842,7 @@
                                                     <outlet property="summaryLabel" destination="E0X-WX-nUq" id="ErR-nB-VHD"/>
                                                     <outlet property="temperatureLabel" destination="tYO-EI-hIG" id="Xhg-oh-BPZ"/>
                                                     <outlet property="weatherIconImageView" destination="XgE-h9-OJ7" id="Lbq-bR-VmB"/>
+                                                    <segue destination="cYe-xm-IVn" kind="show" identifier="Show Detailed Forecast" id="bql-me-A04"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
@@ -961,10 +962,10 @@
                             <outletCollection property="sortOptionButtons" destination="j0k-uY-xzG" collectionClass="NSMutableArray" id="qss-8M-Y6n"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="Beaches" id="uYE-hJ-OMs"/>
+                    <navigationItem key="navigationItem" title="Favorites" id="uYE-hJ-OMs"/>
                     <connections>
-                        <outlet property="beachForecastTableView" destination="CRr-wc-DPw" id="4g5-hG-8zM"/>
-                        <outlet property="beachForecastsView" destination="e37-Xt-ntX" id="v9P-hC-n9J"/>
+                        <outlet property="forecastTableView" destination="CRr-wc-DPw" id="JfA-3A-HX1"/>
+                        <outlet property="forecastsView" destination="e37-Xt-ntX" id="Wew-jF-Vyx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ryz-3w-I5f" sceneMemberID="firstResponder"/>
@@ -1000,5 +1001,8 @@
         <image name="sunset-1" width="50" height="50"/>
         <image name="wind-speed" width="50" height="50"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="bql-me-A04"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
 </document>

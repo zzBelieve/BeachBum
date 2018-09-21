@@ -46,6 +46,17 @@ extension BeachForecastController {
     }
     print("beach removed from forecasts")
   }
+  
+  func removeBeach(at index: Int) {
+    if filteredBeachForecasts != nil {
+      if let removedBeach = filteredBeachForecasts?.remove(at: index) {
+       removeBeach(removedBeach)
+      }
+    } else {
+     beachForecasts.remove(at: index)
+    }
+    print("beach removed from forecasts")
+  }
 }
 
 //MARK: Network calls for forecasts and beach names
