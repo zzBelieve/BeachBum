@@ -13,10 +13,10 @@ class BeachForecastController: NSObject {
   
   private var beachForecasts = [BeachForecast]()
   private var filteredBeachForecasts: [BeachForecast]?
+  
   //Service managers
   private let networkController = NetworkController()
   private let locationManager = CLLocationManager()
-  
   private var userLocation: CLLocation? { didSet { NotificationCenter.default.post(name: .UserLocationObserver, object: self) } }
   
   //Vars for sorting and filtering

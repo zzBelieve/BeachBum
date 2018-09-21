@@ -17,6 +17,9 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
   //and fetching of beach forecast data
   var beachForecastController = BeachForecastController()
   let refresher = UIRefreshControl()
+  
+  let storageController = StorageController()
+  var favoriteBeaches = [Beach]()
   //Mark: Outlets
   @IBOutlet weak var forecastTableView: UITableView! {
     didSet {
@@ -70,6 +73,12 @@ extension ForecastsViewController {
     beachForecastController.configureLocationManager()
     beachForecastController.updateLocation()
     retrieveBeaches()
+    favoriteBeaches = storageController.loadData() ?? [Beach]()
+  }
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    favoriteBeaches = storageController.loadData() ?? [Beach]()
   }
   
   @objc func refreshForecasts() {
