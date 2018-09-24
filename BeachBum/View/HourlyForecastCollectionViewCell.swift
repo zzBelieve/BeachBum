@@ -25,9 +25,9 @@ class HourlyForecastCollectionViewCell: UICollectionViewCell {
 }
 
 struct HourlyForecastCellViewModel {
-  var timeString: String
-  var weatherImage: UIImage
-  var temperatureString: String
+  let timeString: String
+  let weatherImage: UIImage
+  let temperatureString: String
   
   init(_ hourlyForecast: Forecast.HourlyData) {
     self.timeString = hourlyForecast.time.formatTimeAs("h a")

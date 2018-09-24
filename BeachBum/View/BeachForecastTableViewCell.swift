@@ -42,13 +42,13 @@ class BeachForecastTableViewCell: UITableViewCell {
 }
 
 struct BeachForecastCellViewModel {
-  var beachName: String
-  var colors: UIColor
-  var distanceFromUserString: String
-  var sideOfIsland: String
-  var summary: String
-  var temperatureString: String
-  var weatherImage: UIImage
+  let beachName: String
+  let colors: UIColor
+  let distanceFromUserString: String
+  let sideOfIsland: String
+  let summary: String
+  let temperatureString: String
+  let weatherImage: UIImage
   
   init(_ beachForecast: BeachForecast, _ distance: Int) {
     self.beachName = beachForecast.beach.name

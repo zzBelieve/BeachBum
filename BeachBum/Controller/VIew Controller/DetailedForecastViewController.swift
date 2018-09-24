@@ -51,12 +51,6 @@ extension DetailedForecastViewController {
   
   override func viewWillDisappear(_ animated: Bool) {
     super.viewWillDisappear(animated)
-    if let navBar = navigationController?.navigationBar {
-      navBar.barTintColor = .white
-      navBar.setBackgroundImage(nil, for: .default)
-      navBar.shadowImage = nil
-      navBar.isTranslucent = true
-    }
   }
 }
 
@@ -68,14 +62,19 @@ extension DetailedForecastViewController {
   }
   
   private func configureNavbar() {
+//    if let navBar = navigationController?.navigationBar {
+//      navBar.isTranslucent = false
+//      navBar.setBackgroundImage(UIImage(), for: .default)
+//      navBar.shadowImage = UIImage()
+//      navBar.barTintColor = UIColor.init(gradientStyle: .leftToRight, withFrame: navBar.frame, andColors: gradientColorArray ?? [.white])
+//      navBar.tintColor = UIColor(contrastingBlackOrWhiteColorOn: accentColors?.first ?? .black, isFlat: true)
+//    }
+//    navigationItem.largeTitleDisplayMode = .never
+    navigationItem.title = beachForecast?.beach.name
     if let navBar = navigationController?.navigationBar {
-      navBar.isTranslucent = false
-      navBar.setBackgroundImage(UIImage(), for: .default)
-      navBar.shadowImage = UIImage()
-      navBar.barTintColor = UIColor.init(gradientStyle: .leftToRight, withFrame: navBar.frame, andColors: gradientColorArray ?? [.white])
-      navBar.tintColor = UIColor(contrastingBlackOrWhiteColorOn: accentColors?.first ?? .black, isFlat: true)
+      navBar.tintColor = gradientColorArray?.last ?? .black
+      navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: accentColors?.last ?? .black, NSAttributedStringKey.font: UIFont(name: "Nunito-ExtraBold", size: 40.0)]
     }
-    navigationItem.largeTitleDisplayMode = .never
   }
   
   private func addSwipGesture() {

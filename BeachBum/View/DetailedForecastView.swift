@@ -12,7 +12,11 @@ import ChameleonFramework
 
 class DetailedForecastView: UIView {
 
-  @IBOutlet weak var topColoredView: UIView!
+  @IBOutlet weak var topColoredView: UIView! {
+    didSet {
+      topColoredView?.layer.cornerRadius = 10.0
+    }
+  }
   @IBOutlet weak var beachNameLabel: UILabel!
   @IBOutlet weak var currentTemperatureLabel: UILabel!
   @IBOutlet weak var summaryLabel: UILabel!
@@ -31,6 +35,7 @@ class DetailedForecastView: UIView {
         let height = $0.frame.size.height
         $0.layer.cornerRadius = height / 2
         $0.layer.borderWidth = 4.0
+        $0.clipsToBounds = true
       }
     }
   }
@@ -54,12 +59,14 @@ class DetailedForecastView: UIView {
   
   private func setMainColorTo(_ colors: [UIColor]) {
     guard let firstColor = colors.first, let secondColor = colors.last else { return }
+    let gradientArray = [firstColor, firstColor, secondColor, secondColor]
     circledViews?.forEach {
       $0.layer.borderColor = firstColor.cgColor
     }
-    let gradientColor = [firstColor, firstColor, secondColor, secondColor]
     if let topColoredview = topColoredView {
-     topColoredview.backgroundColor = UIColor.init(gradientStyle: .leftToRight, withFrame: topColoredview.frame, andColors: gradientColor)
+      let frame = CGRect(x: topColoredview.frame.minX, y: topColoredview.frame.minY, width: topColoredview.frame.size.width, height: topColoredview.frame.size.height + 100)
+      let gradient = UIColor.init(gradientStyle: .diagonal, withFrame: frame, andColors: gradientArray)
+     topColoredview.backgroundColor = gradient
     }
     summaryLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: firstColor, isFlat: true)
     beachNameLabel?.textColor = UIColor(contrastingBlackOrWhiteColorOn: firstColor, isFlat: true)
@@ -68,30 +75,43 @@ class DetailedForecastView: UIView {
 }
 
 struct DetailedForecastViewModel {
-  var beachName: String
-  var temperatureString: String
-  var summary: String
-  var weatherImage: UIImage
-  var sunrriseTimeString: String
-  var sunsetTimmeString: String
-  var windSpeedstring: String
-  var chanceOfRainString: String
-  var distanceString: String
-  var humidityString: String
-  var colors: [UIColor]
+  let beachName: String
+  let temperatureString: String
+  let summary: String
+  let weatherImage: UIImage
+  let sunrriseTimeString: String
+  let sunsetTimmeString: String
+  let windSpeedstring: String
+  let chanceOfRainString: String
+  let distanceString: String
+  let humidityString: String
+  let colors: [UIColor]
   
   init(_ beachForecast: BeachForecast, _ distanceFromUser: Int?) {
     self.beachName = beachForecast.beach.name
     self.temperatureString = "\(beachForecast.forecast?.currently.temperature.temperatureFormatted ?? "00")"
-    self.summary = beachForecast.forecast?.currently.summary ?? "..."
+    self.summary = beachForecast.forecast?.hourly?.summary ?? "..."
     self.weatherImage = beachForecast.forecast?.currently.icon.toImage ?? UIImage()
     self.sunrriseTimeString = "\(beachForecast.forecast?.daily?.data.first?.sunriseTime.formatTimeAs("h:mm a") ?? "00:00")"
     self.sunsetTimmeString = "\(beachForecast.forecast?.daily?.data.first?.sunsetTime.formatTimeAs("h:mm a") ?? "00:00")"
-    self.windSpeedstring = "\(Int(beachForecast.forecast?.currently.windSpeed ?? 00))mph"
+    self.windSpeedstring = "\(Int(beachForecast.forecast?.currently.windSpeed ?? 00)) mph"
     self.chanceOfRainString = "\(Int((beachForecast.forecast?.daily?.data.first?.precipProbability ?? 0) * 100 ))%"
-    self.distanceString = "\(distanceFromUser ?? 0)mi."
+    self.distanceString = "\(distanceFromUser ?? 0) mi."
     self.humidityString = "\(Int((beachForecast.forecast?.currently.humidity ?? 0) * 100))%"
     self.colors = beachForecast.forecast?.currently.icon.toColor ?? [.white, .white]
   }
   
+}
+
+extension UIView {
+  func setGradientColor(colorOne: UIColor, colorTwo: UIColor) {
+    let gradientLayer = CAGradientLayer()
+    gradientLayer.frame = bounds
+    gradientLayer.colors = [colorOne.cgColor, colorTwo.cgColor]
+    //gradientLayer.colors = [UIColor.blue.cgColor, UIColor.white.cgColor]
+    //gradientLayer.locations = [0.0, 1.0]
+    gradientLayer.endPoint = CGPoint(x: 1.0, y: 1.0)
+    gradientLayer.startPoint = CGPoint(x: 0.0, y: 0.0)
+    layer.insertSublayer(gradientLayer, at: 0)
+  }
 }

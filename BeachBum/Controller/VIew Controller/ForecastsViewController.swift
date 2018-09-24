@@ -74,11 +74,23 @@ extension ForecastsViewController {
     beachForecastController.updateLocation()
     retrieveBeaches()
     favoriteBeaches = storageController.loadData() ?? [Beach]()
+    
+    if let navBar = navigationController?.navigationBar {
+      navBar.barTintColor = .white
+      navBar.setBackgroundImage(UIImage(), for: .default)
+      navBar.shadowImage = UIImage()
+      navBar.isTranslucent = true
+    }
   }
   
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     favoriteBeaches = storageController.loadData() ?? [Beach]()
+    if let navBar = navigationController?.navigationBar {
+      navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
+      navBar.largeTitleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Nunito-ExtraBold", size: 40.0)]
+    }
+
   }
   
   @objc func refreshForecasts() {
