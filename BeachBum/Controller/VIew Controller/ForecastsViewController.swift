@@ -17,6 +17,7 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
   //and fetching of beach forecast data
   var beachForecastController = BeachForecastController()
   let refresher = UIRefreshControl()
+  let networkController = NetworkController()
   
   let storageController = StorageController()
   var favoriteBeaches = [Beach]()
@@ -46,12 +47,21 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
     //call fetch forecasts at the end of this method
   }
   
-  func fetchForecasts(for beaches: [Beach]) {
-    print("calling fetchForecast to obtain forecast for all beaches")
-    beachForecastController.updateForecasts(for: beaches) { [weak self] in
-      print("forecast has been finished updating")
-      print("setting the data source")
-      self?.forecastTableView?.reloadSections([0], with: .automatic)
+  func fetchForecasts(for beaches: [Beach], completion: @escaping ([BeachForecast]) -> Void) {
+    let dispatchGroup = DispatchGroup()
+    var newBeachForecasts = [BeachForecast]()
+    for beach in beaches {
+      if let url = beach.url {
+        dispatchGroup.enter()
+        networkController.fetchForecast(url) { forecast in
+          let newBeachForecast = BeachForecast(beach, forecast)
+          newBeachForecasts.append(newBeachForecast)
+          dispatchGroup.leave()
+        }
+      }
+    }
+    dispatchGroup.notify(queue: .main) {
+      completion(newBeachForecasts)
     }
   }
   
@@ -88,7 +98,7 @@ extension ForecastsViewController {
     favoriteBeaches = storageController.loadData() ?? [Beach]()
     if let navBar = navigationController?.navigationBar {
       navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
-      navBar.largeTitleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Nunito-ExtraBold", size: 40.0)]
+      navBar.largeTitleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Nunito-ExtraBold", size: 40.0)!]
     }
 
   }

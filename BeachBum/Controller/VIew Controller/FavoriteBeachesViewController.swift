@@ -17,7 +17,10 @@ class FavoriteBeachesViewController: ForecastsViewController {
     //TODO retrieve data from the storage controller
     guard let favoriteBeaches = storageController.loadData() else { print("error loading beaches"); return }
     self.favoriteBeaches = favoriteBeaches
-    fetchForecasts(for: self.favoriteBeaches)
+    fetchForecasts(for: self.favoriteBeaches) { [weak self] in
+      self?.beachForecastController.beachForecastsArray = $0
+      self?.forecastTableView?.reloadSections([0], with: .automatic)
+    }
   }
   
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

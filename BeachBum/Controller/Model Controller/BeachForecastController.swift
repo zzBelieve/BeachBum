@@ -31,6 +31,15 @@ extension BeachForecastController {
   //Helper Interface Variable and Method
   var beachForecastsCount: Int { return filteredBeachForecasts?.count ?? beachForecasts.count }
   
+  var beachForecastsArray: [BeachForecast] {
+    get {
+      return beachForecasts
+    }
+    set {
+      beachForecasts = newValue
+    }
+  }
+  
   func beachForecastForIndexAt(_ index: Int) -> BeachForecast {
     return filteredBeachForecasts?[index] ?? beachForecasts[index]
   }
@@ -67,28 +76,6 @@ extension BeachForecastController {
   //to fetch all forecasts
   func retrieveBeachNames(completion: @escaping ([Beach]) -> Void) {
     networkController.fetchData { completion($0) }
-  }
-  
-  //For each beach retrieved from Database, make a network call to fetch the forecast
-  //Use Beach and Forecast to make a new object of type BeachForecast and append to
-  //Beach Forecast array
-  func updateForecasts(for beachNames: [Beach], completion: @escaping(() -> Void) ) {
-    let dispatchGroup = DispatchGroup()
-    var newBeachForecasts = [BeachForecast]()
-    for beach in beachNames {
-      if let url = beach.url {
-        dispatchGroup.enter()
-        networkController.fetchForecast(url) { forecast in
-          let newBeachForecast = BeachForecast(beach, forecast)
-          newBeachForecasts.append(newBeachForecast)
-          dispatchGroup.leave()
-        }
-      }
-    }
-    dispatchGroup.notify(queue: .main) { [weak self] in
-      self?.beachForecasts = newBeachForecasts
-      completion()
-    }
   }
 }
 
