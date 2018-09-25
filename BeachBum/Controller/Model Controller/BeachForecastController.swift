@@ -15,7 +15,6 @@ class BeachForecastController: NSObject {
   private var filteredBeachForecasts: [BeachForecast]?
   
   //Service managers
-  private let networkController = NetworkController()
   private let locationManager = CLLocationManager()
   private var userLocation: CLLocation? { didSet { NotificationCenter.default.post(name: .UserLocationObserver, object: self) } }
   
@@ -70,13 +69,7 @@ extension BeachForecastController {
 
 //MARK: Network calls for forecasts and beach names
 extension BeachForecastController {
-  //Retrieve a list of names from the online database.
-  //Pass the list through the completion so that
-  //the following fetch forecast call can use the list of beaches
-  //to fetch all forecasts
-  func retrieveBeachNames(completion: @escaping ([Beach]) -> Void) {
-    networkController.fetchData { completion($0) }
-  }
+  
 }
 
 //Mark: Sorting and filtering functions

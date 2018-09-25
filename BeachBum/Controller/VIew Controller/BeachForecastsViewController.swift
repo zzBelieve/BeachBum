@@ -14,13 +14,12 @@ import ChameleonFramework
 class BeachForecastsViewController: ForecastsViewController {
   
   override func retrieveBeaches() {
-    print("calling retrieveBeachNames to retrieve beaches from Firebase")
-    beachForecastController.retrieveBeachNames { [weak self] in
-      self?.fetchForecasts(for: $0) { [weak self] in
+    networkController.fetchData(completion: { [weak self] in
+      self?.fetchForecasts(for: $0, completion: { [weak self] in
         self?.beachForecastController.beachForecastsArray = $0
         self?.forecastTableView?.reloadSections([0], with: .automatic)
-      }
-    }
+      })
+    })
     //addMockData()
   }
   
