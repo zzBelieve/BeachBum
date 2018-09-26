@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import CoreLocation
 import ChameleonFramework
 
 class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
@@ -18,9 +16,10 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
   var beachForecastController = BeachForecastController()
   let refresher = UIRefreshControl()
   let networkController = NetworkController()
-  
+  let locationController = LocationController()
   let storageController = StorageController()
   var favoriteBeaches = [Beach]()
+  
   //Mark: Outlets
   @IBOutlet weak var forecastTableView: UITableView! {
     didSet {
@@ -36,8 +35,13 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
   @IBOutlet var forecastsView: BeachForecastsView! { didSet { forecastsView.delegate = self } }
   
   func sortButtonPressed(_ sortType: Sort) {
-    beachForecastController.sortBeachForecasts(sortType)
+    if sortType == .distance, let beachesSortedByDistance = locationController.sort(beachForecastController._beachForecastsArray) {
+      beachForecastController._beachForecastsArray = beachesSortedByDistance
+    } else {
+      beachForecastController.sortBeachForecasts(sortType)
+    }
     forecastTableView?.reloadSections([0], with: .automatic)
+
   }
   
   func retrieveBeaches() {
@@ -80,8 +84,8 @@ extension ForecastsViewController {
     NotificationCenter.default.addObserver( forName: .UserLocationObserver, object: self.beachForecastController, queue: OperationQueue.main) { [weak self] (_) in
       self?.forecastTableView?.reloadSections([0], with: .automatic)
     }
-    beachForecastController.configureLocationManager()
-    beachForecastController.updateLocation()
+    locationController.configureLocationManager()
+    locationController.updateLocation()
     retrieveBeaches()
     favoriteBeaches = storageController.loadData() ?? [Beach]()
     
@@ -106,7 +110,7 @@ extension ForecastsViewController {
   @objc func refreshForecasts() {
     print("calling fetch forecast")
     retrieveBeaches()
-    beachForecastController.updateLocation()
+    locationController.updateLocation()
     forecastTableView?.refreshControl?.endRefreshing()
   }
 }
@@ -140,7 +144,7 @@ extension ForecastsViewController: UITableViewDataSource {
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(withIdentifier: "Beach Cell", for: indexPath) as? BeachForecastTableViewCell else { return UITableViewCell() }
     let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.item)
-    let distance = beachForecastController.calculateDistanceFrom(beachForecast) ?? 00
+    let distance = locationController.calculateDistanceFrom(beachForecast) ?? 00
     cell.model = BeachForecastCellViewModel(beachForecast, distance)
     return cell
   }
@@ -169,7 +173,7 @@ extension ForecastsViewController {
       guard let indexPath = forecastTableView?.indexPathForSelectedRow else { print("no row selected"); return }
       let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.item)
       detailedForecastVC.beachForecast = beachForecast
-      detailedForecastVC.distanceFromUser = beachForecastController.calculateDistanceFrom(beachForecast)
+      detailedForecastVC.distanceFromUser = locationController.calculateDistanceFrom(beachForecast)
     }
   }
 }

@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Firebase
-import CoreLocation
 import ChameleonFramework
 
 class FavoriteBeachesViewController: ForecastsViewController {
@@ -18,7 +16,7 @@ class FavoriteBeachesViewController: ForecastsViewController {
     guard let favoriteBeaches = storageController.loadData() else { print("error loading beaches"); return }
     self.favoriteBeaches = favoriteBeaches
     fetchForecasts(for: self.favoriteBeaches) { [weak self] in
-      self?.beachForecastController.beachForecastsArray = $0
+      self?.beachForecastController._beachForecastsArray = $0
       self?.forecastTableView?.reloadSections([0], with: .automatic)
     }
   }

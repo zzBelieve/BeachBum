@@ -7,52 +7,36 @@
 //
 
 import Foundation
-import CoreLocation
 
 class BeachForecastController: NSObject {
   
   private var beachForecasts = [BeachForecast]()
   private var filteredBeachForecasts: [BeachForecast]?
   
-  //Service managers
-  private let locationManager = CLLocationManager()
-  private var userLocation: CLLocation? { didSet { NotificationCenter.default.post(name: .UserLocationObserver, object: self) } }
-  
   //Vars for sorting and filtering
   private var isFiltered = false
-  private var distanceSortedDownward = true
   private var temperatureSortDownward = true
   private var weatherSortedDownward = true
-  
 }
 
+//Helper Interface Variable and Method
+
 extension BeachForecastController {
-  //Helper Interface Variable and Method
   var beachForecastsCount: Int { return filteredBeachForecasts?.count ?? beachForecasts.count }
   
-  var beachForecastsArray: [BeachForecast] {
-    get {
-      return beachForecasts
-    }
-    set {
-      beachForecasts = newValue
-    }
+  var _beachForecastsArray: [BeachForecast] {
+    get { return beachForecasts }
+    set { beachForecasts = newValue }
   }
   
-  func beachForecastForIndexAt(_ index: Int) -> BeachForecast {
-    return filteredBeachForecasts?[index] ?? beachForecasts[index]
-  }
+  func beachForecastForIndexAt(_ index: Int) -> BeachForecast { return filteredBeachForecasts?[index] ?? beachForecasts[index] }
   
-  func addBeachForecast(_ beachForecast: BeachForecast) {
-    beachForecasts.append(beachForecast)
-    print("beach appended to forecasts")
-  }
+  func addBeachForecast(_ beachForecast: BeachForecast) { beachForecasts.append(beachForecast) }
   
   func removeBeach(_ beachForecast: BeachForecast) {
     if let index = beachForecasts.index(where: { $0.beach.name == beachForecast.beach.name }) {
       beachForecasts.remove(at: index)
     }
-    print("beach removed from forecasts")
   }
   
   func removeBeach(at index: Int) {
@@ -63,13 +47,7 @@ extension BeachForecastController {
     } else {
      beachForecasts.remove(at: index)
     }
-    print("beach removed from forecasts")
   }
-}
-
-//MARK: Network calls for forecasts and beach names
-extension BeachForecastController {
-  
 }
 
 //Mark: Sorting and filtering functions
@@ -82,14 +60,14 @@ extension BeachForecastController {
       case .weatherCondition:
         return weatherSortedDownward ? (b1.forecast!.currently.icon < b2.forecast!.currently.icon) : (b1.forecast!.currently.icon > b2.forecast!.currently.icon)
       case .distance:
-        return distanceSortedDownward ? (calculateDistanceFrom(b1)! < calculateDistanceFrom(b2)!) : (calculateDistanceFrom(b1)! > calculateDistanceFrom(b2)!)
+        return false
       }
     }
     
     switch sortType {
     case .temperature: temperatureSortDownward = !temperatureSortDownward
     case .weatherCondition: weatherSortedDownward = !weatherSortedDownward
-    case .distance: distanceSortedDownward = !distanceSortedDownward
+    default: break
     }
   }
   
@@ -103,43 +81,5 @@ extension BeachForecastController {
     case "west": filteredBeachForecasts = beachForecasts.filter { $0.beach.side == "West" }
     default: filteredBeachForecasts = beachForecasts.filter { $0.beach.name.lowercased().contains(searchString.lowercased()) }
     }
-  }
-}
-
-//MARK: Location manager
-extension BeachForecastController: CLLocationManagerDelegate {
-  func configureLocationManager() {
-    locationManager.delegate = self
-    locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-    locationManager.requestWhenInUseAuthorization()
-  }
-  
-  func updateLocation() { locationManager.startUpdatingLocation() }
-  
-  func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-    guard let loc = locations.last else { print("no locations to be found"); return }
-    if loc.horizontalAccuracy > 0 {
-      self.locationManager.stopUpdatingLocation()
-      let lat = loc.coordinate.latitude
-      let long = loc.coordinate.longitude
-      userLocation = CLLocation(latitude: lat, longitude: long)
-    }
-  }
-  
-  func calculateDistanceFrom(_ beachForecast: BeachForecast) -> Int? {
-    let lat = CLLocationDegrees(Double(beachForecast.beach.latitude))
-    let long = CLLocationDegrees(Double(beachForecast.beach.longitude))
-    let beachLocation = CLLocation(latitude: lat, longitude: long)
-    return userLocation?.distance(from: beachLocation).distanceInMiles
-  }
-}
-
-extension Notification.Name {
-  static let UserLocationObserver = Notification.Name(rawValue: "UserLocationObserver")
-}
-
-extension CLLocationDistance {
-  var distanceInMiles: Int {
-    return Int(self * 0.000621371)
   }
 }

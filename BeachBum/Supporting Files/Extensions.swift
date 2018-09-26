@@ -45,4 +45,7 @@ extension Int {
   }
 }
 
+extension Notification.Name {
+  static let UserLocationObserver = Notification.Name(rawValue: "UserLocationObserver")
+}
 

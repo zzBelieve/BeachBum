@@ -7,8 +7,6 @@
 //
 //
 import UIKit
-import Firebase
-import CoreLocation
 import ChameleonFramework
 
 class BeachForecastsViewController: ForecastsViewController {
@@ -16,7 +14,7 @@ class BeachForecastsViewController: ForecastsViewController {
   override func retrieveBeaches() {
     networkController.fetchData(completion: { [weak self] in
       self?.fetchForecasts(for: $0, completion: { [weak self] in
-        self?.beachForecastController.beachForecastsArray = $0
+        self?.beachForecastController._beachForecastsArray = $0
         self?.forecastTableView?.reloadSections([0], with: .automatic)
       })
     })

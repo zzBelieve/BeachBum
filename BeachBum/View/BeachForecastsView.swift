@@ -29,18 +29,12 @@ class BeachForecastsView: UIView {
       popupView?.clipsToBounds = true
     }
   }
+  
   @IBOutlet weak var popupLabel: UILabel!
-  
-  
-  
   weak var delegate: BeachForecastsViewDelegate?
   private var sortButtonExpanded = false
   
-  @IBOutlet var sortOptionButtons: [UIButton]! {
-    didSet {
-      configureButtons()
-    }
-  }
+  @IBOutlet var sortOptionButtons: [UIButton]! { didSet {    configureButtons() } }
   
   @IBAction func sortOptionButtonPressed(_ sender: UIButton) {
     if let index = sortOptionButtons.index(of: sender) {
@@ -62,9 +56,7 @@ class BeachForecastsView: UIView {
     }
   }
   
-  @IBAction func sortButtonPressed(_ sender: UIButton) {
-    toggleSortBarExpansion()
-  }
+  @IBAction func sortButtonPressed(_ sender: UIButton) { toggleSortBarExpansion() }
   
   private func toggleSortBarExpansion() {
     sortButton.isEnabled = false

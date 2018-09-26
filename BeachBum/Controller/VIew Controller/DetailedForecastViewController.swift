@@ -62,14 +62,6 @@ extension DetailedForecastViewController {
   }
   
   private func configureNavbar() {
-//    if let navBar = navigationController?.navigationBar {
-//      navBar.isTranslucent = false
-//      navBar.setBackgroundImage(UIImage(), for: .default)
-//      navBar.shadowImage = UIImage()
-//      navBar.barTintColor = UIColor.init(gradientStyle: .leftToRight, withFrame: navBar.frame, andColors: gradientColorArray ?? [.white])
-//      navBar.tintColor = UIColor(contrastingBlackOrWhiteColorOn: accentColors?.first ?? .black, isFlat: true)
-//    }
-//    navigationItem.largeTitleDisplayMode = .never
     navigationItem.title = beachForecast?.beach.name
     if let navBar = navigationController?.navigationBar {
       navBar.tintColor = gradientColorArray?.last ?? .black
