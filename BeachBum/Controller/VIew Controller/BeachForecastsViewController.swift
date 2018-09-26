@@ -18,7 +18,7 @@ class BeachForecastsViewController: ForecastsViewController {
         self?.forecastTableView?.reloadSections([0], with: .automatic)
       })
     })
-    //addMockData()
+//    addMockData()
   }
   
   //table view leading swipe action
