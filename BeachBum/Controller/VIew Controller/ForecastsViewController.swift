@@ -76,6 +76,7 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
     MockData.mockBeachForecasts.forEach {
       beachForecastController.addBeachForecast($0)
     }
+    SVProgressHUD.dismiss()
   }
 }
 
@@ -113,7 +114,6 @@ extension ForecastsViewController {
   }
   
   @objc func refreshForecasts() {
-    print("calling fetch forecast")
     retrieveBeaches()
     locationController.updateLocation()
     forecastTableView?.refreshControl?.endRefreshing()
