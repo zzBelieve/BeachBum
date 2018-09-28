@@ -52,7 +52,7 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
     //call fetch forecasts at the end of this method
   }
   
-  func fetchForecasts(for beaches: [Beach], completion: @escaping ([BeachForecast]) -> Void) {
+  func fetchForecasts(for beaches: [Beach]) {
     let dispatchGroup = DispatchGroup()
     var newBeachForecasts = [BeachForecast]()
     for beach in beaches {
@@ -69,7 +69,6 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
       self?.beachForecastController._beachForecastsArray = newBeachForecasts
       SVProgressHUD.dismiss()
       self?.forecastTableView?.reloadSections([0], with: .automatic)
-      //completion(newBeachForecasts)
     }
   }
   

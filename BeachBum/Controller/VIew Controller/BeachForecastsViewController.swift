@@ -14,11 +14,7 @@ class BeachForecastsViewController: ForecastsViewController {
   
   override func retrieveBeaches() {
     networkController.fetchData(completion: { [weak self] in
-      self?.fetchForecasts(for: $0, completion: { [weak self] in
-        self?.beachForecastController._beachForecastsArray = $0
-        self?.forecastTableView?.reloadSections([0], with: .automatic)
-        SVProgressHUD.dismiss()
-      })
+      self?.fetchForecasts(for: $0)
     })
     //addMockData()
   }
