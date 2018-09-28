@@ -25,6 +25,7 @@ class LocationController: NSObject, CLLocationManagerDelegate {
   func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     guard let loc = locations.last else { print("no locations to be found"); return }
     if loc.horizontalAccuracy > 0 {
+      print("location found. stopping")
       self.locationManager.stopUpdatingLocation()
       let lat = loc.coordinate.latitude
       let long = loc.coordinate.longitude

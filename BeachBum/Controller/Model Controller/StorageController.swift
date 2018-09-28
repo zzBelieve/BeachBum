@@ -45,7 +45,6 @@ class StorageController {
       print("writing \(jsonData) to disk")
       try jsonData.write(to: url)
       print("success")
-      //tell notification center of change
       notificationCenter.post(name: .StorageObserver, object: self)
     } catch {
       print(error)

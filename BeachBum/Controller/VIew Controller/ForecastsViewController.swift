@@ -104,6 +104,7 @@ extension ForecastsViewController {
       navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
       navBar.largeTitleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Nunito-ExtraBold", size: 40.0)!]
     }
+    extendedLayoutIncludesOpaqueBars = true
 
   }
   
@@ -121,9 +122,10 @@ extension ForecastsViewController: UISearchResultsUpdating {
   private func configureSearchController() {
     let searchController = UISearchController(searchResultsController: nil)
     searchController.searchResultsUpdater = self
-    searchController.obscuresBackgroundDuringPresentation = false
+    //searchController.obscuresBackgroundDuringPresentation = false
+    //definesPresentationContext = true
+    //navigationItem.hidesSearchBarWhenScrolling = false
     searchController.searchBar.placeholder = "Search Beaches"
-    definesPresentationContext = true
     navigationItem.searchController = searchController
   }
   
