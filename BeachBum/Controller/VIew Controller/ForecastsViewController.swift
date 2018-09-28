@@ -8,6 +8,7 @@
 
 import UIKit
 import ChameleonFramework
+import SVProgressHUD
 
 class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
   
@@ -64,8 +65,11 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
         }
       }
     }
-    dispatchGroup.notify(queue: .main) {
-      completion(newBeachForecasts)
+    dispatchGroup.notify(queue: .main) { [weak self] in 
+      self?.beachForecastController._beachForecastsArray = newBeachForecasts
+      SVProgressHUD.dismiss()
+      self?.forecastTableView?.reloadSections([0], with: .automatic)
+      //completion(newBeachForecasts)
     }
   }
   
@@ -80,6 +84,7 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
 extension ForecastsViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
+    SVProgressHUD.show()
     configureSearchController()
     NotificationCenter.default.addObserver( forName: .UserLocationObserver, object: self.beachForecastController, queue: OperationQueue.main) { [weak self] (_) in
       self?.forecastTableView?.reloadSections([0], with: .automatic)

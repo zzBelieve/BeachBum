@@ -8,6 +8,7 @@
 //
 import UIKit
 import ChameleonFramework
+import SVProgressHUD
 
 class BeachForecastsViewController: ForecastsViewController {
   
@@ -16,6 +17,7 @@ class BeachForecastsViewController: ForecastsViewController {
       self?.fetchForecasts(for: $0, completion: { [weak self] in
         self?.beachForecastController._beachForecastsArray = $0
         self?.forecastTableView?.reloadSections([0], with: .automatic)
+        SVProgressHUD.dismiss()
       })
     })
     //addMockData()
