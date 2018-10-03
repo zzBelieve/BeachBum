@@ -42,13 +42,11 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
       beachForecastController.sortBeachForecasts(sortType)
     }
     forecastTableView?.reloadSections([0], with: .automatic)
-
   }
   
   func retrieveBeaches() {
     //fetch beaches either from the network or from the disk
     //and returns array of beaches
-    
     //call fetch forecasts at the end of this method
   }
   
@@ -73,9 +71,7 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
   }
   
   func addMockData() {
-    MockData.mockBeachForecasts.forEach {
-      beachForecastController.addBeachForecast($0)
-    }
+    MockData.mockBeachForecasts.forEach { beachForecastController.addBeachForecast($0) }
     SVProgressHUD.dismiss()
   }
 }
