@@ -122,9 +122,9 @@ extension ForecastsViewController: UISearchResultsUpdating {
   private func configureSearchController() {
     let searchController = UISearchController(searchResultsController: nil)
     searchController.searchResultsUpdater = self
-    //searchController.obscuresBackgroundDuringPresentation = false
-    //definesPresentationContext = true
-    //navigationItem.hidesSearchBarWhenScrolling = false
+    searchController.obscuresBackgroundDuringPresentation = false //allows interaction during search
+    definesPresentationContext = true
+    navigationItem.hidesSearchBarWhenScrolling = false
     searchController.searchBar.placeholder = "Search Beaches"
     navigationItem.searchController = searchController
   }

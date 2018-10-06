@@ -10,7 +10,7 @@ import Foundation
 import Firebase
 
 class NetworkController {
-  
+
   //Fetch name data for beaches from Firebase
   //Passes an array of beaches in the completion handler
   func fetchData(completion: @escaping ([Beach]) -> Void) {
@@ -30,7 +30,7 @@ class NetworkController {
       completion(beaches)
     }
   }
-  
+
   //Fetch weather forecast given a url, and hands it over to completion
   func fetchForecast(_ url: URL, completion: @escaping ((Forecast) -> Void)) {
     let task = URLSession.shared.dataTask(with: url) { (data, response, error) in
