@@ -24,7 +24,7 @@ class BeachForecastsViewController: ForecastsViewController {
     let beach = beachForecastController.beachForecastForIndexAt(indexPath.row).beach
     let leadingSwipeAction = UIContextualAction(style: .normal, title: "Add To Favorites") { (action, view, completion) in
       if self.favoriteBeaches.contains(where: { $0.name == beach.name} ) {
-        self.forecastsView.showPopupView(with: "Already in favorites")
+        self.forecastsView.showPopupView(with: "Already in Favorites")
         completion(false)
       } else {
         self.favoriteBeaches.append(beach)

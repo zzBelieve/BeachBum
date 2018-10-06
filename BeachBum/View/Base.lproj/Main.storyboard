@@ -14,8 +14,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Nunito-BoldItalic.ttf">
-            <string>Nunito-BoldItalic</string>
+        <array key="Nunito-Bold.ttf">
+            <string>Nunito-Bold</string>
         </array>
         <array key="Nunito-ExtraBold.ttf">
             <string>Nunito-ExtraBold</string>
@@ -23,8 +23,8 @@
         <array key="Nunito-Regular.ttf">
             <string>Nunito-Regular</string>
         </array>
-        <array key="Raleway-BoldItalic.ttf">
-            <string>Raleway-BoldItalic</string>
+        <array key="Raleway-Bold.ttf">
+            <string>Raleway-Bold</string>
         </array>
         <array key="Raleway-Regular.ttf">
             <string>Raleway-Regular</string>
@@ -49,7 +49,7 @@
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Added" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0DX-Hi-sDb">
-                                                    <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                                                    <rect key="frame" x="10" y="10" width="120" height="120"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -58,10 +58,10 @@
                                             <color key="backgroundColor" white="0.66666666666666663" alpha="0.14999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstItem="0DX-Hi-sDb" firstAttribute="leading" secondItem="wSe-gl-Uth" secondAttribute="leading" id="V63-uK-zhU"/>
-                                                <constraint firstAttribute="bottom" secondItem="0DX-Hi-sDb" secondAttribute="bottom" id="abo-FB-J5Z"/>
-                                                <constraint firstItem="0DX-Hi-sDb" firstAttribute="top" secondItem="wSe-gl-Uth" secondAttribute="top" id="b54-Om-zZt"/>
-                                                <constraint firstAttribute="trailing" secondItem="0DX-Hi-sDb" secondAttribute="trailing" id="cCe-E7-K0h"/>
+                                                <constraint firstItem="0DX-Hi-sDb" firstAttribute="leading" secondItem="wSe-gl-Uth" secondAttribute="leading" constant="10" id="V63-uK-zhU"/>
+                                                <constraint firstAttribute="bottom" secondItem="0DX-Hi-sDb" secondAttribute="bottom" constant="10" id="abo-FB-J5Z"/>
+                                                <constraint firstItem="0DX-Hi-sDb" firstAttribute="top" secondItem="wSe-gl-Uth" secondAttribute="top" constant="10" id="b54-Om-zZt"/>
+                                                <constraint firstAttribute="trailing" secondItem="0DX-Hi-sDb" secondAttribute="trailing" constant="10" id="cCe-E7-K0h"/>
                                             </constraints>
                                         </view>
                                         <blurEffect style="light"/>
@@ -109,7 +109,7 @@
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="99°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="39J-zY-ClI">
                                                                             <rect key="frame" x="4.5" y="46" width="41" height="35.5"/>
-                                                                            <fontDescription key="fontDescription" name="Nunito-BoldItalic" family="Nunito" pointSize="26"/>
+                                                                            <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="26"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>
@@ -369,7 +369,7 @@
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="110" id="iT5-kX-utG"/>
                                                 </constraints>
-                                                <fontDescription key="fontDescription" name="Raleway-BoldItalic" family="Raleway" pointSize="17"/>
+                                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -717,8 +717,8 @@
                                                             <rect key="frame" x="15" y="3" width="50" height="114"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h6r-xC-ew9">
-                                                                    <rect key="frame" x="4.5" y="0.0" width="41" height="32.5"/>
-                                                                    <fontDescription key="fontDescription" name="Nunito-Regular" family="Nunito" pointSize="17"/>
+                                                                    <rect key="frame" x="4" y="0.0" width="42.5" height="32.5"/>
+                                                                    <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="17"/>
                                                                     <nil key="textColor"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
@@ -827,7 +827,7 @@
                                                                         </imageView>
                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="99°" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tYO-EI-hIG">
                                                                             <rect key="frame" x="4.5" y="46" width="41" height="35.5"/>
-                                                                            <fontDescription key="fontDescription" name="Nunito-BoldItalic" family="Nunito" pointSize="26"/>
+                                                                            <fontDescription key="fontDescription" name="Nunito-Bold" family="Nunito" pointSize="26"/>
                                                                             <nil key="textColor"/>
                                                                             <nil key="highlightedColor"/>
                                                                         </label>

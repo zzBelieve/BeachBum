@@ -26,12 +26,19 @@ class BeachForecastsView: UIView {
   
   @IBOutlet weak var popupView: UIView! {
     didSet {
-      popupView.layer.cornerRadius = popupView.frame.size.width / 2
+      popupView?.layer.cornerRadius = popupView.frame.size.width / 2
+      popupView?.layer.borderWidth = 2.0
+      popupView?.layer.borderColor = UIColor.flatBlue.cgColor
       popupView?.clipsToBounds = true
     }
   }
   
-  @IBOutlet weak var popupLabel: UILabel!
+  @IBOutlet weak var popupLabel: UILabel! {
+    didSet {
+      popupLabel?.font = UIFont(name: "Nunito-Regular", size: 20.0)
+      popupLabel?.adjustsFontSizeToFitWidth = true
+    }
+  }
   weak var delegate: BeachForecastsViewDelegate?
   private var sortButtonExpanded = false
   
