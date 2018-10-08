@@ -102,8 +102,8 @@ extension ForecastsViewController {
     super.viewWillAppear(animated)
     favoriteBeaches = storageController.loadData() ?? [Beach]()
     if let navBar = navigationController?.navigationBar {
-      navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
-      navBar.largeTitleTextAttributes = [NSAttributedStringKey.font: UIFont(name: "Nunito-ExtraBold", size: 40.0)!]
+      navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+      navBar.largeTitleTextAttributes = [NSAttributedString.Key.font: UIFont(name: "Nunito-ExtraBold", size: 40.0)!]
     }
     extendedLayoutIncludesOpaqueBars = true
 

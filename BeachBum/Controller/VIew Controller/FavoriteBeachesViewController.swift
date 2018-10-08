@@ -28,7 +28,7 @@ class FavoriteBeachesViewController: ForecastsViewController {
     addFavoriteBeachesNoticeView.isHidden = !favoriteBeaches.isEmpty
   }
   
-  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+  func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     switch editingStyle {
     case .delete:
       let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.row)

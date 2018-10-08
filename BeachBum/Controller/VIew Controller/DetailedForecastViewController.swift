@@ -65,7 +65,7 @@ extension DetailedForecastViewController {
     navigationItem.title = beachForecast?.beach.name
     if let navBar = navigationController?.navigationBar {
       navBar.tintColor = gradientColorArray?.last ?? .black
-      navBar.largeTitleTextAttributes = [NSAttributedStringKey.foregroundColor: accentColors?.last ?? .black, NSAttributedStringKey.font: UIFont(name: "Nunito-ExtraBold", size: 40.0)!]
+      navBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: accentColors?.last ?? .black, NSAttributedString.Key.font: UIFont(name: "Nunito-ExtraBold", size: 40.0)!]
     }
   }
   

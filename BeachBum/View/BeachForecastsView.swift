@@ -60,7 +60,7 @@ class BeachForecastsView: UIView {
         sortButton.setImage(image, for: .normal)
       }
       let number = 10
-      sortButton.imageEdgeInsets = UIEdgeInsetsMake(CGFloat(number), CGFloat(number), CGFloat(number), CGFloat(number))
+      sortButton.imageEdgeInsets = UIEdgeInsets.init(top: CGFloat(number), left: CGFloat(number), bottom: CGFloat(number), right: CGFloat(number))
       sortButton.clipsToBounds = true
     }
   }
@@ -106,14 +106,14 @@ class BeachForecastsView: UIView {
       if let image = UIImage(named: sortType.rawValue) {
         button.setImage(image, for: .normal)
       }
-      sortOptionButtons[index].imageEdgeInsets = UIEdgeInsetsMake(5.0, 5.0, 5.0, 5.0)
+      sortOptionButtons[index].imageEdgeInsets = UIEdgeInsets.init(top: 5.0, left: 5.0, bottom: 5.0, right: 5.0)
     }
   }
   
   func showPopupView(with text: String) {
     popupLabel?.text = text
     UIView.animate(withDuration: 1.0, delay: 0.0, usingSpringWithDamping: 2.0, initialSpringVelocity: 2.0, options: [.allowUserInteraction, .curveEaseIn], animations: {
-      self.bringSubview(toFront: self.popupView)
+      self.bringSubviewToFront(self.popupView)
       self.layoutSubviews()
       self.popupView.alpha = 1.0
     }, completion: { _ in
