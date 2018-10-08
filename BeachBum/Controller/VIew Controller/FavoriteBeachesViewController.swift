@@ -12,15 +12,23 @@ import SVProgressHUD
 
 class FavoriteBeachesViewController: ForecastsViewController {
   
+  @IBOutlet weak var addFavoriteBeachesNoticeView: UIView!
+  
   override func retrieveBeaches() {
     //TODO retrieve data from the storage controller
+    print("in retrieve beaches")
     guard let favoriteBeaches = storageController.loadData() else { print("no favorite beaches"); SVProgressHUD.dismiss(); return }
     self.favoriteBeaches = favoriteBeaches
+    addFavoriteBeachesNoticeView.isHidden = !favoriteBeaches.isEmpty
     fetchForecasts(for: self.favoriteBeaches)
   }
   
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    addFavoriteBeachesNoticeView.isHidden = !favoriteBeaches.isEmpty
+  }
+  
   func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-    //let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.row)
     switch editingStyle {
     case .delete:
       let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.row)
