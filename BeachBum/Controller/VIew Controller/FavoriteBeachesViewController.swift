@@ -16,8 +16,7 @@ class FavoriteBeachesViewController: ForecastsViewController {
   
   override func retrieveBeaches() {
     //TODO retrieve data from the storage controller
-    print("in retrieve beaches")
-    guard let favoriteBeaches = storageController.loadData() else { print("no favorite beaches"); SVProgressHUD.dismiss(); return }
+    guard let favoriteBeaches = storageController.loadData() else { SVProgressHUD.dismiss(); return }
     self.favoriteBeaches = favoriteBeaches
     addFavoriteBeachesNoticeView.isHidden = !favoriteBeaches.isEmpty
     fetchForecasts(for: self.favoriteBeaches)

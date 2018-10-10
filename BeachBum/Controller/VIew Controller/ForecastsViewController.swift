@@ -171,8 +171,8 @@ extension ForecastsViewController: UITableViewDelegate {
 extension ForecastsViewController {
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
     if segue.identifier == "Show Detailed Forecast" {
-      guard let detailedForecastVC = segue.destination as? DetailedForecastViewController else { print("not a detailed VC"); return }
-      guard let indexPath = forecastTableView?.indexPathForSelectedRow else { print("no row selected"); return }
+      guard let detailedForecastVC = segue.destination as? DetailedForecastViewController else { return }
+      guard let indexPath = forecastTableView?.indexPathForSelectedRow else { return }
       let beachForecast = beachForecastController.beachForecastForIndexAt(indexPath.item)
       detailedForecastVC.beachForecast = beachForecast
       detailedForecastVC.distanceFromUser = locationController.calculateDistanceFrom(beachForecast)

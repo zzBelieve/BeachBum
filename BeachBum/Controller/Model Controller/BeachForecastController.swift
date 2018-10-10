@@ -72,7 +72,7 @@ extension BeachForecastController {
   }
   
   func filterBeachesBy(_ searchString: String?) {
-    guard let searchString = searchString else { print("no search criteria"); return }
+    guard let searchString = searchString else { return }
     switch searchString.lowercased() {
     case "all": filteredBeachForecasts = nil; return
     case "north": filteredBeachForecasts = beachForecasts.filter { $0.beach.side == "North" }

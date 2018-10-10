@@ -17,7 +17,7 @@ class NetworkController {
     let beachesDB = Database.database().reference().child("Beaches")
     //OBSERVE IS OFF OF THE MAIN THREAD
     beachesDB.observeSingleEvent(of: .value) { (snapshot) in
-      guard let snapshot = snapshot.value as? Dictionary<String, Any> else { print("unable to retrive snapshot") ; return }
+      guard let snapshot = snapshot.value as? Dictionary<String, Any> else { return }
       var beaches = [Beach]()
       for value in snapshot {
         guard let keyValue = value.value as? Dictionary<String, Any> else  { return }

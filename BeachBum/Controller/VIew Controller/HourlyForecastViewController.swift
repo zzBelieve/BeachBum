@@ -66,7 +66,7 @@ extension HourlyForecastViewController: UICollectionViewDataSource {
   
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Hourly Forecast Cell", for: indexPath)
-    guard let hourlyCell = cell as? HourlyForecastCollectionViewCell  else { print("Invalid cell type"); return cell}
+    guard let hourlyCell = cell as? HourlyForecastCollectionViewCell  else { return cell }
     guard let hourlyForecast = self.hourlyForecast?.data[indexPath.item] else { return hourlyCell }
     hourlyCell.model = HourlyForecastCellViewModel(hourlyForecast)
     return cell
