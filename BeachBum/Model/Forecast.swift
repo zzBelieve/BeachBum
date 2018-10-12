@@ -52,11 +52,4 @@ struct Forecast: Codable {
     let sunsetTime: Int
     let precipProbability: Double
   }
-  
-  //Keeping init for Mock data
-  init(currently: Currently, hourly: Hourly? = nil, daily: Daily? = nil) {
-    self.currently = currently
-    self.hourly = nil
-    self.daily = nil
-  }
 }

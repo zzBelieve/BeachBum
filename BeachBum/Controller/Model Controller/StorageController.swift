@@ -11,7 +11,6 @@ import UIKit
 
 class StorageController {
   
-  static var mockFavoriteBeaches: [Beach] = MockData.mockFavoriteBeaches
   private let notificationCenter: NotificationCenter
   private var url: URL? {
     return try? FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: true).appendingPathComponent("favorites.json")

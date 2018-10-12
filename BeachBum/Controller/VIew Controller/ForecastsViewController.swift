@@ -69,11 +69,6 @@ class ForecastsViewController: UIViewController, BeachForecastsViewDelegate {
       self?.forecastTableView?.reloadSections([0], with: .automatic)
     }
   }
-  
-  func addMockData() {
-    MockData.mockBeachForecasts.forEach { beachForecastController.addBeachForecast($0) }
-    SVProgressHUD.dismiss()
-  }
 }
 
 //MARK: View Lifecycle

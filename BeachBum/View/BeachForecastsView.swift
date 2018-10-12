@@ -18,7 +18,6 @@ class BeachForecastsView: UIView {
   @IBOutlet weak var sortButtonsViewWidthConstraint: NSLayoutConstraint!
   @IBOutlet weak var sortButtonsView: UIView! {
     didSet {
-      //sortButtonsView?.backgroundColor = UIColor.flatBlueDark
       sortButtonsView?.backgroundColor = UIColor(gradientStyle: .diagonal, withFrame: sortButtonsView.frame, andColors: [.flatSkyBlue, .flatSkyBlueDark])
       sortButtonsView?.layer.cornerRadius = sortButtonsView.frame.size.height / 2
     }

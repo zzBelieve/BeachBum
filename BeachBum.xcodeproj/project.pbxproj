@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		171043D1213F13630004930A /* BeachForecastTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171043CF213F13630004930A /* BeachForecastTableViewCell.swift */; };
-		171043D8213F6FE60004930A /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 171043D7213F6FE60004930A /* MockData.swift */; };
 		17301904215382940090D27D /* ForecastsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17301903215382940090D27D /* ForecastsViewController.swift */; };
 		1731E6E5211D6FA000D7E432 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731E6E4211D6FA000D7E432 /* AppDelegate.swift */; };
 		1731E6EA211D6FA000D7E432 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1731E6E8211D6FA000D7E432 /* Main.storyboard */; };
@@ -67,7 +66,6 @@
 
 /* Begin PBXFileReference section */
 		171043CF213F13630004930A /* BeachForecastTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachForecastTableViewCell.swift; sourceTree = "<group>"; };
-		171043D7213F6FE60004930A /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		17301903215382940090D27D /* ForecastsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastsViewController.swift; sourceTree = "<group>"; };
 		1731E6E1211D6FA000D7E432 /* BeachBum.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BeachBum.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1731E6E4211D6FA000D7E432 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -155,7 +153,6 @@
 				1731E6FB211D712100D7E432 /* BeachForecast.swift */,
 				1731E6FC211D712100D7E432 /* Forecast.swift */,
 				1731E6F9211D712100D7E432 /* Beach.swift */,
-				171043D7213F6FE60004930A /* MockData.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -454,7 +451,6 @@
 				171043D1213F13630004930A /* BeachForecastTableViewCell.swift in Sources */,
 				1731E6FE211D712100D7E432 /* BeachForecastController.swift in Sources */,
 				17F0B12B215AFDA70055E4F8 /* LocationController.swift in Sources */,
-				171043D8213F6FE60004930A /* MockData.swift in Sources */,
 				17439BE221426C73001E876A /* HourlyForecastCollectionViewCell.swift in Sources */,
 				17439BBE2141C774001E876A /* DetailedForecastView.swift in Sources */,
 				1731E703211D712100D7E432 /* Forecast.swift in Sources */,

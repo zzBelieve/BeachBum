@@ -16,7 +16,6 @@ class BeachForecastsViewController: ForecastsViewController {
     networkController.fetchData(completion: { [weak self] in
       self?.fetchForecasts(for: $0)
     })
-    //addMockData()
   }
   
   //table view leading swipe action
