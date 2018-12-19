@@ -8,6 +8,6 @@ Weather app that displays weather forecast for popular beaches on the island of 
 * View detailed information on a beach
 
 ### Showcase
-* BeachBumm.github.io/BeachBummScreenShot2.png
+* (https://BeachBumm.github.io/BeachBummScreenShot2.png)
       
 
