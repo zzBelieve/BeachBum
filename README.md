@@ -7,7 +7,8 @@ Weather app that displays weather forecast for popular beaches on the island of 
 * Add beaches to favorites list
 * View detailed information on a beach
 
-### Showcase
-![](https://BeachBumm.github.io/BeachBummScreenShot2.png)
+### More Information
+
+![App Store](https://itunes.apple.com/us/app/beachbumm/id1438558191?mt=8)
       
 
