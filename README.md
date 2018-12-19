@@ -11,7 +11,7 @@ Weather app that displays weather forecast for popular beaches on the island of 
 
 [App Store Link](https://itunes.apple.com/us/app/beachbumm/id1438558191?mt=8)
 
-[Website Link] (https://dumlaoj.wordpress.com/portfolio/)
+[Website Link](https://dumlaoj.wordpress.com/portfolio/)
 
       
 
